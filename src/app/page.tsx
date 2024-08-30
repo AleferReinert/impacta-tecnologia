@@ -1,3 +1,4 @@
+import { BannersSlider } from '@/components/BannersSlider'
 import { BenefitsSlider } from '@/components/BenefitsSlider'
 import { Button } from '@/components/Button'
 import { ContactForm } from '@/components/ContactForm'
@@ -11,6 +12,7 @@ import { FaComputer } from 'react-icons/fa6'
 export default function Home() {
 	return (
 		<Layout>
+			<BannersSlider />
 			<Section>
 				<SectionTitle>Sobre nós</SectionTitle>
 				<p>

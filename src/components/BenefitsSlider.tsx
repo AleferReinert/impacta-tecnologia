@@ -1,6 +1,5 @@
 'use client'
 import Slider from 'react-slick'
-// import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 
 const benefitItems = [
@@ -44,10 +43,10 @@ export function BenefitsSlider() {
 	return (
 		<Slider {...settings}>
 			{benefitItems.map((benefit, index) => (
-				<li key={index} className='text-center mb-10'>
+				<div key={index} className='text-center mb-10'>
 					<h3 className='font-semibold text-xl'>{benefit.title}</h3>
 					<p className='max-w-screen-sm mx-auto'>{benefit.description}</p>
-				</li>
+				</div>
 			))}
 		</Slider>
 	)

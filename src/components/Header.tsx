@@ -1,12 +1,30 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { MdClose, MdOutlineMenu } from 'react-icons/md'
 import { Container } from './Container'
 export function Header() {
+	const [fixedHeader, setFixedHeader] = useState('fixed')
 	const [menu, setMenu] = useState(false)
 
+	useEffect(() => {
+		let prev = window.scrollY
+
+		const fixedHeaderOnScrollUp = () => {
+			let current = window.scrollY
+			prev > current ? setFixedHeader('fixed') : setFixedHeader('')
+			prev = current
+		}
+
+		window.addEventListener('scroll', fixedHeaderOnScrollUp)
+		return () => window.removeEventListener('scroll', fixedHeaderOnScrollUp)
+	})
+
 	return (
-		<header className='py-4 bg-primary'>
+		<header
+			className={`py-4 fixed right-0 left-0 transition z-10 bg-primary ${
+				fixedHeader ? 'translate-y' : 'translate-y-[-100%]'
+			}`}
+		>
 			<Container>
 				<div className='flex justify-between text-white'>
 					<a href='/' className='font-bold text-xl'>
