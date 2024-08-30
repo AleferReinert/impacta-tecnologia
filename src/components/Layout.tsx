@@ -8,7 +8,7 @@ export function Layout({ children }: LayoutProps) {
 	return (
 		<>
 			<Header />
-			<main className='mb-10'>{children}</main>
+			<main className='pb-16'>{children}</main>
 			<Footer />
 		</>
 	)

@@ -32,7 +32,6 @@ export function Header() {
 						</button>
 						<a href='/sobre-nos'>Sobre nós</a>
 						<a href='/servicos'>Serviços</a>
-						<a href='/contato'>Contato</a>
 					</nav>
 				</div>
 			</Container>

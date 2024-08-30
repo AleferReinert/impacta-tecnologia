@@ -8,6 +8,10 @@ export default function About() {
 		<Layout>
 			<Container>
 				<PageTitle>Sobre nós</PageTitle>
+				<p>
+					A Impacta Tecnologia & Soluções em TI está aqui para levar sua tecnologia a um novo patamar.
+					Descubra como podemos ajudar você a alcançar seus objetivos tecnológicos com eficiência e inovação.
+				</p>
 				<Subtitle>Missão</Subtitle>
 				<p>
 					Nossa missão é fornecer soluções tecnológicas de ponta, com foco no cliente, por meio da locação de
@@ -24,18 +28,33 @@ export default function About() {
 				</p>
 
 				<Subtitle>Valores</Subtitle>
-				<p>
-					<strong>Foco no Cliente:</strong> Colocamos as necessidades dos clientes em primeiro lugar,
-					garantindo uma experiência excepcional. <br />
-					<strong>Excelência no Atendimento:</strong> Prestamos serviços e fornecemos produtos com o mais alto
-					padrão de qualidade. <br />
-					<strong>Transparência e Integridade:</strong> Conduzimos nossos negócios com total honestidade e
-					clareza. <br />
-					<strong>Inovação Constante:</strong> Mantemos nossas ofertas atualizadas com as últimas inovações
-					tecnológicas. <br />
-					<strong>Proatividade:</strong> Agimos com antecipação para resolver desafios de forma eficiente e
-					eficaz.
-				</p>
+				<ul className='list-disc pl-7 gap-3 flex flex-col mt-3'>
+					<li>
+						<strong>Foco no Cliente</strong>
+						<br />
+						Colocamos as necessidades dos clientes em primeiro lugar, garantindo uma experiência excepcional.
+					</li>
+					<li>
+						<strong>Excelência no Atendimento</strong>
+						<br />
+						Prestamos serviços e fornecemos produtos com o mais alto padrão de qualidade.
+					</li>
+					<li>
+						<strong>Transparência e Integridade</strong>
+						<br />
+						Conduzimos nossos negócios com total honestidade e clareza.
+					</li>
+					<li>
+						<strong>Inovação Constante</strong>
+						<br />
+						Mantemos nossas ofertas atualizadas com as últimas inovações tecnológicas.
+					</li>
+					<li>
+						<strong>Proatividade:</strong>
+						<br />
+						Agimos com antecipação para resolver desafios de forma eficiente e eficaz.
+					</li>
+				</ul>
 			</Container>
 		</Layout>
 	)

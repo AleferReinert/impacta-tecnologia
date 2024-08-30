@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.custom-dots {
+	@apply gap-3 justify-center !flex;
+}
+
+.custom-dots li {
+	@apply flex;
+}
+
+.custom-dots button {
+	@apply bg-gray-400 w-3 h-3 text-[0px] rounded-full transition focus-visible:outline-none focus-visible:ring-0;
+}
+
+.custom-dots button:hover {
+	@apply bg-black/75;
+}
+
+.custom-dots .slick-active button {
+	@apply bg-primary;
+}
+
+section p {
+	@apply text-center max-w-screen-sm mx-auto;
+}
+
+p + p {
+	@apply mt-5;
+}
+
+input {
+	@apply h-10;
+}
+
+textarea {
+	@apply resize-none h-32;
+}
+
+input,
+textarea {
+	@apply border py-2 px-4 font-normal w-full mb-4 focus:outline-none;
+}
+
