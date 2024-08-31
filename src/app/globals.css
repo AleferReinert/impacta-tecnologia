@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.banners-dots {
-	@apply absolute bottom-5 w-full;
-}
-
 .custom-dots {
 	@apply gap-3 justify-center !flex;
 }
@@ -15,20 +11,28 @@
 }
 
 .custom-dots button {
-	@apply bg-gray-400 w-3 h-3 text-[0px] rounded-full transition focus-visible:outline-none focus-visible:ring-0;
+	@apply bg-zinc-400 w-3 h-3 text-[0px] rounded-full transition focus-visible:outline-none focus-visible:ring-0;
 }
 
 .custom-dots button:hover {
-	@apply bg-black/75;
+	@apply bg-zinc-500;
 }
 
 .custom-dots .slick-active button {
 	@apply bg-primary;
 }
 
-section p {
-	@apply text-center max-w-screen-sm mx-auto;
+.banners-dots {
+	@apply absolute bottom-5 w-full;
 }
+
+.banners-dots button {
+	@apply bg-zinc-100;
+}
+
+/* section p {
+	@apply text-center max-w-screen-sm mx-auto;
+} */
 
 p + p {
 	@apply mt-5;
@@ -44,6 +48,6 @@ textarea {
 
 input,
 textarea {
-	@apply border py-2 px-3 font-normal w-full mb-4 focus:outline-none;
+	@apply border border-zinc-400 py-2 px-3 font-normal w-full mb-4 bg-transparent focus:outline-none;
 }
 

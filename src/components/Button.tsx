@@ -5,7 +5,7 @@ interface ButtonProps {
 	url?: string
 }
 export function Button({ children, url, asLink }: ButtonProps) {
-	const styles = `border-2 border-primary mx-auto block max-w-fit text-primary py-2 px-4
+	const styles = `border border-primary mx-auto flex gap-1 items-center max-w-fit text-primary py-2 px-4
 		hover:bg-primary hover:text-white transition`
 
 	if (asLink) {

@@ -35,11 +35,11 @@ export function BannersSlider() {
 		<Slider {...settings}>
 			{banners.map((banner, index) =>
 				banner.url ? (
-					<a key={index} href={banner.url} target='_blank' className='relative aspect-[572/175]'>
+					<a key={index} href={banner.url} target='_blank' className='relative aspect-[3/1]'>
 						<Image alt={banner.title} src={banner.img} fill />
 					</a>
 				) : (
-					<div key={index} className='relative aspect-[572/175]'>
+					<div key={index} className='relative aspect-[3/1]'>
 						<Image alt={banner.title} src={banner.img} fill />
 					</div>
 				)

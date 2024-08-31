@@ -6,6 +6,7 @@ import { Layout } from '@/components/Layout'
 import { Section } from '@/components/Section'
 import { SectionTitle } from '@/components/SectionTitle'
 import { ServiceItem } from '@/components/ServiceItem'
+import { BsArrowRightShort } from 'react-icons/bs'
 import { FaMouse, FaTools } from 'react-icons/fa'
 import { FaComputer } from 'react-icons/fa6'
 
@@ -14,7 +15,7 @@ export default function Home() {
 		<Layout>
 			<BannersSlider />
 			<Section>
-				<SectionTitle>Sobre nós</SectionTitle>
+				<SectionTitle direction='left'>Sobre nós</SectionTitle>
 				<p>
 					Nossa paixão por tecnologia nos impulsiona a oferecer soluções completas que atendem perfeitamente
 					às suas necessidades de TI.
@@ -29,6 +30,7 @@ export default function Home() {
 				</p>
 				<Button asLink url='/sobre-nos'>
 					Saiba mais
+					<BsArrowRightShort className='w-5 h-5' />
 				</Button>
 			</Section>
 
@@ -63,7 +65,7 @@ export default function Home() {
 
 			<Section>
 				<SectionTitle>Contato</SectionTitle>
-				<p className='mb-10'>
+				<p className='text-center mb-10'>
 					Entre em contato conosco para saber mais sobre nossos serviços e como podemos ajudar a transformar a
 					forma como sua empresa utiliza a tecnologia.
 				</p>
