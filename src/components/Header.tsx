@@ -34,18 +34,18 @@ export function Header() {
 			}`}
 		>
 			<Container>
-				<div className='h-14 flex justify-between items-center text-white'>
+				<div className='h-14 flex justify-between items-center'>
 					<a href='/' className='font-bold text-xl text-zinc-900'>
 						<Image src='/impacta-logo-dark.webp' alt='Impacta Tecnologia' width={126} height={36} />
 					</a>
 
-					<button title='Menu' className='sm:hidden' onClick={() => setMenu(true)}>
+					<button title='Menu' className='text-zinc-900 sm:hidden' onClick={() => setMenu(true)}>
 						<MdOutlineMenu size={28} />
 					</button>
 					<nav
 						className={`
 							${menu ? 'opacity-100' : 'opacity-0 pointer-events-none'} 
-							flex flex-col transition items-center justify-center fixed inset-0 z-40 bg-blue-900 text-2xl gap-4
+							flex flex-col transition items-center justify-center fixed inset-0 z-40 bg-white text-secondary text-2xl gap-4
 							sm:opacity-100 sm:relative sm:bg-transparent sm:flex-row sm:text-sm sm:gap-8 sm:pointer-events-auto sm:text-zinc-900
 						`}
 					>

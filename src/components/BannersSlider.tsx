@@ -1,5 +1,4 @@
 'use client'
-import Image from 'next/image'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import { Button } from './Button'
@@ -11,6 +10,7 @@ interface BannerProps {
 	img: string
 	url?: string
 	align?: 'text-left' | 'text-center' | 'text-right'
+	buttonText?: string
 }
 
 const banners: BannerProps[] = [
@@ -19,21 +19,24 @@ const banners: BannerProps[] = [
 		description: 'Lorem ipsum dolor sit amet consectetur.',
 		img: '/banners/1.webp',
 		url: 'http://google.com',
-		align: 'text-left'
+		align: 'text-left',
+		buttonText: 'Saiba mais'
 	},
 	{
 		title: 'Economia Inteligente',
 		description: 'Lorem ipsum dolor sit amet consectetur.',
 		img: '/banners/2.webp',
 		url: 'http://google.com',
-		align: 'text-right'
+		align: 'text-right',
+		buttonText: 'Saiba mais'
 	},
 	{
 		title: 'Serviço Personalizado',
 		description: 'Lorem ipsum dolor sit amet consectetur.',
 		img: '/banners/3.webp',
 		url: 'http://google.com',
-		align: 'text-left'
+		align: 'text-left',
+		buttonText: 'Saiba mais'
 	}
 ]
 
@@ -49,25 +52,27 @@ export function BannersSlider() {
 		arrows: false,
 		dotsClass: 'custom-dots banners-dots'
 	}
+
 	return (
 		<div className='relative'>
 			<Slider {...settings}>
 				{banners.map((banner, index) => (
-					<div key={index} className='relative aspect-[3/1] !flex flex-col justify-center [&>div]:w-full'>
-						<Container>
-							<div
-								className={`relative z-20 text-white items-center -translate-y-5 [&_a]:inline-flex ${banner.align}`}
-							>
-								<h2 className='font-black uppercase text-4xl mb-2'>{banner.title}</h2>
-								<p className='font-light mb-10 text-lg'>{banner.description}</p>
-								{banner.url && (
-									<Button asLink url={banner.url} themeColor='white'>
-										Saiba mais
-									</Button>
-								)}
-							</div>
-						</Container>
-						<Image alt={banner.title} src={banner.img} fill />
+					<div key={index} className={`relative`}>
+						<div style={{ backgroundImage: `url(${banner.img})` }} className='flex flex-col justify-center'>
+							<Container>
+								<div
+									className={`relative z-20 text-white items-center pt-10 pb-16 sm:pt-14 sm:pb-20 lg:pt-24 lg:pb-28 [&_a]:inline-flex ${banner.align}`}
+								>
+									<h2 className='font-black uppercase text-xl sm:text-4xl mb-2'>{banner.title}</h2>
+									<p className='font-light mb-7 sm:mb-10 text-sm sm:text-lg'>{banner.description}</p>
+									{banner.url && (
+										<Button asLink url={banner.url} themeColor='white'>
+											{banner.buttonText || 'Saiba mais'}
+										</Button>
+									)}
+								</div>
+							</Container>
+						</div>
 						<div className='bg-secondary/80 absolute inset-0 z-10'></div>
 					</div>
 				))}
