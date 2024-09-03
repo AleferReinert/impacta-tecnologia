@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	/* box-sizing: border-box; */
+}
+
 .custom-dots {
 	@apply gap-3 justify-center !flex;
 }
@@ -15,39 +21,26 @@
 }
 
 .custom-dots button:hover {
-	@apply bg-zinc-500;
-}
-
-.custom-dots .slick-active button {
 	@apply bg-primary;
 }
 
+.custom-dots .slick-active button {
+	@apply bg-secondary;
+}
+
 .banners-dots {
-	@apply absolute bottom-5 w-full;
+	@apply absolute bottom-3 w-full;
 }
 
 .banners-dots button {
 	@apply bg-zinc-100;
 }
 
-/* section p {
-	@apply text-center max-w-screen-sm mx-auto;
-} */
+.slick-slide > div {
+	display: flex;
+}
 
 p + p {
 	@apply mt-5;
-}
-
-input {
-	@apply h-10;
-}
-
-textarea {
-	@apply resize-none h-32;
-}
-
-input,
-textarea {
-	@apply border border-zinc-400 py-2 px-3 font-normal w-full mb-4 bg-transparent focus:outline-none;
 }
 

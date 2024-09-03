@@ -32,18 +32,21 @@ export function BannersSlider() {
 		dotsClass: 'custom-dots banners-dots'
 	}
 	return (
-		<Slider {...settings}>
-			{banners.map((banner, index) =>
-				banner.url ? (
-					<a key={index} href={banner.url} target='_blank' className='relative aspect-[3/1]'>
-						<Image alt={banner.title} src={banner.img} fill />
-					</a>
-				) : (
-					<div key={index} className='relative aspect-[3/1]'>
-						<Image alt={banner.title} src={banner.img} fill />
-					</div>
-				)
-			)}
-		</Slider>
+		<div className='relative'>
+			<div className='bg-secondary/50 absolute inset-0 z-10'></div>
+			<Slider {...settings}>
+				{banners.map((banner, index) =>
+					banner.url ? (
+						<a key={index} href={banner.url} target='_blank' className='relative aspect-[3/1]'>
+							<Image alt={banner.title} src={banner.img} fill />
+						</a>
+					) : (
+						<div key={index} className='relative aspect-[3/1]'>
+							<Image alt={banner.title} src={banner.img} fill />
+						</div>
+					)
+				)}
+			</Slider>
+		</div>
 	)
 }

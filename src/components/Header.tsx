@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { MdClose, MdOutlineMenu } from 'react-icons/md'
 import { Container } from './Container'
@@ -28,14 +29,14 @@ export function Header() {
 
 	return (
 		<header
-			className={`py-4 fixed right-0 left-0 transition z-10 bg-white ${
-				fixedHeader ? 'translate-y' : 'translate-y-[-100%]'
+			className={`fixed right-0 left-0 transition z-20 bg-white ${
+				fixedHeader ? 'translate-y shadow' : 'translate-y-[-100%]'
 			}`}
 		>
 			<Container>
-				<div className='flex justify-between text-white'>
-					<a href='/' className='font-bold text-xl text-slate-900'>
-						Impacta
+				<div className='h-14 flex justify-between items-center text-white'>
+					<a href='/' className='font-bold text-xl text-zinc-900'>
+						<Image src='/impacta-logo-dark.webp' alt='Impacta Tecnologia' width={126} height={36} />
 					</a>
 
 					<button title='Menu' className='sm:hidden' onClick={() => setMenu(true)}>
@@ -45,7 +46,7 @@ export function Header() {
 						className={`
 							${menu ? 'opacity-100' : 'opacity-0 pointer-events-none'} 
 							flex flex-col transition items-center justify-center fixed inset-0 z-40 bg-blue-900 text-2xl gap-4
-							sm:opacity-100 sm:relative sm:bg-transparent sm:flex-row sm:text-sm sm:gap-8 sm:pointer-events-auto sm:text-slate-900
+							sm:opacity-100 sm:relative sm:bg-transparent sm:flex-row sm:text-sm sm:gap-8 sm:pointer-events-auto sm:text-zinc-900
 						`}
 					>
 						<button
