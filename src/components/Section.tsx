@@ -11,7 +11,9 @@ interface SectionProps {
 export function Section({ title, children, theme = 'light', direction = 'center' }: SectionProps) {
 	const directionStyles = direction === 'center' ? 'text-center mx-auto' : ''
 	return (
-		<section className={`${theme === 'light' ? 'bg-white' : 'bg-slate-100'} py-16 last:border-0`}>
+		<section
+			className={`${theme === 'light' ? 'bg-white' : 'bg-slate-100'} py-16 last:border-0 [&_a]:mx-auto`}
+		>
 			<Container>
 				<h2
 					className={`${directionStyles} ${
