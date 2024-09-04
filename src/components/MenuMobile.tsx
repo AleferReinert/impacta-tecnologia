@@ -1,11 +1,14 @@
-import { useState } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 import { MdClose, MdOutlineMenu } from 'react-icons/md'
 import { MenuLinks } from './MenuLinks'
 import { Social } from './Social'
 
-export function MenuMobile() {
-	const [menu, setMenu] = useState(false)
+interface MenuMobileProps {
+	menu: boolean
+	setMenu: Dispatch<SetStateAction<boolean>>
+}
 
+export function MenuMobile({ menu, setMenu }: MenuMobileProps) {
 	return (
 		<div className='sm:hidden'>
 			<button title='Menu' className='text-zinc-900 sm:hidden' onClick={() => setMenu(true)}>

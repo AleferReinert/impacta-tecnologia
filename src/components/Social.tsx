@@ -1,26 +1,18 @@
-import { IconType } from 'react-icons'
 import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa'
 
-const iconComponents: Record<string, IconType> = {
-	Facebook: FaFacebook,
-	Instagram: FaInstagram,
-	Whatsapp: FaWhatsapp
-}
-
 const socialLinks = [
-	{ title: 'Facebook', url: 'http://facebook.com', icon: 'Facebook' },
-	{ title: 'Instagram', url: 'http://instagram.com', icon: 'Instagram' },
-	{ title: 'Whatsapp', url: 'http://whatsapp.com', icon: 'Whatsapp' }
+	{ title: 'Facebook', url: 'http://facebook.com', icon: FaFacebook },
+	{ title: 'Instagram', url: 'http://instagram.com', icon: FaInstagram },
+	{ title: 'Whatsapp', url: 'http://whatsapp.com', icon: FaWhatsapp }
 ]
 
 export function Social() {
 	return (
-		<nav className='flex justify-center gap-4 mb-4 [&_svg]:w-8 [&_svg]:h-8 sm:mb-0 sm:[&_svg]:w-6 sm:[&_svg]:h-6'>
+		<nav className='flex justify-center gap-4 mb-4 sm:mb-0'>
 			{socialLinks.map((link, index) => {
-				const IconComponent = iconComponents[link.icon]
 				return (
-					<a key={index} href={link.url} target='_blank' title={link.title}>
-						<IconComponent />
+					<a key={index} title={link.title} href={link.url} target='_blank'>
+						<link.icon className='w-8 h-8 sm:w-6 sm:h-6' />
 					</a>
 				)
 			})}

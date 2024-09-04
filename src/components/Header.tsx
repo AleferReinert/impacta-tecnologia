@@ -7,6 +7,7 @@ import { MenuMobile } from './MenuMobile'
 
 export function Header() {
 	const [fixedHeader, setFixedHeader] = useState('fixed')
+	const [menu, setMenu] = useState(false)
 
 	useEffect(() => {
 		let prev = window.scrollY
@@ -24,7 +25,7 @@ export function Header() {
 	return (
 		<header
 			className={`fixed right-0 left-0 transition z-20 bg-white ${
-				fixedHeader ? 'translate-y shadow' : 'translate-y-[-100%]'
+				fixedHeader ? 'translate-y shadow' : !menu && 'translate-y-[-100%]'
 			}`}
 		>
 			<Container>
@@ -33,7 +34,7 @@ export function Header() {
 						<Image src='/impacta-logo-dark.webp' alt='Impacta Tecnologia' width={126} height={36} />
 					</a>
 
-					<MenuMobile />
+					<MenuMobile menu={menu} setMenu={setMenu} />
 					<nav className='hidden gap-8 text-sm sm:flex'>
 						<MenuLinks />
 					</nav>
