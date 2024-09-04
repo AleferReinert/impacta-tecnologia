@@ -68,10 +68,10 @@ export function BannersSlider() {
 								<div
 									className={`relative z-20 text-white items-center pt-10 pb-16 sm:pt-14 sm:pb-20 lg:pt-24 lg:pb-28 [&_a]:inline-flex ${banner.align}`}
 								>
-									<h2 className='font-black uppercase text-xl sm:text-4xl mb-2'>{banner.title}</h2>
+									<h2 className='font-semibold uppercase text-xl sm:text-4xl mb-2'>{banner.title}</h2>
 									<p className='font-light mb-7 sm:mb-10 text-sm sm:text-lg'>{banner.description}</p>
 									{banner.url && (
-										<Button asLink url={banner.url} themeColor='white'>
+										<Button asLink url={banner.url} variant='outline-white'>
 											{banner.buttonText || 'Saiba mais'}
 										</Button>
 									)}

@@ -1,27 +1,22 @@
 import { ReactNode } from 'react'
+
 interface ButtonProps {
 	children: ReactNode
 	asLink?: boolean
 	url?: string
-	theme?: 'outline' | 'fill'
-	themeColor?: 'white' | 'secondary'
+	variant?: 'outline-white' | 'outline-secondary' | 'fill'
 	full?: boolean
 }
-export function Button({
-	children,
-	url,
-	asLink,
-	theme = 'outline',
-	themeColor = 'secondary',
-	full
-}: ButtonProps) {
-	const themeStyles = theme === 'outline' ? 'border' : 'bg-primary text-white'
-	const themeColorStyles =
-		themeColor === 'white'
-			? 'border-white text-white hover:bg-white hover:text-secondary'
-			: 'border-secondary text-secondary hover:bg-secondary hover:text-white'
-	const fullStyles = full ? 'w-full text-center' : 'max-w-fit flex'
-	const styles = `${themeStyles} ${fullStyles} ${themeColorStyles} gap-1 items-center h-10 px-4 transition`
+
+export function Button({ children, url, asLink, variant = 'outline-secondary', full }: ButtonProps) {
+	const outlineWhite = 'border border-white text-white hover:bg-white hover:border-white hover:text-secondary'
+	const outlineSecondary =
+		'border border-secondary text-secondary hover:bg-primary hover:border-primary hover:text-white'
+	const fill = 'bg-secondary text-white hover:bg-primary hover:text-white'
+	const styles = `
+		${variant === 'outline-white' ? outlineWhite : variant === 'outline-secondary' ? outlineSecondary : fill} 
+		${full ? 'w-full text-center' : 'max-w-fit flex'}
+		gap-1 items-center h-10 px-4 transition`
 
 	if (asLink) {
 		return (

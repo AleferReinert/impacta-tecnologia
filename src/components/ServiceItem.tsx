@@ -1,17 +1,19 @@
-import { ReactNode } from 'react'
+import { IconType } from 'react-icons'
 
 interface ServiceItemProps {
 	title: string
 	shortDescription: string
-	icon: ReactNode
+	icon: IconType
 }
 export function ServiceItem({ title, icon, shortDescription }: ServiceItemProps) {
+	const Icon = icon
+
 	return (
 		<li className='text-center'>
-			<div className='border rounded-full flex justify-center w-48 h-48 items-center mx-auto border-black mb-4'>
-				{icon}
+			<div className='border rounded-full flex justify-center w-40 h-40 items-center mx-auto mb-4 border-secondary'>
+				<Icon size={72} className='fill-secondary' />
 			</div>
-			<h2 className='font-semibold'>{title}</h2>
+			<h2 className='font-semibold text-secondary'>{title}</h2>
 			<p>{shortDescription}</p>
 		</li>
 	)

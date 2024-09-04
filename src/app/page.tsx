@@ -27,17 +27,17 @@ export default function Home() {
 			<Section title='Serviços'>
 				<ul className='gap-10 grid grid-cols-1 md:grid-cols-3 mt-10 mb-10'>
 					<ServiceItem
-						icon={<FaComputer size='80' />}
+						icon={FaComputer}
 						title='Locação de Equipamentos de TI'
 						shortDescription='Laptops, desktops, servidores e equipamentos de rede'
 					/>
 					<ServiceItem
-						icon={<FaTools size='80' />}
+						icon={FaTools}
 						title='Prestação de Serviços de TI'
 						shortDescription='Suporte técnico e consultoria personalizada'
 					/>
 					<ServiceItem
-						icon={<FaMouse size='80' />}
+						icon={FaMouse}
 						title='Venda de Hardware e Periféricos'
 						shortDescription='Produtos de marcas com garantia de performance e durabilidade'
 					/>

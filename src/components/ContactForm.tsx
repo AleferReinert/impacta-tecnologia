@@ -34,7 +34,7 @@ export function ContactForm() {
 			<FormField label='Nome' name='name' />
 			<FormField label='E-mail' name='email' inputType='email' />
 			<FormField label='Mensagem' name='message' fieldType='textarea' placeholder='Digite sua mensagem...' />
-			<Button theme='fill' full>
+			<Button variant='fill' full>
 				Enviar mensagem
 			</Button>
 		</form>

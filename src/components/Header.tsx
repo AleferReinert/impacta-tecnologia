@@ -30,7 +30,7 @@ export function Header() {
 		>
 			<Container>
 				<div className='h-14 flex justify-between items-center'>
-					<a href='/' className='font-bold text-xl text-zinc-900'>
+					<a href='/'>
 						<Image src='/impacta-logo-dark.webp' alt='Impacta Tecnologia' width={126} height={36} />
 					</a>
 

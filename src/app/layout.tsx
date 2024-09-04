@@ -2,7 +2,10 @@ import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import './globals.css'
 
-const inter = Poppins({ weight: ['100', '300', '400', '500', '700'], subsets: ['latin'] })
+const inter = Poppins({
+	weight: ['100', '300', '400', '500', '600', '700', '800', '900'],
+	subsets: ['latin']
+})
 
 export const metadata: Metadata = {
 	title: ' Impacta Tecnologia & Soluções em TI',
@@ -16,7 +19,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='pt-br'>
-			<body className={inter.className + ' text-gray-800'}>{children}</body>
+			<body className={inter.className + ' text-slate-600'}>{children}</body>
 		</html>
 	)
 }

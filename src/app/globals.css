@@ -8,7 +8,7 @@
 }
 
 .custom-dots {
-	@apply gap-3 justify-center !flex;
+	@apply gap-2 justify-center !flex;
 }
 
 .custom-dots li {
@@ -20,23 +20,22 @@
 }
 
 .custom-dots button:hover {
-	@apply bg-primary;
+	@apply bg-zinc-500;
 }
 
 .custom-dots .slick-active button {
-	@apply bg-secondary;
-}
-
-.banners-dots .slick-active button {
-	@apply bg-primary;
-}
-
-.banners-dots {
-	@apply absolute bottom-5 w-full;
+	@apply bg-secondary cursor-default;
 }
 
 .banners-dots button {
-	@apply bg-zinc-100;
+	@apply bg-white opacity-50;
+}
+.banners-dots .slick-active button,
+.banners-dots button:hover {
+	@apply bg-white opacity-100;
+}
+.banners-dots {
+	@apply absolute bottom-4 w-full;
 }
 
 .slick-slide > div {

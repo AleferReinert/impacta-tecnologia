@@ -44,7 +44,7 @@ export function BenefitsSlider() {
 		<Slider {...settings}>
 			{benefitItems.map((benefit, index) => (
 				<div key={index} className='text-center mb-10'>
-					<h3 className='font-semibold text-xl'>{benefit.title}</h3>
+					<h3 className='font-semibold text-secondary'>{benefit.title}</h3>
 					<p className='max-w-screen-sm mx-auto'>{benefit.description}</p>
 				</div>
 			))}

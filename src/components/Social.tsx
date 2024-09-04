@@ -12,7 +12,7 @@ export function Social() {
 			{socialLinks.map((link, index) => {
 				return (
 					<a key={index} title={link.title} href={link.url} target='_blank'>
-						<link.icon className='w-8 h-8 sm:w-6 sm:h-6' />
+						<link.icon className='w-8 h-8 sm:w-6 sm:h-6 fill-secondary transition hover:fill-primary' />
 					</a>
 				)
 			})}
