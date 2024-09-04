@@ -3,11 +3,10 @@ import { Container } from './Container'
 
 export function Footer() {
 	return (
-		<footer className='py-4 text-sm border-t border-gray-300 [&_svg]:w-6 [&_svg]:h-6'>
+		<footer className='py-6 text-center text-sm border-t border-gray-300 sm:py-5'>
 			<Container>
-				<div className='flex justify-between items-center'>
-					Impacta Tecnologia & Soluções em TI
-					<nav className='flex gap-2'>
+				<div className='sm:flex sm:flex-row-reverse sm:justify-between sm:items-center'>
+					<nav className='flex justify-center gap-4 mb-4 [&_svg]:w-8 [&_svg]:h-8 sm:mb-0 sm:[&_svg]:w-6 sm:[&_svg]:h-6'>
 						<a href='http://facebook.com' target='_blank' title='Facebook'>
 							<FaFacebook />
 						</a>
@@ -18,6 +17,7 @@ export function Footer() {
 							<FaWhatsapp />
 						</a>
 					</nav>
+					<p>Impacta Tecnologia & Soluções em TI</p>
 				</div>
 			</Container>
 		</footer>

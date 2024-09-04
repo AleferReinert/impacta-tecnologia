@@ -19,9 +19,9 @@ export function Button({
 	const themeColorStyles =
 		themeColor === 'white'
 			? 'border-white text-white hover:bg-white hover:text-secondary'
-			: 'border-secondary text-secondary'
+			: 'border-secondary text-secondary hover:bg-secondary hover:text-white'
 	const fullStyles = full ? 'w-full text-center' : 'max-w-fit flex'
-	const styles = `${themeStyles} ${fullStyles} ${themeColorStyles} gap-1 items-center h-10 px-4 transition hover:bg-secondary hover:text-white`
+	const styles = `${themeStyles} ${fullStyles} ${themeColorStyles} gap-1 items-center h-10 px-4 transition`
 
 	if (asLink) {
 		return (

@@ -1,18 +1,12 @@
 'use client'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { MdClose, MdOutlineMenu } from 'react-icons/md'
 import { Container } from './Container'
-
-const navigation = [
-	{ title: 'Home', url: '/' },
-	{ title: 'Sobre nós', url: '/sobre-nos' },
-	{ title: 'Serviços', url: '/servicos' }
-]
+import { MenuLinks } from './MenuLinks'
+import { MenuMobile } from './MenuMobile'
 
 export function Header() {
 	const [fixedHeader, setFixedHeader] = useState('fixed')
-	const [menu, setMenu] = useState(false)
 
 	useEffect(() => {
 		let prev = window.scrollY
@@ -39,29 +33,9 @@ export function Header() {
 						<Image src='/impacta-logo-dark.webp' alt='Impacta Tecnologia' width={126} height={36} />
 					</a>
 
-					<button title='Menu' className='text-zinc-900 sm:hidden' onClick={() => setMenu(true)}>
-						<MdOutlineMenu size={28} />
-					</button>
-					<nav
-						className={`
-							${menu ? 'opacity-100' : 'opacity-0 pointer-events-none'} 
-							flex flex-col transition items-center justify-center fixed inset-0 z-40 bg-white text-secondary text-2xl gap-4
-							sm:opacity-100 sm:relative sm:bg-transparent sm:flex-row sm:text-sm sm:gap-8 sm:pointer-events-auto sm:text-zinc-900
-						`}
-					>
-						<button
-							title='Fechar menu'
-							className='fixed right-4 top-4 sm:hidden'
-							onClick={() => setMenu(false)}
-						>
-							<MdClose size={28} />
-						</button>
-						{navigation.map((item, index) => (
-							<a key={index} href={item.url} className='[&>span]:hover:w-full'>
-								{item.title}
-								<span className='block w-0 mx-auto h-[1px] bg-slate-900 translate-y-1 transition-all'></span>
-							</a>
-						))}
+					<MenuMobile />
+					<nav className='hidden gap-8 text-sm sm:flex'>
+						<MenuLinks />
 					</nav>
 				</div>
 			</Container>

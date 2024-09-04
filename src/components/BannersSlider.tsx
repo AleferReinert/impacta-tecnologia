@@ -20,15 +20,15 @@ const banners: BannerProps[] = [
 		img: '/banners/1.webp',
 		url: 'http://google.com',
 		align: 'text-left',
-		buttonText: 'Saiba mais'
+		buttonText: 'Visualizar'
 	},
 	{
-		title: 'Economia Inteligente',
+		title: 'Cupom de desconto',
 		description: 'Lorem ipsum dolor sit amet consectetur.',
 		img: '/banners/2.webp',
 		url: 'http://google.com',
 		align: 'text-right',
-		buttonText: 'Saiba mais'
+		buttonText: 'Resgatar'
 	},
 	{
 		title: 'Serviço Personalizado',
@@ -41,8 +41,12 @@ const banners: BannerProps[] = [
 ]
 
 export function BannersSlider() {
+	if (banners.length === 0) {
+		return null
+	}
+
 	var settings = {
-		dots: true,
+		dots: banners.length > 1 ? true : false,
 		infinite: true,
 		speed: 500,
 		slidesToShow: 1,
@@ -50,7 +54,8 @@ export function BannersSlider() {
 		autoplay: true,
 		autoplaySpeed: 3000,
 		arrows: false,
-		dotsClass: 'custom-dots banners-dots'
+		dotsClass: 'custom-dots banners-dots',
+		adaptiveHeight: banners.length === 1 ? true : false
 	}
 
 	return (

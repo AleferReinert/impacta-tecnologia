@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Impacta Tecnologia
 
-## Getting Started
+Website da empresa Impacta Tecnologia & Soluções em TI.
 
-First, run the development server:
+## Começando
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Clone o repositório:
+   ```
+   git clone github.com/AleferReinert/impacta-tecnologia.git
+   ```
+2. Entre no diretório do projeto:
+   ```
+   cd impacta-tecnologia
+   ```
+3. Instale as dependências:
+   ```
+   npm install
+   ```
+4. Defina as variaveis de ambiente em .env-example.
+5. Inicie o servidor de desenvolvimento:
+   ```
+   npm run dev
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologias Utilizadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js:** Framework React para a construção de aplicações web estáticas e dinâmicas.
+- **React:** Biblioteca JavaScript para construir interfaces de usuário.
+- **React Icons:** Conjunto de ícones populares para uso em projetos React.
+- **React Slick:** Componente de slider/carrossel para React.
+- **Tailwind CSS:** Framework de utilidades CSS para estilização rápida e eficiente.
+- **TypeScript:** Superconjunto de JavaScript que adiciona tipagem estática ao código.
+- **ESLint:** Ferramenta de linting para identificar e corrigir problemas em código JavaScript/TypeScript.
+- **Emailjs:** Ferramenta para envios de e-mail a partir do front-end.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## URL do Projeto
 
-## Learn More
+Explore o projeto no link: [Impacta Tecnologia & Soluções em TI](https://impacta-tecnologia.netlify.app).
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

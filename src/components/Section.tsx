@@ -18,14 +18,10 @@ export function Section({ title, children, theme = 'light', direction = 'center'
 				<h2
 					className={`${directionStyles} ${
 						theme === 'light' ? 'text-secondary' : 'text-secondary'
-					} font-medium text-3xl max-w-fit mb-5`}
+					} font-medium text-3xl max-w-fit`}
 				>
 					{title}
-					<span
-						className={`${directionStyles} block w-20 h-[1px] ${
-							theme === 'light' ? 'bg-secondary' : 'bg-secondary'
-						} my-2`}
-					></span>
+					<span className={`${directionStyles} block w-10 h-[1px] bg-secondary my-4`}></span>
 				</h2>
 				{children}
 			</Container>
