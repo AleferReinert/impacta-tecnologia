@@ -29,9 +29,9 @@ export function Header() {
 			}`}
 		>
 			<Container>
-				<div className='h-14 flex justify-between items-center'>
+				<div className='h-16 flex justify-between items-center'>
 					<a href='/'>
-						<Image src='/impacta-logo-dark.webp' alt='Impacta Tecnologia' width={126} height={36} />
+						<Image src='/impacta-logo2.webp' alt='Impacta Tecnologia' width={144} height={32} />
 					</a>
 
 					<MenuMobile menu={menu} setMenu={setMenu} />

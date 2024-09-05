@@ -6,8 +6,8 @@ import { Subtitle } from '@/components/Subtitle'
 export default function Services() {
 	return (
 		<Layout>
+			<PageTitle>Serviços</PageTitle>
 			<Container>
-				<PageTitle>Serviços</PageTitle>
 				<Subtitle>Locação de Equipamentos de TI</Subtitle>
 				<p>
 					Oferecemos uma ampla gama de equipamentos de TI para locação, desde laptops e desktops até

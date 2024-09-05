@@ -59,7 +59,7 @@ export function BannersSlider() {
 	}
 
 	return (
-		<div className='relative'>
+		<section className='relative'>
 			<Slider {...settings}>
 				{banners.map((banner, index) => (
 					<div key={index} className={`relative`}>
@@ -82,6 +82,6 @@ export function BannersSlider() {
 					</div>
 				))}
 			</Slider>
-		</div>
+		</section>
 	)
 }

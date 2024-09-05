@@ -10,9 +10,9 @@ interface MenuMobileProps {
 
 export function MenuMobile({ menu, setMenu }: MenuMobileProps) {
 	return (
-		<div className='sm:hidden'>
+		<div className='flex sm:hidden'>
 			<button title='Menu' className='text-zinc-900 sm:hidden' onClick={() => setMenu(true)}>
-				<MdOutlineMenu size={28} />
+				<MdOutlineMenu size={32} />
 			</button>
 			<div
 				className={`
@@ -22,7 +22,7 @@ export function MenuMobile({ menu, setMenu }: MenuMobileProps) {
 			>
 				<nav className='text-center flex flex-col gap-4'>
 					<button title='Fechar' className='fixed right-4 top-4 sm:hidden' onClick={() => setMenu(false)}>
-						<MdClose size={28} />
+						<MdClose size={32} />
 					</button>
 					<MenuLinks />
 				</nav>

@@ -1,14 +1,40 @@
 import { AboutSlider } from '@/components/AboutSlider'
 import { BannersSlider } from '@/components/BannersSlider'
-import { BenefitsSlider } from '@/components/BenefitsSlider'
 import { Button } from '@/components/Button'
 import { ContactForm } from '@/components/ContactForm'
 import { Layout } from '@/components/Layout'
 import { Section } from '@/components/Section'
 import { ServiceItem } from '@/components/ServiceItem'
+import { TextSlider } from '@/components/TextSlider'
 import { BsArrowRightShort } from 'react-icons/bs'
 import { FaMouse, FaTools } from 'react-icons/fa'
 import { FaComputer } from 'react-icons/fa6'
+
+const benefits = [
+	{
+		title: 'Qualidade e Confiança',
+		description: 'Trabalhamos apenas com equipamentos e produtos de alta qualidade e confiáveis.'
+	},
+	{
+		title: 'Economia Inteligente',
+		description:
+			'Ajudamos nossos clientes a economizar na receita com soluções de equipamentos que oferecem excelente custo-benefício.'
+	},
+	{
+		title: 'Serviço Personalizado',
+		description: 'Oferecemos soluções sob medida para atender às necessidades específicas de cada cliente.'
+	},
+	{
+		title: 'Equipe Especializada',
+		description:
+			'Contamos com uma equipe de profissionais experientes e capacitados para garantir a melhor experiência.'
+	},
+	{
+		title: 'Suporte Humanizado e Dedicado',
+		description:
+			'Nosso compromisso é com a sua satisfação, oferecendo um atendimento humanizado e suporte contínuo e eficiente.'
+	}
+]
 
 export default function Home() {
 	return (
@@ -49,7 +75,7 @@ export default function Home() {
 			</Section>
 
 			<Section theme='dark' title='Por que nos escolher?'>
-				<BenefitsSlider />
+				<TextSlider items={benefits} />
 			</Section>
 
 			<Section title='Contato'>

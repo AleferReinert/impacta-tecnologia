@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import { Container } from './Container'
 
 interface SectionProps {
-	title: string
+	title?: string
 	children: ReactNode
 	theme?: 'light' | 'dark'
 	direction?: 'left' | 'center'
@@ -16,10 +16,12 @@ export function Section({ title, children, theme = 'light', direction = 'center'
 			className={`${theme === 'light' ? 'bg-white' : 'bg-slate-100'} py-12 last:border-0 [&_a]:mx-auto`}
 		>
 			<Container>
-				<h2 className={`${directionStyles} text-secondary font-medium text-3xl max-w-fit`}>
-					{title}
-					<hr className={`${directionStyles} w-10 border-primary my-4`} />
-				</h2>
+				{title && (
+					<h2 className={`${directionStyles} text-secondary font-medium text-3xl max-w-fit`}>
+						{title}
+						<hr className={`${directionStyles} w-10 border-primary my-4`} />
+					</h2>
+				)}
 				{children}
 			</Container>
 		</section>
