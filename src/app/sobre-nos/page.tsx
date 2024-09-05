@@ -1,11 +1,13 @@
+import { BoxContent } from '@/components/BoxContent'
 import { Container } from '@/components/Container'
 import { Layout } from '@/components/Layout'
 import { PageTitle } from '@/components/PageTitle'
 import { Subtitle } from '@/components/Subtitle'
 import { AiOutlineThunderbolt } from 'react-icons/ai'
-import { PiEye, PiTarget } from 'react-icons/pi'
+import { PiEye } from 'react-icons/pi'
 import { RiCustomerService2Fill, RiSearchLine, RiUserStarLine } from 'react-icons/ri'
 import { RxUpdate } from 'react-icons/rx'
+import { TfiTarget } from 'react-icons/tfi'
 
 const items = [
 	{
@@ -37,6 +39,7 @@ export default function About() {
 	return (
 		<Layout>
 			<PageTitle>Sobre nós</PageTitle>
+
 			<Container>
 				<p className='text-center py-10 leading-loose'>
 					A{' '}
@@ -49,70 +52,46 @@ export default function About() {
 				</p>
 			</Container>
 
-			<div className='bg-slate-100 py-10'>
-				<Container>
-					<div className='flex justify-between items-center'>
-						<div className='border-l-4 px-8 sm:px-10 border-secondary'>
-							<Subtitle>Missão</Subtitle>
-							<p className='py-3'>
-								Nossa missão é fornecer soluções tecnológicas de ponta, com foco no cliente, por meio da
+			<BoxContent
+				variant='dark'
+				icon={TfiTarget}
+				title='Missão'
+				description='Nossa missão é fornecer soluções tecnológicas de ponta, com foco no cliente, por meio da
 								locação de equipamentos de TI, suporte técnico especializado e hardware de alta qualidade.
 								Comprometemo-nos a fornecer um atendimento excepcional, assegurando a satisfação total dos
-								nossos clientes.
-							</p>
-						</div>
-						<div className='hidden sm:block'>
-							<PiTarget size={140} />
-						</div>
-					</div>
-				</Container>
-			</div>
-
-			<div className='py-10'>
-				<Container>
-					<div className='flex justify-between flex-row-reverse items-center'>
-						<div className='px-8 sm:px-10'>
-							<Subtitle>Visão</Subtitle>
-							<p className='py-3'>
-								Como referência em soluções tecnológicas e atendimento ao cliente, somos movidos pela nossa
+								nossos clientes.'
+			/>
+			<BoxContent
+				icon={PiEye}
+				title='Visão'
+				description='Como referência em soluções tecnológicas e atendimento ao cliente, somos movidos pela nossa
 								paixão por tecnologia e pelo compromisso com a excelência. Focados no cliente final,
 								continuamos a transformar desafios em oportunidades, oferecendo serviços de alta qualidade que
-								superem expectativas e impulsionam o sucesso e o crescimento dos nossos clientes.
-							</p>
-						</div>
-						<div className='hidden sm:block'>
-							<PiEye size={140} />
-						</div>
-					</div>
-				</Container>
-			</div>
+								superem expectativas e impulsionam o sucesso e o crescimento dos nossos clientes.'
+			/>
 
 			<div className='bg-slate-100 py-10'>
 				<Container>
-					<div className=''>
-						<div className=''>
-							<Subtitle>Valores</Subtitle>
-							<ul className='py-3 gap-4 mt-3'>
-								{items.map((item, index) => {
-									const Icon = icons[index]
-									return (
-										<li
-											key={index}
-											className='p-8 gap-8 odd:bg-slate-200 flex items-center border-l-4 even:border-transparent odd:border-secondary'
-										>
-											<div className='hidden sm:block'>
-												<Icon size={40} className='fill-secondary text-secondary' />
-											</div>
-											<div>
-												<h3 className='text-secondary font-medium'>{item.title}</h3>
-												<p>{item.description}</p>
-											</div>
-										</li>
-									)
-								})}
-							</ul>
-						</div>
-					</div>
+					<Subtitle>Valores</Subtitle>
+					<ul className='py-3 gap-4 mt-3'>
+						{items.map((item, index) => {
+							const Icon = icons[index]
+							return (
+								<li
+									key={index}
+									className='p-8 gap-8 odd:bg-slate-200 flex items-center border-l-4 even:border-transparent odd:border-secondary'
+								>
+									<div className='hidden sm:block'>
+										<Icon size={40} className='fill-secondary text-secondary' />
+									</div>
+									<div>
+										<h3 className='text-secondary font-medium'>{item.title}</h3>
+										<p>{item.description}</p>
+									</div>
+								</li>
+							)
+						})}
+					</ul>
 				</Container>
 			</div>
 		</Layout>
