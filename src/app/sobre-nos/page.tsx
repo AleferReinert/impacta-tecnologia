@@ -4,7 +4,7 @@ import { PageTitle } from '@/components/PageTitle'
 import { Subtitle } from '@/components/Subtitle'
 import { AiOutlineThunderbolt } from 'react-icons/ai'
 import { PiEye, PiTarget } from 'react-icons/pi'
-import { RiCustomerService2Fill, RiSearchLine, RiUserLine } from 'react-icons/ri'
+import { RiCustomerService2Fill, RiSearchLine, RiUserStarLine } from 'react-icons/ri'
 import { RxUpdate } from 'react-icons/rx'
 
 const items = [
@@ -31,7 +31,7 @@ const items = [
 	}
 ]
 
-const icons = [RiUserLine, RiCustomerService2Fill, RiSearchLine, RxUpdate, AiOutlineThunderbolt]
+const icons = [RiUserStarLine, RiCustomerService2Fill, RiSearchLine, RxUpdate, AiOutlineThunderbolt]
 
 export default function About() {
 	return (
@@ -51,8 +51,8 @@ export default function About() {
 
 			<div className='bg-slate-100 py-10'>
 				<Container>
-					<div className='flex justify-between items-center gap-10'>
-						<div className='border-l-4 pl-10 border-secondary px-6'>
+					<div className='flex justify-between items-center'>
+						<div className='border-l-4 px-8 sm:px-10 border-secondary'>
 							<Subtitle>Missão</Subtitle>
 							<p className='py-3'>
 								Nossa missão é fornecer soluções tecnológicas de ponta, com foco no cliente, por meio da
@@ -70,8 +70,8 @@ export default function About() {
 
 			<div className='py-10'>
 				<Container>
-					<div className='flex justify-between flex-row-reverse items-center gap-10'>
-						<div className='px-6'>
+					<div className='flex justify-between flex-row-reverse items-center'>
+						<div className='px-8 sm:px-10'>
 							<Subtitle>Visão</Subtitle>
 							<p className='py-3'>
 								Como referência em soluções tecnológicas e atendimento ao cliente, somos movidos pela nossa
@@ -89,15 +89,18 @@ export default function About() {
 
 			<div className='bg-slate-100 py-10'>
 				<Container>
-					<div className='flex justify-between items-center gap-10'>
-						<div className='sm:border-l-4 sm:pl-10 border-secondary'>
+					<div className=''>
+						<div className=''>
 							<Subtitle>Valores</Subtitle>
-							<ul className='py-3 gap-4'>
+							<ul className='py-3 gap-4 mt-3'>
 								{items.map((item, index) => {
 									const Icon = icons[index]
 									return (
-										<li key={index} className='p-8 gap-8 odd:bg-slate-200 flex items-center'>
-											<div>
+										<li
+											key={index}
+											className='p-8 gap-8 odd:bg-slate-200 flex items-center border-l-4 even:border-transparent odd:border-secondary'
+										>
+											<div className='hidden sm:block'>
 												<Icon size={40} className='fill-secondary text-secondary' />
 											</div>
 											<div>
@@ -109,9 +112,6 @@ export default function About() {
 								})}
 							</ul>
 						</div>
-						{/* <div>
-							<VscChecklist size={140} />
-						</div> */}
 					</div>
 				</Container>
 			</div>
