@@ -3,7 +3,8 @@ import { Container } from '@/components/Container'
 import { Layout } from '@/components/Layout'
 import { PageTitle } from '@/components/PageTitle'
 import { Subtitle } from '@/components/Subtitle'
-import { PiEye } from 'react-icons/pi'
+import { FaMouse } from 'react-icons/fa'
+import { FaComputer } from 'react-icons/fa6'
 import { RiCustomerService2Fill, RiSearchLine, RiUserStarLine } from 'react-icons/ri'
 import { RxUpdate } from 'react-icons/rx'
 
@@ -22,7 +23,7 @@ const services = [
 	},
 	{
 		title: 'Manutenção e Atualização',
-		description: 'Serviços contínuos para manter seu ambiente tecnológico sempre atualizado e funcionando.'
+		description: 'Serviços contínuos para manter seu ambiente atualizado e funcionando.'
 	}
 ]
 
@@ -34,30 +35,39 @@ export default function Services() {
 			<PageTitle>Serviços</PageTitle>
 
 			<BoxContent
-				icon={PiEye}
+				icon={FaComputer}
 				title='Locação de Equipamentos de TI'
-				description='Oferecemos uma ampla gama de equipamentos de TI para locação, desde laptops e desktops até
-								servidores e equipamentos de rede. Nossos serviços de locação são ideais para empresas que
-								precisam de soluções flexíveis e de curto prazo, seja para eventos, projetos temporários ou
-								expansões rápidas. Garantimos que nossos equipamentos sejam mantidos em perfeito estado e
-								estejam sempre atualizados com as mais recentes tecnologias.'
+				description={
+					<>
+						<p>
+							Oferecemos uma ampla gama de equipamentos de TI para locação, desde laptops e desktops até
+							servidores e equipamentos de rede.
+						</p>
+						<p>
+							{' '}
+							Nossos serviços de locação são ideais para empresas que precisam de soluções flexíveis e de
+							curto prazo, seja para eventos, projetos temporários ou expansões rápidas.{' '}
+						</p>
+						<p>
+							Garantimos que nossos equipamentos sejam mantidos em perfeito estado e estejam sempre
+							atualizados com as mais recentes tecnologias.
+						</p>
+					</>
+				}
 			/>
 			<div className='bg-slate-100 py-10'>
 				<Container>
 					<Subtitle>Prestação de Serviços de TI</Subtitle>
 					<p className='py-3'>
 						Nosso time de especialistas está pronto para oferecer suporte técnico e consultoria personalizada
-						para resolver quaisquer desafios tecnológicos que sua empresa possa enfrentar. Entre os nossos
-						serviços, destacam-se:
+						para resolver quaisquer desafios tecnológicos que sua empresa possa enfrentar.
 					</p>
-					<ul className='py-3 gap-4'>
+					<p> Entre os nossos serviços, destacam-se:</p>
+					<ul className='py-3 gap-4 grid grid-cols-1 md:grid-cols-2'>
 						{services.map((item, index) => {
 							const Icon = icons[index]
 							return (
-								<li
-									key={index}
-									className='p-8 gap-8 odd:bg-slate-200 flex items-center border-l-4 even:border-transparent odd:border-secondary'
-								>
+								<li key={index} className='p-8 gap-8 flex bg-slate-200 items-center'>
 									<div className='hidden sm:block'>
 										<Icon size={40} className='fill-secondary text-secondary' />
 									</div>
@@ -72,13 +82,24 @@ export default function Services() {
 				</Container>
 			</div>
 			<BoxContent
-				icon={PiEye}
+				icon={FaMouse}
 				title='Venda de Hardware e Periféricos'
-				description='Disponibilizamos uma vasta seleção de hardware e periféricos de qualidade superior para
-								atender às suas necessidades específicas. De desktops e laptops a impressoras e acessórios,
-								garantimos produtos de marcas renomadas e com garantia de performance e durabilidade. Nossa
-								equipe está pronta para ajudar você a escolher os produtos que melhor atendem às suas
-								necessidades e orçamento.'
+				description={
+					<>
+						<p>
+							Disponibilizamos uma vasta seleção de hardware e periféricos de qualidade superior para atender
+							às suas necessidades específicas.
+						</p>
+						<p>
+							De desktops e laptops a impressoras e acessórios, garantimos produtos de marcas renomadas e com
+							garantia de performance e durabilidade.
+						</p>
+						<p>
+							Nossa equipe está pronta para ajudar você a escolher os produtos que melhor atendem às suas
+							necessidades e orçamento.
+						</p>
+					</>
+				}
 			/>
 		</Layout>
 	)

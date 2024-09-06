@@ -41,8 +41,3 @@
 .slick-slide > div {
 	display: flex;
 }
-
-p + p {
-	@apply mt-5;
-}
-
