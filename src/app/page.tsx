@@ -79,7 +79,7 @@ export default function Home() {
 			</Section>
 
 			<Section title='Contato'>
-				<p className='text-center mb-10'>
+				<p className='text-center mb-10 max-w-screen-sm mx-auto'>
 					Entre em contato conosco para saber mais sobre nossos serviços e como podemos ajudar a transformar a
 					forma como sua empresa utiliza a tecnologia.
 				</p>

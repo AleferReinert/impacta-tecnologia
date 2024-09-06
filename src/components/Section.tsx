@@ -19,7 +19,7 @@ export function Section({ title, children, theme = 'light', direction = 'center'
 				{title && (
 					<h2 className={`${directionStyles} text-secondary font-medium text-3xl max-w-fit`}>
 						{title}
-						<hr className={`${directionStyles} w-10 border-primary my-4`} />
+						<hr className={`${directionStyles} w-10 border-primary my-5`} />
 					</h2>
 				)}
 				{children}

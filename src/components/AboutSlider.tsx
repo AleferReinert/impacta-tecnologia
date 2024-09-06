@@ -23,7 +23,7 @@ export function AboutSlider() {
 	return (
 		<Slider {...settings}>
 			{aboutItems.map((item, index) => (
-				<div key={index} className='text-center mb-5'>
+				<div key={index} className='text-center'>
 					<p className='max-w-screen-sm mx-auto'>{item}</p>
 				</div>
 			))}

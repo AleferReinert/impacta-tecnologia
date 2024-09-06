@@ -24,7 +24,7 @@ export function TextSlider({ items }: TextSliderProps) {
 	return (
 		<Slider {...settings}>
 			{items.map((item, index) => (
-				<div key={index} className='text-center mb-10'>
+				<div key={index} className='text-center flex flex-col'>
 					<h3 className='font-semibold text-secondary'>{item.title}</h3>
 					<p className='max-w-screen-sm mx-auto'>{item.description}</p>
 				</div>
