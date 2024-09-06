@@ -1,6 +1,7 @@
 'use client'
 import emailjs from '@emailjs/browser'
 import { useRef, useState } from 'react'
+import { toast } from 'sonner'
 import { Button } from './Button'
 import { FormField } from './FieldForm'
 import { Loading } from './Loading'
@@ -15,23 +16,37 @@ export function ContactForm() {
 
 	const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+
+		// Validate
+		const name = document.querySelector('input[name="name"]') as HTMLInputElement
+		const email = document.querySelector('input[name="email"]') as HTMLInputElement
+		const message = document.querySelector('textarea[name="message"]') as HTMLInputElement
+
+		if (name.value.length === 0) {
+			toast.error('Digite seu nome.')
+			return null
+		} else if (email.value.length === 0) {
+			toast.error('Digite seu e-mail.')
+			return null
+		} else if (message.value.length === 0) {
+			toast.error('Digite sua mensagem.')
+			return null
+		}
+
 		setLoading(true)
 
 		if (form.current && serviceId && templateId) {
-			emailjs
-				.sendForm(serviceId, templateId, form.current, {
-					publicKey
-				})
-				.then(
-					() => {
-						console.log('E-mail enviado com sucesso!')
-						setFormSubmitted(true)
-						setLoading(false)
-					},
-					error => {
-						console.log('Falha ao enviar e-mail...', error.text)
-					}
-				)
+			emailjs.sendForm(serviceId, templateId, form.current, { publicKey }).then(
+				() => {
+					setFormSubmitted(true)
+					setLoading(false)
+				},
+				error => {
+					setLoading(false)
+					toast.error('Falha ao enviar.')
+					console.log('Falha ao enviar e-mail...', error.text)
+				}
+			)
 		}
 	}
 

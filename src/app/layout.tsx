@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
+import { Toaster } from 'sonner'
 import './globals.css'
 
 const inter = Poppins({
@@ -20,7 +21,17 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='pt-br'>
-			<body className={inter.className + ' text-slate-600'}>{children}</body>
+			<body className={inter.className + ' text-slate-600'}>
+				<Toaster
+					richColors
+					toastOptions={{
+						classNames: {
+							toast: 'text-base rounded-none'
+						}
+					}}
+				/>
+				{children}
+			</body>
 		</html>
 	)
 }
