@@ -1,90 +1,34 @@
-import { AboutSlider } from '@/components/AboutSlider'
-import { BannersSlider } from '@/components/BannersSlider'
-import { Button } from '@/components/Button'
-import { ContactForm } from '@/components/ContactForm'
+import { BannerProps, BannersSlider } from '@/components/BannersSlider'
 import { Layout } from '@/components/Layout'
-import { Section } from '@/components/Section'
-import { ServiceItem } from '@/components/ServiceItem'
-import { TextSlider } from '@/components/TextSlider'
-import { BsArrowRightShort } from 'react-icons/bs'
-import { FaMouse, FaTools } from 'react-icons/fa'
-import { FaComputer } from 'react-icons/fa6'
+import { SectionAbout, SectionAboutProps } from '@/components/SectionAbout'
+import { SectionBenefits, SectionBenefitsProps } from '@/components/SectionBenefits'
+import { SectionContact } from '@/components/SectionContact'
+import { SectionServices, SectionServicesProps } from '@/components/SectionServices'
 
-const benefits = [
-	{
-		title: 'Qualidade e Confiança',
-		description: 'Trabalhamos apenas com equipamentos e produtos de alta qualidade e confiáveis.'
-	},
-	{
-		title: 'Economia Inteligente',
-		description:
-			'Ajudamos nossos clientes a economizar na receita com soluções de equipamentos que oferecem excelente custo-benefício.'
-	},
-	{
-		title: 'Serviço Personalizado',
-		description: 'Oferecemos soluções sob medida para atender às necessidades específicas de cada cliente.'
-	},
-	{
-		title: 'Equipe Especializada',
-		description:
-			'Contamos com uma equipe de profissionais experientes e capacitados para garantir a melhor experiência.'
-	},
-	{
-		title: 'Suporte Humanizado e Dedicado',
-		description:
-			'Nosso compromisso é com a sua satisfação, oferecendo um atendimento humanizado e suporte contínuo e eficiente.'
-	}
-]
+export default async function Home() {
+	const urlBanners = `${process.env.NEXT_PUBLIC_API_URL}/api/homepage?populate[0]=banners`
+	const resBanners = await fetch(urlBanners, { next: { revalidate: 3600 } }).then(res => res.json())
+	const banners: BannerProps[] = resBanners.data.attributes.banners
 
-export default function Home() {
+	const urlAbout = `${process.env.NEXT_PUBLIC_API_URL}/api/homepage?populate[about][populate][0]=descriptions`
+	const resAbout = await fetch(urlAbout, { next: { revalidate: 3600 } }).then(res => res.json())
+	const about: SectionAboutProps = resAbout.data.attributes.about
+
+	const urlServices = `${process.env.NEXT_PUBLIC_API_URL}/api/homepage?populate[services][populate][0]=services`
+	const resServices = await fetch(urlServices, { next: { revalidate: 3600 } }).then(res => res.json())
+	const services: SectionServicesProps = resServices.data.attributes.services
+
+	const urlBenefits = `${process.env.NEXT_PUBLIC_API_URL}/api/homepage?populate[benefits][populate][0]=benefits`
+	const resBenefits = await fetch(urlBenefits, { next: { revalidate: 3600 } }).then(res => res.json())
+	const benefits: SectionBenefitsProps = resBenefits.data.attributes.benefits
+
 	return (
 		<Layout>
-			<BannersSlider />
-			<Section title='Impacta Tecnologia & Soluções em TI' theme='dark'>
-				<div className='mb-10'>
-					<AboutSlider />
-				</div>
-				<Button asLink url='/sobre-nos'>
-					Saiba mais
-					<BsArrowRightShort className='w-5 h-5' />
-				</Button>
-			</Section>
-
-			<Section title='Serviços'>
-				<ul className='gap-10 grid grid-cols-1 md:grid-cols-3 mt-10 mb-10'>
-					<ServiceItem
-						icon={FaComputer}
-						title='Locação de Equipamentos de TI'
-						shortDescription='Laptops, desktops, servidores e equipamentos de rede'
-					/>
-					<ServiceItem
-						icon={FaTools}
-						title='Prestação de Serviços de TI'
-						shortDescription='Suporte técnico e consultoria personalizada'
-					/>
-					<ServiceItem
-						icon={FaMouse}
-						title='Venda de Hardware e Periféricos'
-						shortDescription='Produtos de marcas com garantia de performance e durabilidade'
-					/>
-				</ul>
-				<Button asLink url='/servicos'>
-					Saiba mais
-					<BsArrowRightShort className='w-5 h-5' />
-				</Button>
-			</Section>
-
-			<Section theme='dark' title='Por que nos escolher?'>
-				<TextSlider items={benefits} />
-			</Section>
-
-			<Section title='Contato'>
-				<p className='text-center mb-10 max-w-screen-sm mx-auto'>
-					Entre em contato conosco para saber mais sobre nossos serviços e como podemos ajudar a transformar a
-					forma como sua empresa utiliza a tecnologia.
-				</p>
-				<ContactForm />
-			</Section>
+			<BannersSlider banners={banners} />
+			<SectionAbout title={about.title} descriptions={about.descriptions} />
+			<SectionServices title={services.title} services={services.services} />
+			<SectionBenefits title={benefits.title} benefits={benefits.benefits} />
+			<SectionContact />
 		</Layout>
 	)
 }

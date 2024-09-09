@@ -1,28 +1,32 @@
-import { ReactNode } from 'react'
-import { IconType } from 'react-icons'
 import { Container } from './Container'
+import { DynamicIcon } from './DynamicIcon'
 import { Subtitle } from './Subtitle'
 
-interface BoxContentProps {
+export interface BoxContentProps {
 	title: string
-	description: string | ReactNode
-	icon: IconType
-	variant?: 'light' | 'dark'
+	description: string
+	icon: string
+	variant: 'light' | 'dark'
 }
 
 export function BoxContent({ title, description, icon, variant = 'light' }: BoxContentProps) {
-	const Icon = icon
-
 	return (
 		<div className={`${variant === 'dark' ? 'bg-slate-100' : ''} py-10`}>
 			<Container>
-				<div className={`${variant === 'light' ? 'flex-row-reverse' : ''} flex justify-between items-center`}>
+				<div
+					className={`${
+						variant === 'light' ? 'flex-row-reverse justify-end' : 'justify-between'
+					} flex items-center`}
+				>
 					<div className={`${variant === 'dark' ? 'border-l-4 border-secondary px-8' : ''} sm:px-10`}>
 						<Subtitle>{title}</Subtitle>
-						<div className='pt-3 sm:py-3 flex flex-col gap-3'>{description}</div>
+						<div
+							className='pt-3 sm:py-3 flex flex-col gap-3'
+							dangerouslySetInnerHTML={{ __html: description }}
+						></div>
 					</div>
-					<div className='hidden sm:block'>
-						<Icon size={140} />
+					<div className='hidden sm:block [&_svg]:size-36'>
+						<DynamicIcon icon={icon} />
 					</div>
 				</div>
 			</Container>

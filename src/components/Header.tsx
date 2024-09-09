@@ -4,8 +4,13 @@ import { useEffect, useState } from 'react'
 import { Container } from './Container'
 import { MenuLinks } from './MenuLinks'
 import { MenuMobile } from './MenuMobile'
+import { SocialLinksProps } from './SocialLinks'
 
-export function Header() {
+export interface HeaderProps extends SocialLinksProps {
+	enterpriseName: string
+}
+
+export function Header({ enterpriseName, socialLinks }: HeaderProps) {
 	const [fixedHeader, setFixedHeader] = useState('fixed')
 	const [menu, setMenu] = useState(false)
 
@@ -31,10 +36,10 @@ export function Header() {
 			<Container>
 				<div className='h-16 flex justify-between items-center'>
 					<a href='/'>
-						<Image src='/impacta-logo2.webp' alt='Impacta Tecnologia' width={144} height={32} />
+						<Image src='/impacta-logo.webp' alt={enterpriseName} width={144} height={32} priority />
 					</a>
 
-					<MenuMobile menu={menu} setMenu={setMenu} />
+					<MenuMobile menu={menu} setMenu={setMenu} socialLinks={socialLinks} />
 					<nav className='hidden gap-8 text-sm sm:flex'>
 						<MenuLinks />
 					</nav>

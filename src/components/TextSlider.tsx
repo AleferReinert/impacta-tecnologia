@@ -2,11 +2,13 @@
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 
+export interface TextSliderItemProps {
+	title: string
+	description: string
+}
+
 interface TextSliderProps {
-	items: {
-		title: string
-		description: string
-	}[]
+	items: TextSliderItemProps[]
 }
 
 export function TextSlider({ items }: TextSliderProps) {

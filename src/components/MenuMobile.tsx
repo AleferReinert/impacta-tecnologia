@@ -1,14 +1,14 @@
 import { Dispatch, SetStateAction } from 'react'
 import { MdClose, MdOutlineMenu } from 'react-icons/md'
 import { MenuLinks } from './MenuLinks'
-import { Social } from './Social'
+import { SocialLinks, SocialLinksProps } from './SocialLinks'
 
-interface MenuMobileProps {
+interface MenuMobileProps extends SocialLinksProps {
 	menu: boolean
 	setMenu: Dispatch<SetStateAction<boolean>>
 }
 
-export function MenuMobile({ menu, setMenu }: MenuMobileProps) {
+export function MenuMobile({ menu, setMenu, socialLinks }: MenuMobileProps) {
 	return (
 		<div className='flex sm:hidden'>
 			<button title='Menu' className='text-zinc-900 sm:hidden' onClick={() => setMenu(true)}>
@@ -26,7 +26,7 @@ export function MenuMobile({ menu, setMenu }: MenuMobileProps) {
 					</button>
 					<MenuLinks />
 				</nav>
-				<Social />
+				<SocialLinks socialLinks={socialLinks} />
 			</div>
 		</div>
 	)
