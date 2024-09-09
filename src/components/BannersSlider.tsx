@@ -7,7 +7,17 @@ import { Container } from './Container'
 export interface BannerProps {
 	title: string
 	description: string
-	img: string
+	img: {
+		data: {
+			attributes: {
+				formats: {
+					large: {
+						url: string
+					}
+				}
+			}
+		}
+	}
 	url?: string
 	align?: 'text-left' | 'text-center' | 'text-right'
 	buttonLabel?: string
@@ -39,8 +49,13 @@ export function BannersSlider({ banners }: BannerSliderProps) {
 		<section className='relative'>
 			<Slider {...settings}>
 				{banners.map((banner, index) => (
-					<div key={index} className={`relative`}>
-						<div style={{ backgroundImage: `url(${banner.img})` }} className='flex flex-col justify-center'>
+					<div key={index} className='relative'>
+						<div
+							style={{
+								backgroundImage: `url(${process.env.NEXT_PUBLIC_API_URL}${banner.img.data.attributes.formats.large.url})`
+							}}
+							className='flex flex-col justify-center aspect-[3/1] bg-no-repeat bg-contain'
+						>
 							<Container>
 								<div
 									className={`${banner.align} relative z-20 text-white items-center pt-10 pb-16 sm:pt-14 sm:pb-20 lg:pt-24 lg:pb-28 [&_a]:inline-flex`}

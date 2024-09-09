@@ -1,17 +1,18 @@
 import { Container } from './Container'
-import { SocialLinks, SocialLinksProps } from './SocialLinks'
+import { EnterpriseProps } from './Layout'
+import { SocialLinks } from './SocialLinks'
 
-export interface FooterProps extends SocialLinksProps {
-	enterpriseName: string
+export interface FooterProps {
+	enterprise: EnterpriseProps
 }
 
-export function Footer({ enterpriseName, socialLinks }: FooterProps) {
+export function Footer({ enterprise }: FooterProps) {
 	return (
 		<footer className='py-6 text-center text-sm border-t border-slate-300 sm:py-5'>
 			<Container>
 				<div className='sm:flex sm:flex-row-reverse sm:justify-between sm:items-center'>
-					<SocialLinks socialLinks={socialLinks} />
-					<p className='text-secondary'>{enterpriseName}</p>
+					<SocialLinks socialLinks={enterprise.socialLinks} />
+					<p className='text-secondary'>{enterprise.name}</p>
 				</div>
 			</Container>
 		</footer>
