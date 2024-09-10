@@ -10,7 +10,7 @@ const nextConfig = {
 			{
 				protocol: 'https',
 				hostname: 'impacta-tecnologia-api.onrender.com',
-				port: '1337'
+				port: ''
 			}
 		]
 	}
