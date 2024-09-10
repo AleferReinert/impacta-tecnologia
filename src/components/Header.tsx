@@ -36,7 +36,13 @@ export function Header({ enterprise }: HeaderProps) {
 			<Container>
 				<div className='h-16 flex justify-between items-center'>
 					<a href='/' title={enterprise.name}>
-						<Image src='/impacta-logo.webp' alt={enterprise.name} width={144} height={32} priority />
+						<Image
+							src={process.env.NEXT_PUBLIC_API_URL + enterprise.logo.data.attributes.formats.thumbnail.url}
+							alt={enterprise.name}
+							width={144}
+							height={32}
+							priority
+						/>
 					</a>
 
 					<MenuMobile menu={menu} setMenu={setMenu} socialLinks={enterprise.socialLinks} />

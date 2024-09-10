@@ -20,7 +20,7 @@ interface AboutProps {
 }
 
 export default async function About() {
-	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/aboutpage?populate[mission][populate][0]=mission&populate[vision][populate][0]=vision&populate[values][populate][0]=values`
+	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/aboutpage?populate[mission]=*&populate[vision]=*&populate[values][populate]=values`
 	const res = await fetch(url, { next: { revalidate: 3600 } }).then(res => res.json())
 	const { description, mission, vision, values }: AboutProps = res.data.attributes
 

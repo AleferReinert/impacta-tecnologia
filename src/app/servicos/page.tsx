@@ -20,7 +20,7 @@ interface ServicesProps {
 }
 
 export default async function Services() {
-	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/servicespage?populate[lease][populate][0]=lease&populate[servicesProvision][populate][0]=services&populate[sale][populate][0]=sale`
+	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/servicespage?populate[lease]=*&populate[servicesProvision][populate][0]=services&populate[sale]=*`
 	const res = await fetch(url, { next: { revalidate: 3600 } }).then(res => res.json())
 	const { lease, servicesProvision, sale }: ServicesProps = res.data.attributes
 

@@ -5,6 +5,17 @@ import { SocialLinksProps } from './SocialLinks'
 
 export interface EnterpriseProps extends SocialLinksProps {
 	name: string
+	logo: {
+		data: {
+			attributes: {
+				formats: {
+					thumbnail: {
+						url: string
+					}
+				}
+			}
+		}
+	}
 }
 
 interface LayoutProps {
@@ -12,7 +23,7 @@ interface LayoutProps {
 }
 
 export async function Layout({ children }: LayoutProps) {
-	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/homepage?populate[enterprise][populate][0]=socialLinks`
+	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/homepage?populate[enterprise][populate][0]=logo,socialLinks`
 	const res = await fetch(url, { next: { revalidate: 3600 } }).then(res => res.json())
 	const enterprise: EnterpriseProps = res.data.attributes.enterprise
 
