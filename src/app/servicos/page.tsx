@@ -20,25 +20,19 @@ interface ServicesProps {
 }
 
 export default async function Services() {
-	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/servicespage?populate=*`
+	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/servicespage?populate[lease][populate][0]=lease&populate[servicesProvision][populate][0]=services&populate[sale][populate][0]=sale`
 	const res = await fetch(url, { next: { revalidate: 3600 } }).then(res => res.json())
-	const services: ServicesProps = res.data.attributes
-
-	const urlServicesProvision = `${process.env.NEXT_PUBLIC_API_URL}/api/servicespage?populate[servicesProvision][populate][0]=services`
-	const resServicesProvision = await fetch(urlServicesProvision, { next: { revalidate: 3600 } }).then(res =>
-		res.json()
-	)
-	const { servicesProvision }: Pick<ServicesProps, 'servicesProvision'> = resServicesProvision.data.attributes
+	const { lease, servicesProvision, sale }: ServicesProps = res.data.attributes
 
 	return (
 		<Layout>
 			<PageTitle>Serviços</PageTitle>
 
 			<BoxContent
-				icon={services.lease.icon}
-				title={services.lease.title}
-				description={services.lease.description}
-				variant={services.lease.variant}
+				icon={lease.icon}
+				title={lease.title}
+				description={lease.description}
+				variant={lease.variant}
 			/>
 
 			<div className='bg-slate-100 py-10'>
@@ -65,12 +59,7 @@ export default async function Services() {
 					</ul>
 				</Container>
 			</div>
-			<BoxContent
-				icon={services.sale.icon}
-				title={services.sale.title}
-				description={services.sale.description}
-				variant={services.sale.variant}
-			/>
+			<BoxContent icon={sale.icon} title={sale.title} description={sale.description} variant={sale.variant} />
 		</Layout>
 	)
 }
