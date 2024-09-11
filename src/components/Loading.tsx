@@ -1,8 +1,14 @@
-interface LoadingProps {
+import { ComponentProps } from 'react'
+
+interface LoadingProps extends ComponentProps<'div'> {
 	show: boolean
+	type?: 'full' | 'component'
 }
 
-export function Loading({ show }: LoadingProps) {
+export function Loading({ show, type = 'full', ...rest }: LoadingProps) {
+	if (type === 'component') {
+		return <div className={`bg-gray-300 animate-pulse ${rest.className}`}></div>
+	}
 	return (
 		<div
 			className={`

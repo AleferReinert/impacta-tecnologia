@@ -1,11 +1,18 @@
 import type { Metadata } from 'next'
-import { Poppins } from 'next/font/google'
+import { Audiowide, Poppins } from 'next/font/google'
 import { Toaster } from 'sonner'
 import './globals.css'
 
-const inter = Poppins({
+const poppins = Poppins({
 	weight: ['100', '300', '400', '500', '600', '700', '800', '900'],
-	subsets: ['latin']
+	subsets: ['latin'],
+	variable: '--font-poppins'
+})
+
+const audiowide = Audiowide({
+	weight: ['400'],
+	subsets: ['latin'],
+	variable: '--font-audiowide'
 })
 
 export const metadata: Metadata = {
@@ -21,7 +28,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='pt-br'>
-			<body className={inter.className + ' text-slate-600'}>
+			<body className={`${audiowide.variable} ${poppins.variable} text-slate-600`}>
 				<Toaster
 					richColors
 					toastOptions={{

@@ -20,10 +20,7 @@ export function BoxContent({ title, description, icon, variant = 'light' }: BoxC
 				>
 					<div className={`${variant === 'dark' ? 'border-l-4 border-secondary px-8' : ''} sm:px-10`}>
 						<Subtitle>{title}</Subtitle>
-						<div
-							className='pt-3 sm:py-3 flex flex-col gap-3'
-							dangerouslySetInnerHTML={{ __html: description }}
-						></div>
+						<div className='pt-3 flex flex-col gap-3' dangerouslySetInnerHTML={{ __html: description }}></div>
 					</div>
 					<div className='hidden sm:block [&_svg]:size-36'>
 						<DynamicIcon icon={icon} />

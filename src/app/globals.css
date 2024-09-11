@@ -7,12 +7,12 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.slick-slider .slick-track {
-	@apply flex items-center;
+body {
+	@apply font-sans;
 }
 
-.slick-cloned {
-	@apply opacity-0;
+.slick-slider .slick-track {
+	@apply flex items-center;
 }
 
 .custom-dots {
@@ -49,4 +49,3 @@
 .slick-slide > div {
 	display: flex;
 }
-

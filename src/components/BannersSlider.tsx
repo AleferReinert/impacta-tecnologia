@@ -1,16 +1,23 @@
 'use client'
-import Slider from 'react-slick'
+import Slider, { Settings } from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import { Button } from './Button'
 import { Container } from './Container'
 
-export interface BannerProps {
+interface BannerProps {
 	title: string
 	description: string
 	img: {
 		data: {
 			attributes: {
+				url: string
 				formats: {
+					small: {
+						url: string
+					}
+					medium: {
+						url: string
+					}
 					large: {
 						url: string
 					}
@@ -23,56 +30,79 @@ export interface BannerProps {
 	buttonLabel?: string
 }
 
-interface BannerSliderProps {
+export interface BannerSliderProps {
+	effect: string
+	scrollSpeed: number
+	transitionSpeed: number
 	banners: BannerProps[]
 }
 
-export function BannersSlider({ banners }: BannerSliderProps) {
+export function BannersSlider({
+	effect,
+	scrollSpeed = 5000,
+	transitionSpeed = 1000,
+	banners
+}: BannerSliderProps) {
 	if (banners.length === 0) {
 		return null
 	}
 
-	var settings = {
-		dots: banners.length > 1 ? true : false,
-		infinite: true,
-		speed: 500,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		autoplay: true,
-		autoplaySpeed: 3000,
+	var settings: Settings = {
+		adaptiveHeight: banners.length === 1 ? true : false,
 		arrows: false,
+		autoplay: true,
+		autoplaySpeed: scrollSpeed,
+		dots: banners.length > 1 ? true : false,
 		dotsClass: 'custom-dots banners-dots',
-		adaptiveHeight: banners.length === 1 ? true : false
+		fade: effect === 'fade' ? true : false,
+		infinite: true,
+		pauseOnHover: false,
+		speed: transitionSpeed
 	}
 
+	const screenWidth = typeof window !== 'undefined' ? window.screen.width : 0
 	return (
-		<section className='relative'>
+		<section className='relative bg-secondary'>
 			<Slider {...settings}>
-				{banners.map((banner, index) => (
-					<div key={index} className='relative'>
-						<div
-							style={{
-								backgroundImage: `url(${process.env.NEXT_PUBLIC_API_URL}${banner.img.data.attributes.formats.large.url})`
-							}}
-							className='flex flex-col justify-center aspect-[3/1] bg-no-repeat bg-contain'
-						>
-							<Container>
-								<div
-									className={`${banner.align} relative z-20 text-white items-center pt-10 pb-16 sm:pt-14 sm:pb-20 lg:pt-24 lg:pb-28 [&_a]:inline-flex`}
-								>
-									<h2 className='font-semibold uppercase text-xl sm:text-4xl mb-2'>{banner.title}</h2>
-									<p className='font-light mb-7 sm:mb-10 text-sm sm:text-lg'>{banner.description}</p>
-									{banner.url && (
-										<Button asLink url={banner.url} variant='outline-white'>
-											{banner.buttonLabel || 'Saiba mais'}
-										</Button>
-									)}
-								</div>
-							</Container>
+				{banners.map((banner, index) => {
+					const background =
+						screenWidth <= 640
+							? banner.img.data.attributes.formats.small.url
+							: screenWidth <= 768
+							? banner.img.data.attributes.formats.medium.url
+							: screenWidth <= 1024
+							? banner.img.data.attributes.formats.large.url
+							: banner.img.data.attributes.url
+
+					return (
+						<div key={index} className='relative'>
+							<div
+								style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_API_URL + background})` }}
+								className='bg-cover bg-center aspect-[5/4] [&>div]:h-full sm:aspect-[3/2] md:aspect-[5/2] lg:aspect-[3/1]'
+							>
+								<Container>
+									<div
+										className={`${banner.align} ${
+											banner.align === 'text-left' ? 'sm:pr-10' : 'sm:pl-10'
+										} relative z-20 text-white h-full flex flex-col justify-center pb-3 sm:pb-6`}
+									>
+										<h2 className='font-semibold uppercase text-xl mb-2 font-heading sm:text-4xl'>
+											{banner.title}
+										</h2>
+										<p className='font-light mb-7 sm:mb-10 text-sm sm:text-lg'>{banner.description}</p>
+										<div className='h-10'>
+											{banner.url && (
+												<Button asLink url={banner.url} variant='outline-white'>
+													{banner.buttonLabel || 'Saiba mais'}
+												</Button>
+											)}
+										</div>
+									</div>
+								</Container>
+							</div>
 						</div>
-						<div className='bg-secondary/80 absolute inset-0 z-10'></div>
-					</div>
-				))}
+					)
+				})}
 			</Slider>
 		</section>
 	)

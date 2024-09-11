@@ -11,6 +11,10 @@ const config: Config = {
 			colors: {
 				primary: '#0F59F2',
 				secondary: '#041634'
+			},
+			fontFamily: {
+				heading: ['var(--font-audiowide)'],
+				sans: ['var(--font-poppins)']
 			}
 		}
 	},
