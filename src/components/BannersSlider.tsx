@@ -89,7 +89,7 @@ export function BannersSlider({
 								<Container>
 									<div
 										className={`${banner.align ? aligns[banner.align] : 'text-left'} ${
-											banner.align === 'esquerda' ? 'sm:pr-10' : 'sm:pl-10'
+											banner.align === 'esquerda' ? 'sm:pr-10' : banner.align === 'direita' ? 'sm:pl-10' : ''
 										} relative z-20 text-white h-full flex flex-col justify-center pb-3 sm:pb-6`}
 									>
 										<h2 className='font-semibold uppercase text-xl mb-2 font-heading sm:text-4xl'>
@@ -98,7 +98,7 @@ export function BannersSlider({
 										<p className='font-light mb-7 sm:mb-10 text-sm sm:text-lg'>{banner.description}</p>
 										<div className='h-10 [&_a]:inline-flex'>
 											{banner.url && (
-												<Button asLink href={banner.url} variant='outline-white'>
+												<Button asLink href={banner.url} variant='outline-white' target='_blank'>
 													{banner.buttonLabel || 'Saiba mais'}
 												</Button>
 											)}
