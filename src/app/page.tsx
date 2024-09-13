@@ -22,7 +22,7 @@ interface HomeProps {
 
 export default async function Home() {
 	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/homepage?populate[banners][populate][banners][populate]=img&populate[about][populate][0]=descriptions&populate[services][populate][0]=services&populate[benefits][populate][0]=benefits&populate[contact][populate][0]=contact`
-	const res = await fetch(url, { next: { revalidate: 3600 } }).then(res => res.json())
+	const res = await fetch(url, { next: { revalidate: 0 } }).then(res => res.json())
 	const { banners, about, services, benefits, contact }: HomeProps = res.data.attributes
 
 	return (
