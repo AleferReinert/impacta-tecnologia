@@ -25,7 +25,9 @@ interface LayoutProps {
 
 export async function Layout({ children }: LayoutProps) {
 	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/enterprise?populate=*`
-	const res = await fetch(url, { next: { revalidate: 3600 } }).then(res => res.json())
+	const res = await fetch(url, { next: { revalidate: 3600 }, headers: { 'Cache-Control': 'no-store' } }).then(
+		res => res.json()
+	)
 	const enterprise: EnterpriseProps = res.data.attributes
 
 	return (
