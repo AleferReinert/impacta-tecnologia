@@ -26,7 +26,7 @@ interface BannerProps {
 		}
 	}
 	url?: string
-	align?: 'text-left' | 'text-center' | 'text-right'
+	align?: 'centro' | 'direita' | 'esquerda'
 	buttonLabel?: string
 }
 
@@ -43,6 +43,12 @@ export function BannersSlider({
 	transitionSpeed = 1000,
 	banners
 }: BannerSliderProps) {
+	const aligns: { [key: string]: string } = {
+		centro: 'text-center',
+		direita: 'text-right',
+		esquerda: 'text-left'
+	}
+
 	if (banners.length === 0) {
 		return null
 	}
@@ -82,17 +88,17 @@ export function BannersSlider({
 							>
 								<Container>
 									<div
-										className={`${banner.align} ${
-											banner.align === 'text-left' ? 'sm:pr-10' : 'sm:pl-10'
+										className={`${banner.align ? aligns[banner.align] : 'text-left'} ${
+											banner.align === 'esquerda' ? 'sm:pr-10' : 'sm:pl-10'
 										} relative z-20 text-white h-full flex flex-col justify-center pb-3 sm:pb-6`}
 									>
 										<h2 className='font-semibold uppercase text-xl mb-2 font-heading sm:text-4xl'>
 											{banner.title}
 										</h2>
 										<p className='font-light mb-7 sm:mb-10 text-sm sm:text-lg'>{banner.description}</p>
-										<div className='h-10'>
+										<div className='h-10 [&_a]:inline-flex'>
 											{banner.url && (
-												<Button asLink url={banner.url} variant='outline-white'>
+												<Button asLink href={banner.url} variant='outline-white'>
 													{banner.buttonLabel || 'Saiba mais'}
 												</Button>
 											)}

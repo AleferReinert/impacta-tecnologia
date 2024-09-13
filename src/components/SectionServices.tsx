@@ -28,7 +28,7 @@ export function SectionServices({ title, services }: SectionServicesProps) {
 					)
 				})}
 			</ul>
-			<Button asLink url='/servicos'>
+			<Button asLink href='/servicos'>
 				Saiba mais
 				<BsArrowRightShort className='w-5 h-5' />
 			</Button>

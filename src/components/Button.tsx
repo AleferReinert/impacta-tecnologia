@@ -1,13 +1,17 @@
 import { ComponentProps } from 'react'
 
-interface ButtonProps extends ComponentProps<'button'> {
-	asLink?: boolean
-	url?: string
+interface CommonProps {
 	variant?: 'outline-white' | 'outline-secondary' | 'fill'
 	full?: boolean
+	asLink?: boolean
 }
 
-export function Button({ children, url, asLink, variant = 'outline-secondary', full, ...rest }: ButtonProps) {
+interface AsLinkProps extends ComponentProps<'a'> {}
+interface AsButtonProps extends ComponentProps<'button'> {}
+
+type ButtonProps = (AsLinkProps & CommonProps) | (AsButtonProps & CommonProps)
+
+export function Button({ asLink = false, variant = 'outline-secondary', full, ...rest }: ButtonProps) {
 	const outlineWhite = 'border border-white text-white hover:bg-white hover:border-white hover:text-secondary'
 	const outlineSecondary =
 		'border border-secondary text-secondary hover:bg-primary hover:border-primary hover:text-white'
@@ -19,14 +23,15 @@ export function Button({ children, url, asLink, variant = 'outline-secondary', f
 
 	if (asLink) {
 		return (
-			<a href={url} className={styles}>
-				{children}
+			<a {...(rest as AsLinkProps)} className={rest.className + '' + styles}>
+				{rest.children}
 			</a>
 		)
 	}
+
 	return (
-		<button className={styles} {...rest}>
-			{children}
+		<button {...(rest as AsButtonProps)} className={rest.className + ' ' + styles}>
+			{rest.children}
 		</button>
 	)
 }

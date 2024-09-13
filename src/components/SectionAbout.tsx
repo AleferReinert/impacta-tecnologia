@@ -36,7 +36,7 @@ export function SectionAbout({ title, descriptions }: SectionAboutProps) {
 					))}
 				</Slider>
 			</div>
-			<Button asLink url='/sobre-nos'>
+			<Button asLink href='/sobre-nos'>
 				Saiba mais
 				<BsArrowRightShort className='w-5 h-5' />
 			</Button>
