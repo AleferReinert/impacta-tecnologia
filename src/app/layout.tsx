@@ -17,6 +17,22 @@ const audiowide = Audiowide({
 	variable: '--font-audiowide'
 })
 
+interface StrapiImageUpload {
+	data: {
+		attributes: {
+			url: string
+			mime: string
+			width: number
+			height: number
+			formats: {
+				thumbnail: {
+					url: string
+				}
+			}
+		}
+	}
+}
+
 export interface EnterpriseProps extends SocialLinksProps {
 	name: string
 	description: string
@@ -27,17 +43,8 @@ export interface EnterpriseProps extends SocialLinksProps {
 		title: string
 		content: string
 	}
-	logo: {
-		data: {
-			attributes: {
-				formats: {
-					thumbnail: {
-						url: string
-					}
-				}
-			}
-		}
-	}
+	logo: StrapiImageUpload
+	favicon: StrapiImageUpload
 }
 
 export default async function RootLayout({
@@ -48,12 +55,19 @@ export default async function RootLayout({
 	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/enterprise?populate=*`
 	const res = await fetch(url, { next: { revalidate: 0 } }).then(res => res.json())
 	const enterprise: EnterpriseProps = res.data.attributes
+	const favicon = enterprise.favicon.data.attributes
 
 	return (
 		<html lang='pt-br'>
 			<head>
 				<title>{enterprise.name}</title>
 				<meta name='description' content={enterprise.description} />
+				<link
+					rel='icon'
+					href={process.env.NEXT_PUBLIC_API_URL + favicon.url}
+					type={favicon.mime}
+					sizes={`${favicon.width}x${favicon.height}`}
+				/>
 			</head>
 			<body className={`${audiowide.variable} ${poppins.variable} text-slate-600`}>
 				<Toaster
