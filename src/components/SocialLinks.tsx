@@ -8,9 +8,10 @@ interface SocialLinkProps {
 
 export interface SocialLinksProps {
 	socialLinks: SocialLinkProps[]
+	iconColor?: 'light' | 'dark'
 }
 
-export function SocialLinks({ socialLinks }: SocialLinksProps) {
+export function SocialLinks({ socialLinks, iconColor = 'light' }: SocialLinksProps) {
 	return (
 		<nav className='flex justify-center gap-5'>
 			{socialLinks.map((item, index) => (
@@ -19,7 +20,9 @@ export function SocialLinks({ socialLinks }: SocialLinksProps) {
 					title={item.title}
 					href={item.url}
 					target='_blank'
-					className='[&_svg]:size-8 [&_svg]:md:size-6 [&_svg]:fill-secondary [&_svg]:transition [&_svg]:hover:fill-primary'
+					className={`${
+						iconColor === 'light' ? '[&_svg]:fill-white' : '[&_svg]:fill-secondary'
+					} [&_svg]:size-8 [&_svg]:md:size-6 [&_svg]:transition`}
 				>
 					<DynamicIcon icon={item.icon} />
 				</a>

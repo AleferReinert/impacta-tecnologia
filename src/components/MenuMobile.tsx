@@ -26,7 +26,7 @@ export function MenuMobile({ menu, setMenu, socialLinks }: MenuMobileProps) {
 					</button>
 					<MenuLinks />
 				</nav>
-				<SocialLinks socialLinks={socialLinks} />
+				<SocialLinks socialLinks={socialLinks} iconColor='dark' />
 			</div>
 		</div>
 	)
