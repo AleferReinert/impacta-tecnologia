@@ -25,7 +25,7 @@ export default async function About() {
 
 	return (
 		<>
-			<PageTitle>Sobre nós</PageTitle>
+			<PageTitle title='Sobre nós' />
 			<Container>
 				<p
 					dangerouslySetInnerHTML={{ __html: description }}

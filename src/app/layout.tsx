@@ -80,7 +80,7 @@ export default async function RootLayout({
 				/>
 				<>
 					<Header enterprise={enterprise} />
-					<main className='pt-16'>{children}</main>
+					<main className='pt-16 min-h-[80vh]'>{children}</main>
 					<Footer enterprise={enterprise} />
 				</>
 			</body>

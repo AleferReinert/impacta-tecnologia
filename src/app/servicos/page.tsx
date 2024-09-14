@@ -25,7 +25,7 @@ export default async function Services() {
 
 	return (
 		<>
-			<PageTitle>Serviços</PageTitle>
+			<PageTitle title='Serviços' />
 
 			<BoxContent
 				icon={lease.icon}

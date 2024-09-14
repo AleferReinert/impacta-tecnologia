@@ -1,14 +1,14 @@
 import { Container } from './Container'
 
 interface PageTitleProps {
-	children: string
+	title: string
 }
 
-export function PageTitle({ children }: PageTitleProps) {
+export function PageTitle({ title }: PageTitleProps) {
 	return (
 		<div className='bg-secondary py-8'>
 			<Container>
-				<h1 className='font-bold text-xl text-white font-heading uppercase'>{children}</h1>
+				<h1 className='font-bold text-xl text-white font-heading uppercase'>{title}</h1>
 			</Container>
 		</div>
 	)
