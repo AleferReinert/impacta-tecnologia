@@ -23,6 +23,10 @@ export interface EnterpriseProps extends SocialLinksProps {
 	email: string
 	phone?: string
 	cnpj?: string
+	businessHours?: {
+		title: string
+		content: string
+	}
 	logo: {
 		data: {
 			attributes: {

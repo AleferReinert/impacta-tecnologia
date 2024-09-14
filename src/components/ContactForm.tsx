@@ -16,8 +16,6 @@ export function ContactForm() {
 
 	const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-
-		// Validate
 		const name = document.querySelector('input[name="name"]') as HTMLInputElement
 		const email = document.querySelector('input[name="email"]') as HTMLInputElement
 		const message = document.querySelector('textarea[name="message"]') as HTMLInputElement
@@ -51,7 +49,7 @@ export function ContactForm() {
 	}
 
 	return (
-		<>
+		<div>
 			<Loading show={loading} />
 			{formSubmitted ? (
 				<div className='flex flex-col gap-10 items-center'>
@@ -75,6 +73,6 @@ export function ContactForm() {
 					</Button>
 				</form>
 			)}
-		</>
+		</div>
 	)
 }

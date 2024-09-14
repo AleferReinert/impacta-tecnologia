@@ -13,16 +13,16 @@ interface HeaderProps {
 export function Header({ enterprise }: HeaderProps) {
 	const [fixedHeader, setFixedHeader] = useState('fixed')
 	const [menu, setMenu] = useState(false)
+	const enterpriseName = enterprise.name ?? 'Impacta Tecnologia & Soluções em TI'
+	const logoImg = process.env.NEXT_PUBLIC_API_URL + enterprise.logo.data.attributes.formats.thumbnail.url
 
 	useEffect(() => {
 		let prev = window.scrollY
-
 		const fixedHeaderOnScrollUp = () => {
 			let current = window.scrollY
 			prev > current ? setFixedHeader('fixed') : setFixedHeader('')
 			prev = current
 		}
-
 		window.addEventListener('scroll', fixedHeaderOnScrollUp)
 		return () => window.removeEventListener('scroll', fixedHeaderOnScrollUp)
 	})
@@ -35,14 +35,8 @@ export function Header({ enterprise }: HeaderProps) {
 		>
 			<Container>
 				<div className='h-16 flex justify-between items-center'>
-					<a href='/' title={enterprise.name}>
-						<Image
-							src={process.env.NEXT_PUBLIC_API_URL + enterprise.logo.data.attributes.formats.thumbnail.url}
-							alt={enterprise.name}
-							width={144}
-							height={32}
-							priority
-						/>
+					<a href='/' title={enterpriseName}>
+						<Image src={logoImg} alt={enterpriseName} width={144} height={32} priority />
 					</a>
 
 					<MenuMobile menu={menu} setMenu={setMenu} socialLinks={enterprise.socialLinks} />
