@@ -1,7 +1,6 @@
 import { BoxContent, BoxContentProps } from '@/components/BoxContent'
 import { Container } from '@/components/Container'
 import { DynamicIcon } from '@/components/DynamicIcon'
-import { Layout } from '@/components/Layout'
 import { PageTitle } from '@/components/PageTitle'
 import { Subtitle } from '@/components/Subtitle'
 
@@ -25,7 +24,7 @@ export default async function Services() {
 	const { lease, servicesProvision, sale }: ServicesProps = res.data.attributes
 
 	return (
-		<Layout>
+		<>
 			<PageTitle>Serviços</PageTitle>
 
 			<BoxContent
@@ -60,6 +59,6 @@ export default async function Services() {
 				</Container>
 			</div>
 			<BoxContent icon={sale.icon} title={sale.title} description={sale.description} variant={sale.variant} />
-		</Layout>
+		</>
 	)
 }

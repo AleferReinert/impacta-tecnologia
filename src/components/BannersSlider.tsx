@@ -4,6 +4,12 @@ import 'slick-carousel/slick/slick.css'
 import { Button } from './Button'
 import { Container } from './Container'
 
+export interface SliderConfigProps {
+	effect?: string
+	scrollSpeed?: number
+	transitionSpeed?: number
+}
+
 interface BannerProps {
 	title: string
 	description: string
@@ -31,18 +37,11 @@ interface BannerProps {
 }
 
 export interface BannerSliderProps {
-	effect: string
-	scrollSpeed: number
-	transitionSpeed: number
 	banners: BannerProps[]
+	sliderConfig: SliderConfigProps
 }
 
-export function BannersSlider({
-	effect,
-	scrollSpeed = 5000,
-	transitionSpeed = 1000,
-	banners
-}: BannerSliderProps) {
+export function BannersSlider({ sliderConfig, banners }: BannerSliderProps) {
 	const aligns: { [key: string]: string } = {
 		centro: 'text-center',
 		direita: 'text-right',
@@ -57,13 +56,13 @@ export function BannersSlider({
 		adaptiveHeight: banners.length === 1 ? true : false,
 		arrows: false,
 		autoplay: true,
-		autoplaySpeed: scrollSpeed,
+		autoplaySpeed: sliderConfig.scrollSpeed ?? 5000,
 		dots: banners.length > 1 ? true : false,
 		dotsClass: 'custom-dots banners-dots',
-		fade: effect === 'fade' ? true : false,
+		fade: sliderConfig.effect === 'fade' ? true : false,
 		infinite: true,
 		pauseOnHover: false,
-		speed: transitionSpeed
+		speed: sliderConfig.transitionSpeed ?? 1000
 	}
 
 	const screenWidth = typeof window !== 'undefined' ? window.screen.width : 0

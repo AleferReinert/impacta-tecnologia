@@ -1,4 +1,6 @@
-import type { Metadata } from 'next'
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/Header'
+import { SocialLinksProps } from '@/components/SocialLinks'
 import { Audiowide, Poppins } from 'next/font/google'
 import { Toaster } from 'sonner'
 import './globals.css'
@@ -15,19 +17,40 @@ const audiowide = Audiowide({
 	variable: '--font-audiowide'
 })
 
-export const metadata: Metadata = {
-	title: ' Impacta Tecnologia & Soluções em TI',
-	description:
-		'Descubra como podemos ajudar você a alcançar seus objetivos tecnológicos com eficiência e inovação.'
+export interface EnterpriseProps extends SocialLinksProps {
+	name: string
+	description: string
+	email: string
+	phone?: string
+	cnpj?: string
+	logo: {
+		data: {
+			attributes: {
+				formats: {
+					thumbnail: {
+						url: string
+					}
+				}
+			}
+		}
+	}
 }
 
-export default function RootLayout({
+export default async function RootLayout({
 	children
 }: Readonly<{
 	children: React.ReactNode
 }>) {
+	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/enterprise?populate=*`
+	const res = await fetch(url, { next: { revalidate: 0 } }).then(res => res.json())
+	const enterprise: EnterpriseProps = res.data.attributes
+
 	return (
 		<html lang='pt-br'>
+			<head>
+				<title>{enterprise.name}</title>
+				<meta name='description' content={enterprise.description} />
+			</head>
 			<body className={`${audiowide.variable} ${poppins.variable} text-slate-600`}>
 				<Toaster
 					richColors
@@ -37,7 +60,11 @@ export default function RootLayout({
 						}
 					}}
 				/>
-				{children}
+				<>
+					<Header enterprise={enterprise} />
+					<main className='pt-16'>{children}</main>
+					<Footer enterprise={enterprise} />
+				</>
 			</body>
 		</html>
 	)

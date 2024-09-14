@@ -1,8 +1,8 @@
 'use client'
+import { EnterpriseProps } from '@/app/layout'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { Container } from './Container'
-import { EnterpriseProps } from './Layout'
 import { MenuLinks } from './MenuLinks'
 import { MenuMobile } from './MenuMobile'
 

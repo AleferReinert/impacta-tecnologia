@@ -1,5 +1,5 @@
+import { EnterpriseProps } from '@/app/layout'
 import { Container } from './Container'
-import { EnterpriseProps } from './Layout'
 import { SocialLinks } from './SocialLinks'
 
 export interface FooterProps {
@@ -12,7 +12,10 @@ export function Footer({ enterprise }: FooterProps) {
 			<Container>
 				<div className='sm:flex sm:flex-row-reverse sm:justify-between sm:items-center'>
 					<SocialLinks socialLinks={enterprise.socialLinks} />
-					<p className='text-secondary'>{enterprise.name}</p>
+					<p className='text-secondary'>
+						{enterprise.name}
+						{/* {enterprise.cnpj && ` - CNPJ ${enterprise.cnpj}`} */}
+					</p>
 				</div>
 			</Container>
 		</footer>

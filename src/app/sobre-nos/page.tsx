@@ -1,7 +1,6 @@
 import { BoxContent, BoxContentProps } from '@/components/BoxContent'
 import { Container } from '@/components/Container'
 import { DynamicIcon } from '@/components/DynamicIcon'
-import { Layout } from '@/components/Layout'
 import { PageTitle } from '@/components/PageTitle'
 import { Subtitle } from '@/components/Subtitle'
 
@@ -25,7 +24,7 @@ export default async function About() {
 	const { description, mission, vision, values }: AboutProps = res.data.attributes
 
 	return (
-		<Layout>
+		<>
 			<PageTitle>Sobre nós</PageTitle>
 			<Container>
 				<p
@@ -71,6 +70,6 @@ export default async function About() {
 					</ul>
 				</Container>
 			</div>
-		</Layout>
+		</>
 	)
 }
