@@ -64,7 +64,7 @@ export default async function RootLayout({
 				<meta name='description' content={enterprise.description} />
 				<link
 					rel='icon'
-					href={process.env.NEXT_PUBLIC_API_URL + favicon.url}
+					href={favicon.url}
 					type={favicon.mime}
 					sizes={`${favicon.width}x${favicon.height}`}
 				/>

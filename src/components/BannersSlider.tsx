@@ -82,7 +82,7 @@ export function BannersSlider({ sliderConfig, banners }: BannerSliderProps) {
 					return (
 						<div key={index} className='relative'>
 							<div
-								style={{ backgroundImage: `url(${process.env.NEXT_PUBLIC_API_URL + background})` }}
+								style={{ backgroundImage: `url(${background})` }}
 								className='bg-cover bg-center aspect-[5/4] [&>div]:h-full sm:aspect-[3/2] md:aspect-[5/2] lg:aspect-[3/1]'
 							>
 								<Container>

@@ -9,7 +9,7 @@ const nextConfig = {
 			},
 			{
 				protocol: 'https',
-				hostname: 'impacta-tecnologia-api.onrender.com',
+				hostname: 'res.cloudinary.com',
 				port: ''
 			}
 		]
