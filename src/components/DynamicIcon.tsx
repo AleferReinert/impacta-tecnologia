@@ -9,60 +9,74 @@ import * as faIcons from 'react-icons/fa'
 import * as fa6Icons from 'react-icons/fa6'
 import * as fcIcons from 'react-icons/fc'
 import * as fiIcons from 'react-icons/fi'
+import * as giIcons from 'react-icons/gi'
+import * as goIcons from 'react-icons/go'
+import * as grIcons from 'react-icons/gr'
 import * as hiIcons from 'react-icons/hi'
+import * as hi2Icons from 'react-icons/hi2'
+import * as imIcons from 'react-icons/im'
+import * as ioIcons from 'react-icons/io'
+import * as io5Icons from 'react-icons/io5'
+import * as liaIcons from 'react-icons/lia'
+import * as luIcons from 'react-icons/lu'
+import * as mdIcons from 'react-icons/md'
 import * as piIcons from 'react-icons/pi'
 import * as riIcons from 'react-icons/ri'
 import * as rxIcons from 'react-icons/rx'
+import * as siIcons from 'react-icons/si'
+import * as slIcons from 'react-icons/sl'
 import * as tbIcons from 'react-icons/tb'
 import * as tfiIcons from 'react-icons/tfi'
 import * as tiIcons from 'react-icons/ti'
+import * as vscIcons from 'react-icons/vsc'
+import * as wiIcons from 'react-icons/wi'
 
 interface IconProps {
+	lib: string
 	icon: string
 }
 
-export const DynamicIcon = ({ icon }: IconProps) => {
+const iconLibraries: Record<string, any> = {
+	Ai: aiIcons,
+	Bi: biIcons,
+	Bs: bsIcons,
+	Cg: cgIcons,
+	Ci: ciIcons,
+	Di: diIcons,
+	Fa: faIcons,
+	Fa6: fa6Icons,
+	Fc: fcIcons,
+	Fi: fiIcons,
+	Gi: giIcons,
+	Go: goIcons,
+	Gr: grIcons,
+	Hi: hiIcons,
+	Hi2: hi2Icons,
+	Im: imIcons,
+	Io: ioIcons,
+	Io5: io5Icons,
+	Lia: liaIcons,
+	Lu: luIcons,
+	Md: mdIcons,
+	Pi: piIcons,
+	Ri: riIcons,
+	Rx: rxIcons,
+	Si: siIcons,
+	Sl: slIcons,
+	Tb: tbIcons,
+	Tfi: tfiIcons,
+	Ti: tiIcons,
+	Vsc: vscIcons,
+	Wi: wiIcons
+}
+
+export const DynamicIcon = ({ lib, icon }: IconProps) => {
 	const iconFormatted = icon.replace(/\s+/g, '')
 
-	const library = () => {
-		const match = iconFormatted.match(/^[a-z]*[A-Z][a-z]*[A-Z]/)
-		return match ? match[0].slice(0, -1) : ''
-	}
+	const IconComponent: IconType | undefined = iconLibraries[lib]?.[iconFormatted]
 
-	const getIcon = (icon: string) => {
-		const iconsMap = new Map()
-		iconsMap.set('Ai', aiIcons)
-		iconsMap.set('Bi', biIcons)
-		iconsMap.set('Bs', bsIcons)
-		iconsMap.set('Ci', ciIcons)
-		iconsMap.set('Cg', cgIcons)
-		iconsMap.set('Di', diIcons)
-		iconsMap.set('Fa', faIcons)
-		iconsMap.set('Fc', fcIcons)
-		iconsMap.set('Fi', fiIcons)
-		iconsMap.set('Hi', hiIcons)
-		iconsMap.set('Pi', piIcons)
-		iconsMap.set('Ri', riIcons)
-		iconsMap.set('Rx', rxIcons)
-		iconsMap.set('Tb', tbIcons)
-		iconsMap.set('Tfi', tfiIcons)
-		iconsMap.set('Ti', tiIcons)
-		return iconsMap.get(library())
-	}
-
-	const icons: any = getIcon(iconFormatted)
-
-	if (icons && icons[iconFormatted]) {
-		const TheIcon: IconType = icons[iconFormatted]
-		return <TheIcon />
-	}
-
-	// Se o ícone for da biblioteca 'Fa' e não for encontrado, tenta buscar em 'fa6Icons'
-	if (library() === 'Fa' && !(icons as { [key: string]: IconType })[iconFormatted]) {
-		if ((fa6Icons as { [key: string]: IconType })[iconFormatted]) {
-			const TheIcon: IconType = (fa6Icons as { [key: string]: IconType })[iconFormatted]
-			return <TheIcon />
-		}
+	if (IconComponent) {
+		return <IconComponent />
 	}
 
 	// Icone padrão para quando o icone não for encontrado

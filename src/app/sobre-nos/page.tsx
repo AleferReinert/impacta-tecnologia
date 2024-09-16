@@ -13,6 +13,7 @@ interface AboutProps {
 		values: {
 			title: string
 			description: string
+			lib: string
 			icon: string
 		}[]
 	}
@@ -35,6 +36,7 @@ export default async function About() {
 
 			<BoxContent
 				variant={mission.variant}
+				lib={mission.lib}
 				icon={mission.icon}
 				title={mission.title}
 				description={mission.description}
@@ -42,6 +44,7 @@ export default async function About() {
 
 			<BoxContent
 				variant={vision.variant}
+				lib={vision.lib}
 				icon={vision.icon}
 				title={vision.title}
 				description={vision.description}
@@ -58,7 +61,7 @@ export default async function About() {
 									className='p-8 gap-8 odd:bg-slate-200 flex items-center border-l-4 even:border-transparent odd:border-secondary'
 								>
 									<div className='hidden sm:block [&_svg]:fill-secondary [&_svg]:text-secondary [&_svg]:w-10 [&_svg]:h-10'>
-										<DynamicIcon icon={item.icon} />
+										<DynamicIcon lib={item.lib} icon={item.icon} />
 									</div>
 									<div>
 										<h3 className='text-secondary font-medium'>{item.title}</h3>

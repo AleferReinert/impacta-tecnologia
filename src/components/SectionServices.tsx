@@ -8,6 +8,7 @@ export interface SectionServicesProps {
 	services: {
 		title: string
 		description: string
+		lib: string
 		icon: string
 	}[]
 }
@@ -20,7 +21,7 @@ export function SectionServices({ title, services }: SectionServicesProps) {
 					return (
 						<li key={index} className='text-center'>
 							<div className='border rounded-full flex justify-center w-40 h-40 items-center mx-auto mb-4 border-secondary [&_svg]:w-16 [&_svg]:h-16 [&_svg]:fill-secondary'>
-								<DynamicIcon icon={service.icon} />
+								<DynamicIcon lib={service.lib} icon={service.icon} />
 							</div>
 							<h2 className='font-semibold text-secondary'>{service.title}</h2>
 							<p>{service.description}</p>
