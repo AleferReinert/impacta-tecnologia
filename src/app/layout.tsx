@@ -17,7 +17,7 @@ const audiowide = Audiowide({
 	variable: '--font-audiowide'
 })
 
-interface StrapiImageUpload {
+export interface StrapiImageUpload {
 	data: {
 		attributes: {
 			url: string
@@ -26,6 +26,15 @@ interface StrapiImageUpload {
 			height: number
 			formats: {
 				thumbnail: {
+					url: string
+				}
+				small: {
+					url: string
+				}
+				medium: {
+					url: string
+				}
+				large: {
 					url: string
 				}
 			}

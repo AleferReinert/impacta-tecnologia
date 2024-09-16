@@ -1,4 +1,5 @@
 'use client'
+import { StrapiImageUpload } from '@/app/layout'
 import Slider, { Settings } from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import { Button } from './Button'
@@ -10,48 +11,28 @@ export interface SliderConfigProps {
 	transitionSpeed?: number
 }
 
-interface BannerProps {
-	title: string
-	description: string
-	img: {
-		data: {
-			attributes: {
-				url: string
-				formats: {
-					small: {
-						url: string
-					}
-					medium: {
-						url: string
-					}
-					large: {
-						url: string
-					}
-				}
-			}
-		}
-	}
-	url?: string
-	align?: 'centro' | 'direita' | 'esquerda'
-	buttonLabel?: string
-}
-
 export interface BannerSliderProps {
-	banners: BannerProps[]
+	banners: {
+		title: string
+		description: string
+		img: StrapiImageUpload
+		url?: string
+		align?: 'centro' | 'direita' | 'esquerda'
+		buttonLabel?: string
+	}[]
 	sliderConfig: SliderConfigProps
 }
 
 export function BannersSlider({ sliderConfig, banners }: BannerSliderProps) {
+	if (banners.length === 0) {
+		return null
+	}
+
 	const aligns: { [key: string]: string } = {
 		centro: 'text-center',
 		direita: 'text-right',
 		esquerda: 'text-left'
 	}
-
-	if (banners.length === 0) {
-		return null
-	}
-
 	var settings: Settings = {
 		adaptiveHeight: banners.length === 1 ? true : false,
 		arrows: false,
@@ -66,6 +47,7 @@ export function BannersSlider({ sliderConfig, banners }: BannerSliderProps) {
 	}
 
 	const screenWidth = typeof window !== 'undefined' ? window.screen.width : 0
+
 	return (
 		<section className='relative bg-secondary'>
 			<Slider {...settings}>
