@@ -1,4 +1,6 @@
 import { EnterpriseProps } from '@/app/layout'
+import { formatCNPJ } from '@/utils/formatCNPJ'
+import { formatPhone } from '@/utils/formatPhone'
 import { Container } from './Container'
 import { SocialLinks } from './SocialLinks'
 
@@ -31,13 +33,13 @@ export function Footer({ enterprise }: FooterProps) {
 						{renderColHeading(name ?? 'Impacta Tecnologia & Soluções em TI')}
 						<p>
 							{renderInfo(businessHours!.title, businessHours?.content)}
-							{renderInfo('CNPJ', cnpj)}
+							{renderInfo('CNPJ', formatCNPJ(cnpj!))}
 						</p>
 					</div>
 					<div>
 						<div className='hidden md:block'>{renderColHeading('Contato')}</div>
 						<p>
-							{renderInfo('Tel.', phone)}
+							{renderInfo('Tel.', formatPhone(phone!))}
 							{renderInfo('E-mail', email)}
 						</p>
 					</div>
