@@ -2,36 +2,23 @@
 import { Section } from '@/components/Section'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
-import { SliderConfigProps } from './BannersSlider'
-
-export interface TextSliderItemProps {
-	title: string
-	description: string
-}
+import { SliderConfigProps, SliderSettings } from './SliderSettings'
 
 export interface SectionBenefitsProps {
 	title: string
-	benefits: TextSliderItemProps[]
+	benefits: {
+		title: string
+		description: string
+	}[]
 	sliderConfig: SliderConfigProps
 }
 
 export function SectionBenefits({ title, benefits, sliderConfig }: SectionBenefitsProps) {
-	var settings = {
-		autoplay: true,
-		autoplaySpeed: sliderConfig.scrollSpeed ?? 5000,
-		arrows: false,
-		dots: true,
-		dotsClass: 'custom-dots',
-		fade: sliderConfig.effect === 'fade' ? true : false,
-		infinite: true,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		speed: sliderConfig.transitionSpeed ?? 500
-	}
+	const { effect, scrollSpeed, transitionSpeed } = sliderConfig
 
 	return (
 		<Section theme='dark' title={title}>
-			<Slider {...settings}>
+			<Slider {...SliderSettings({ itemsLength: benefits.length, effect, scrollSpeed, transitionSpeed })}>
 				{benefits.map((item, index) => (
 					<div key={index} className='text-center flex flex-col'>
 						<h3 className='font-semibold text-secondary'>{item.title}</h3>

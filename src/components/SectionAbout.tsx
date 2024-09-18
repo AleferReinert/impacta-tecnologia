@@ -3,8 +3,8 @@ import { Section } from '@/components/Section'
 import { BsArrowRightShort } from 'react-icons/bs'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
-import { SliderConfigProps } from './BannersSlider'
 import { Button } from './Button'
+import { SliderConfigProps, SliderSettings } from './SliderSettings'
 
 export interface SectionAboutProps {
 	title: string
@@ -15,23 +15,14 @@ export interface SectionAboutProps {
 }
 
 export function SectionAbout({ title, descriptions, sliderConfig }: SectionAboutProps) {
-	var settings = {
-		autoplay: true,
-		autoplaySpeed: sliderConfig.scrollSpeed ?? 5000,
-		arrows: false,
-		dots: true,
-		dotsClass: 'custom-dots',
-		fade: sliderConfig.effect === 'fade' ? true : false,
-		infinite: true,
-		slidesToScroll: 1,
-		slidesToShow: 1,
-		speed: sliderConfig.transitionSpeed ?? 500
-	}
+	const { effect, scrollSpeed, transitionSpeed } = sliderConfig
 
 	return (
 		<Section title={title} theme='dark'>
 			<div className='mb-10'>
-				<Slider {...settings}>
+				<Slider
+					{...SliderSettings({ itemsLength: descriptions.length, effect, scrollSpeed, transitionSpeed })}
+				>
 					{descriptions.map((item, index) => (
 						<div key={index} className='text-center'>
 							<p className='max-w-screen-sm mx-auto'>{item.description}</p>

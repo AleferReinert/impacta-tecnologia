@@ -1,15 +1,10 @@
 'use client'
 import { StrapiImageUpload } from '@/app/layout'
-import Slider, { Settings } from 'react-slick'
+import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import { Button } from './Button'
 import { Container } from './Container'
-
-export interface SliderConfigProps {
-	effect?: string
-	scrollSpeed?: number
-	transitionSpeed?: number
-}
+import { SliderConfigProps, SliderSettings } from './SliderSettings'
 
 export interface BannerSliderProps {
 	banners: {
@@ -27,30 +22,26 @@ export function BannersSlider({ sliderConfig, banners }: BannerSliderProps) {
 	if (banners.length === 0) {
 		return null
 	}
-
+	const { effect, scrollSpeed, transitionSpeed } = sliderConfig
 	const aligns: { [key: string]: string } = {
 		centro: 'text-center',
 		direita: 'text-right',
 		esquerda: 'text-left'
-	}
-	var settings: Settings = {
-		adaptiveHeight: banners.length === 1 ? true : false,
-		arrows: false,
-		autoplay: true,
-		autoplaySpeed: sliderConfig.scrollSpeed ?? 5000,
-		dots: banners.length > 1 ? true : false,
-		dotsClass: 'custom-dots banners-dots',
-		fade: sliderConfig.effect === 'fade' ? true : false,
-		infinite: true,
-		pauseOnHover: false,
-		speed: sliderConfig.transitionSpeed ?? 1000
 	}
 
 	const screenWidth = typeof window !== 'undefined' ? window.screen.width : 0
 
 	return (
 		<section className='relative bg-secondary'>
-			<Slider {...settings}>
+			<Slider
+				{...SliderSettings({
+					itemsLength: banners.length,
+					dotsClass: 'banners-dots',
+					effect,
+					scrollSpeed,
+					transitionSpeed
+				})}
+			>
 				{banners.map((banner, index) => {
 					const background =
 						screenWidth <= 640
