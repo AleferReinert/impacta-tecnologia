@@ -1,6 +1,6 @@
 import { BoxContent, BoxContentProps } from '@/components/BoxContent'
 import { Container } from '@/components/Container'
-import { DynamicIcon } from '@/components/DynamicIcon'
+import DynamicReactIcon from '@/components/DynamicReactIcon'
 import { PageTitle } from '@/components/PageTitle'
 import { Subtitle } from '@/components/Subtitle'
 
@@ -12,7 +12,6 @@ interface ServicesProps {
 		services: {
 			title: string
 			description: string
-			lib: string
 			icon: string
 		}[]
 	}
@@ -29,7 +28,6 @@ export default async function Services() {
 			<PageTitle title='Serviços' />
 
 			<BoxContent
-				lib={lease.lib}
 				icon={lease.icon}
 				title={lease.title}
 				description={lease.description}
@@ -48,7 +46,7 @@ export default async function Services() {
 							return (
 								<li key={index} className='p-8 gap-8 flex bg-slate-200 items-center'>
 									<div className='hidden sm:block [&_svg]:size-10 [&_svg]:fill-secondary [&_svg]:text-secondary'>
-										<DynamicIcon lib={item.lib} icon={item.icon} />
+										<DynamicReactIcon name={item.icon} />
 									</div>
 									<div>
 										<h3 className='text-secondary font-medium'>{item.title}</h3>
@@ -60,13 +58,7 @@ export default async function Services() {
 					</ul>
 				</Container>
 			</div>
-			<BoxContent
-				lib={sale.lib}
-				icon={sale.icon}
-				title={sale.title}
-				description={sale.description}
-				variant={sale.variant}
-			/>
+			<BoxContent icon={sale.icon} title={sale.title} description={sale.description} variant={sale.variant} />
 		</>
 	)
 }

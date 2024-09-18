@@ -1,16 +1,15 @@
 import { Container } from './Container'
-import { DynamicIcon } from './DynamicIcon'
+import DynamicReactIcon from './DynamicReactIcon'
 import { Subtitle } from './Subtitle'
 
 export interface BoxContentProps {
 	title: string
 	description: string
-	lib: string
 	icon: string
 	variant: 'light' | 'dark'
 }
 
-export function BoxContent({ title, description, lib, icon, variant = 'light' }: BoxContentProps) {
+export function BoxContent({ title, description, icon, variant = 'light' }: BoxContentProps) {
 	return (
 		<div className={`${variant === 'dark' ? 'bg-slate-100' : ''} py-10`}>
 			<Container>
@@ -24,7 +23,7 @@ export function BoxContent({ title, description, lib, icon, variant = 'light' }:
 						<div className='pt-3 flex flex-col gap-3' dangerouslySetInnerHTML={{ __html: description }}></div>
 					</div>
 					<div className='hidden sm:block [&_svg]:size-36'>
-						<DynamicIcon lib={lib} icon={icon} />
+						<DynamicReactIcon name={icon} />
 					</div>
 				</div>
 			</Container>

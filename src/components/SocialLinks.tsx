@@ -1,9 +1,8 @@
-import { DynamicIcon } from './DynamicIcon'
+import DynamicReactIcon from './DynamicReactIcon'
 
 interface SocialLinkProps {
 	title: string
 	url: string
-	lib: string
 	icon: string
 }
 
@@ -25,7 +24,7 @@ export function SocialLinks({ socialLinks, iconColor = 'light' }: SocialLinksPro
 						iconColor === 'light' ? '[&_svg]:fill-white' : '[&_svg]:fill-secondary'
 					} [&_svg]:size-8 [&_svg]:md:size-6 [&_svg]:transition`}
 				>
-					<DynamicIcon lib={item.lib} icon={item.icon} />
+					<DynamicReactIcon name={item.icon} />
 				</a>
 			))}
 		</nav>
