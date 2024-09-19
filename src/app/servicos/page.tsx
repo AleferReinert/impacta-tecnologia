@@ -3,6 +3,7 @@ import { Container } from '@/components/Container'
 import DynamicReactIcon from '@/components/DynamicReactIcon'
 import { PageTitle } from '@/components/PageTitle'
 import { Subtitle } from '@/components/Subtitle'
+import { Metadata } from 'next'
 
 interface ServicesProps {
 	lease: BoxContentProps
@@ -16,6 +17,10 @@ interface ServicesProps {
 		}[]
 	}
 	sale: BoxContentProps
+}
+
+export const metadata: Metadata = {
+	title: 'Serviços'
 }
 
 export default async function Services() {

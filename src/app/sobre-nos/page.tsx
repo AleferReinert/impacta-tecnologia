@@ -3,6 +3,7 @@ import { Container } from '@/components/Container'
 import DynamicReactIcon from '@/components/DynamicReactIcon'
 import { PageTitle } from '@/components/PageTitle'
 import { Subtitle } from '@/components/Subtitle'
+import { Metadata } from 'next'
 
 interface AboutProps {
 	description: string
@@ -16,6 +17,10 @@ interface AboutProps {
 			icon: string
 		}[]
 	}
+}
+
+export const metadata: Metadata = {
+	title: 'Sobre nós'
 }
 
 export default async function About() {
