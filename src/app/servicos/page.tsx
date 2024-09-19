@@ -31,21 +31,12 @@ export default async function Services() {
 	return (
 		<>
 			<PageTitle title='Serviços' />
-
-			<BoxContent
-				icon={lease.icon}
-				title={lease.title}
-				description={lease.description}
-				variant={lease.variant}
-			/>
+			<BoxContent icon={lease.icon} title={lease.title} description={lease.description} theme={lease.theme} />
 
 			<div className='bg-slate-100 py-10'>
 				<Container>
 					<Subtitle>{servicesProvision.title}</Subtitle>
-					<div
-						className='mt-3 space-y-3'
-						dangerouslySetInnerHTML={{ __html: servicesProvision.description }}
-					></div>
+					<div className='mt-3 space-y-3' dangerouslySetInnerHTML={{ __html: servicesProvision.description }}></div>
 					<ul className='py-3 gap-4 grid grid-cols-1 md:grid-cols-2'>
 						{servicesProvision.services.map((item, index) => {
 							return (
@@ -63,7 +54,7 @@ export default async function Services() {
 					</ul>
 				</Container>
 			</div>
-			<BoxContent icon={sale.icon} title={sale.title} description={sale.description} variant={sale.variant} />
+			<BoxContent icon={sale.icon} title={sale.title} description={sale.description} theme={sale.theme} />
 		</>
 	)
 }

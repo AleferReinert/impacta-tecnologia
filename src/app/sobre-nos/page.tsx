@@ -38,19 +38,9 @@ export default async function About() {
 				></div>
 			</Container>
 
-			<BoxContent
-				variant={mission.variant}
-				icon={mission.icon}
-				title={mission.title}
-				description={mission.description}
-			/>
+			<BoxContent theme={mission.theme} icon={mission.icon} title={mission.title} description={mission.description} />
 
-			<BoxContent
-				variant={vision.variant}
-				icon={vision.icon}
-				title={vision.title}
-				description={vision.description}
-			/>
+			<BoxContent theme={vision.theme} icon={vision.icon} title={vision.title} description={vision.description} />
 
 			<div className='bg-slate-100 py-10'>
 				<Container>

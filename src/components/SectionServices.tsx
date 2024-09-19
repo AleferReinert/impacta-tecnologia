@@ -22,7 +22,7 @@ export function SectionServices({ title, services }: SectionServicesProps) {
 							<div className='border rounded-full flex justify-center w-40 h-40 items-center mx-auto mb-4 border-secondary [&_svg]:w-16 [&_svg]:h-16 [&_svg]:fill-secondary'>
 								<DynamicReactIcon name={service.icon} />
 							</div>
-							<h2 className='font-semibold text-secondary'>{service.title}</h2>
+							<h3 className='font-semibold text-secondary'>{service.title}</h3>
 							<p>{service.description}</p>
 						</li>
 					)

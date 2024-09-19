@@ -59,11 +59,7 @@ export interface EnterpriseProps extends SocialLinksProps {
 
 export let metadata: Metadata
 
-export default async function RootLayout({
-	children
-}: Readonly<{
-	children: React.ReactNode
-}>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/enterprise?populate=*`, {
 		next: { revalidate: 0 }
 	}).then(res => res.json())
