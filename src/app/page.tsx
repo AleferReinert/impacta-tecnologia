@@ -1,8 +1,15 @@
-import { BannerSliderProps, BannersSlider } from '@/components/BannersSlider'
+import { BannerSliderProps } from '@/components/BannersSlider'
+import { Loading } from '@/components/Loading'
 import { SectionAbout, SectionAboutProps } from '@/components/SectionAbout'
 import { SectionBenefits, SectionBenefitsProps } from '@/components/SectionBenefits'
 import { SectionContact, SectionContactProps } from '@/components/SectionContact'
 import { SectionServices, SectionServicesProps } from '@/components/SectionServices'
+import dynamic from 'next/dynamic'
+
+const BannersSlider = dynamic(() => import('@/components/BannersSlider').then(mod => mod.BannersSlider), {
+	ssr: false,
+	loading: () => <Loading type='component' show className='aspect-[5/4] sm:aspect-[3/2] md:aspect-[3/1]' />
+})
 
 interface HomeProps {
 	banners: BannerSliderProps
