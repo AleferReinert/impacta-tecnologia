@@ -1,5 +1,6 @@
 'use client'
 import { StrapiImageUpload } from '@/app/layout'
+import { useEffect, useState } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import { Button } from './Button'
@@ -19,17 +20,22 @@ export interface BannerSliderProps {
 }
 
 export function BannersSlider({ sliderConfig, banners }: BannerSliderProps) {
-	if (banners.length === 0) {
+	const [screenWidth, setScreenWidth] = useState(0)
+
+	useEffect(() => {
+		setScreenWidth(window.screen.width)
+	}, [])
+
+	if (banners.length === 0 || screenWidth === 0) {
 		return null
 	}
+
 	const { effect, scrollSpeed, transitionSpeed } = sliderConfig
 	const aligns: { [key: string]: string } = {
 		centro: 'text-center',
 		direita: 'text-right',
 		esquerda: 'text-left'
 	}
-
-	const screenWidth = typeof window !== 'undefined' ? window.screen.width : 0
 
 	return (
 		<section className='relative bg-secondary'>
@@ -64,9 +70,7 @@ export function BannersSlider({ sliderConfig, banners }: BannerSliderProps) {
 											banner.align === 'esquerda' ? 'sm:pr-10' : banner.align === 'direita' ? 'sm:pl-10' : ''
 										} relative z-20 text-white h-full flex flex-col justify-center pb-3 sm:pb-6`}
 									>
-										<h2 className='font-semibold uppercase text-xl mb-2 font-heading sm:text-4xl'>
-											{banner.title}
-										</h2>
+										<h2 className='font-semibold uppercase text-xl mb-2 font-heading sm:text-4xl'>{banner.title}</h2>
 										<p className='font-light mb-7 sm:mb-10 text-sm sm:text-lg'>{banner.description}</p>
 										<div className='h-10 [&_a]:inline-flex'>
 											{banner.url && (

@@ -18,7 +18,7 @@ export function BoxContent({ title, description, icon, theme = 'light' }: BoxCon
 						<Subtitle>{title}</Subtitle>
 						<div className='pt-3 flex flex-col gap-3' dangerouslySetInnerHTML={{ __html: description }}></div>
 					</div>
-					<div className='hidden sm:block [&_svg]:size-36'>
+					<div className='hidden sm:block [&>*]:size-36'>
 						<DynamicReactIcon name={icon} />
 					</div>
 				</div>

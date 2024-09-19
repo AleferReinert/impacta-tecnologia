@@ -19,7 +19,7 @@ export function SectionServices({ title, services }: SectionServicesProps) {
 				{services.map((service, index) => {
 					return (
 						<li key={index} className='text-center'>
-							<div className='border rounded-full flex justify-center w-40 h-40 items-center mx-auto mb-4 border-secondary [&_svg]:w-16 [&_svg]:h-16 [&_svg]:fill-secondary'>
+							<div className='border rounded-full flex justify-center w-40 h-40 items-center mx-auto mb-4 border-secondary [&>*]:w-16 [&>*]:h-16 [&>*]:fill-secondary'>
 								<DynamicReactIcon name={service.icon} />
 							</div>
 							<h3 className='font-semibold text-secondary'>{service.title}</h3>

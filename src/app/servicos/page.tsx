@@ -41,7 +41,7 @@ export default async function Services() {
 						{servicesProvision.services.map((item, index) => {
 							return (
 								<li key={index} className='p-8 gap-8 flex bg-slate-200 items-center'>
-									<div className='hidden sm:block [&_svg]:size-10 [&_svg]:fill-secondary [&_svg]:text-secondary'>
+									<div className='hidden sm:block [&>*]:size-10 [&>*]:fill-secondary [&>*]:text-secondary'>
 										<DynamicReactIcon name={item.icon} />
 									</div>
 									<div>

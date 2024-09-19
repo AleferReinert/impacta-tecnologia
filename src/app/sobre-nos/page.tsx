@@ -52,7 +52,7 @@ export default async function About() {
 									key={index}
 									className='p-8 gap-8 odd:bg-slate-200 flex items-center border-l-4 even:border-transparent odd:border-secondary'
 								>
-									<div className='hidden sm:block [&_svg]:fill-secondary [&_svg]:text-secondary [&_svg]:w-10 [&_svg]:h-10'>
+									<div className='hidden sm:block [&>*]:fill-secondary [&>*]:text-secondary [&>*]:w-10 [&>*]:h-10'>
 										<DynamicReactIcon name={item.icon} />
 									</div>
 									<div>

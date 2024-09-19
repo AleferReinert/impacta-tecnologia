@@ -1,11 +1,9 @@
 'use client'
-
-import { DOMAttributes } from 'react'
-
-export type IReactIcon = string
-
 import loadable from '@loadable/component'
+import { DOMAttributes } from 'react'
 import { IconType } from 'react-icons'
+import { Loading } from './Loading'
+export type IReactIcon = string
 
 const iconComponents = {
 	Ai: () => import('react-icons/ai'),
@@ -49,7 +47,8 @@ const DynamicReactIcon: React.FC<IDynamicReactIcon> = ({ name, ...rest }: IDynam
 	if (!iconComponent) return <></>
 
 	const DynamicIcon = loadable(iconComponent, {
-		resolveComponent: el => el[name]
+		resolveComponent: el => el[name],
+		fallback: <Loading type='animation' className='rounded-full' />
 	}) as IconType
 
 	return <DynamicIcon {...rest} />
