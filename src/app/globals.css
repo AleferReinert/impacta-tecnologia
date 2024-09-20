@@ -11,10 +11,11 @@ body {
 	@apply font-sans;
 }
 
-[aria-hidden='true'] > * {
+/* Todo: elementos filhos estão focalizáveis */
+/* [aria-hidden='true'] > * {
 	pointer-events: none;
-	tabindex: -1;
-}
+	tabindex: -1; not working
+} */
 
 .slick-slider .slick-track {
 	@apply flex items-center;

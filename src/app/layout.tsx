@@ -58,10 +58,15 @@ export interface EnterpriseProps extends SocialLinksProps {
 }
 
 async function getEnterpriseData(): Promise<EnterpriseProps> {
-	const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/enterprise?populate=*`, { next: { revalidate: 0 } }).then(
-		res => res.json()
-	)
-	return data.data.attributes
+	try {
+		const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/enterprise?populate=*`, { next: { revalidate: 0 } }).then(
+			res => res.json()
+		)
+		return data.data.attributes
+	} catch (error) {
+		console.error('Failed to fetch enterprise data:', error)
+		throw new Error('Could not retrieve enterprise data')
+	}
 }
 
 export async function generateMetadata(): Promise<Metadata> {
