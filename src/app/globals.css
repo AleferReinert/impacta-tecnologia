@@ -11,6 +11,10 @@ body {
 	@apply font-sans;
 }
 
+[aria-hidden='true'] > * {
+	display: none;
+}
+
 .slick-slider .slick-track {
 	@apply flex items-center;
 }
