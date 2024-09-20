@@ -12,7 +12,8 @@ body {
 }
 
 [aria-hidden='true'] > * {
-	display: none !important;
+	pointer-events: none;
+	tabindex: -1;
 }
 
 .slick-slider .slick-track {
