@@ -12,7 +12,7 @@ body {
 }
 
 [aria-hidden='true'] > * {
-	display: none;
+	display: none !important;
 }
 
 .slick-slider .slick-track {
