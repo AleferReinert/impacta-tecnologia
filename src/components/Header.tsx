@@ -14,7 +14,7 @@ export function Header({ enterprise }: HeaderProps) {
 	const [fixedHeader, setFixedHeader] = useState('fixed')
 	const [menu, setMenu] = useState(false)
 	const enterpriseName = enterprise.name ?? 'Impacta Tecnologia & Soluções em TI'
-	const logoImg = enterprise.logo.data.attributes.formats.thumbnail.url
+	const logoImg = enterprise.logo.data.attributes.url
 
 	useEffect(() => {
 		let prev = window.scrollY
