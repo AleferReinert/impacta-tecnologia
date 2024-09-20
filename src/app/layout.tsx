@@ -57,21 +57,28 @@ export interface EnterpriseProps extends SocialLinksProps {
 	favicon: StrapiImageUpload
 }
 
-export let metadata: Metadata
+async function getEnterpriseData(): Promise<EnterpriseProps> {
+	const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/enterprise?populate=*`, { next: { revalidate: 0 } }).then(
+		res => res.json()
+	)
+	return data.data.attributes
+}
 
-export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/enterprise?populate=*`, {
-		next: { revalidate: 0 }
-	}).then(res => res.json())
-	const enterprise: EnterpriseProps = res.data.attributes
-	const favicon = enterprise.favicon.data.attributes
-	metadata = {
+export async function generateMetadata(): Promise<Metadata> {
+	const enterprise = await getEnterpriseData()
+
+	return {
 		title: {
 			template: `%s - ${enterprise.name}`,
 			default: enterprise.name
 		},
 		description: enterprise.description
 	}
+}
+
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+	const enterprise = await getEnterpriseData()
+	const favicon = enterprise.favicon.data.attributes
 
 	return (
 		<html lang='pt-br'>
