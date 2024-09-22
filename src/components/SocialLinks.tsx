@@ -20,9 +20,11 @@ export function SocialLinks({ socialLinks, iconColor = 'light' }: SocialLinksPro
 					title={item.title}
 					href={item.url}
 					target='_blank'
-					className={`${
-						iconColor === 'light' ? '[&>*]:fill-white' : '[&>*]:fill-secondary'
-					} [&>*]:size-8 [&>*]:md:size-6 [&>*]:transition [&>*]:hover:fill-primary`}
+					className={`
+						${iconColor === 'light' ? '[&>*]:fill-white' : '[&>*]:fill-secondary'} 
+						[&>*]:size-8 [&>*]:transition 
+						[&>*]:md:size-6 
+						[&>*]:hover:fill-primary`}
 				>
 					<DynamicReactIcon name={item.icon} />
 				</a>

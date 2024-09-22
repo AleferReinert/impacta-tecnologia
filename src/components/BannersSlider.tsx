@@ -25,7 +25,6 @@ export function BannersSlider({ sliderConfig, banners }: BannerSliderProps) {
 	useEffect(() => {
 		setScreenWidth(window.screen.width)
 	}, [])
-
 	if (banners.length === 0 || screenWidth === 0) {
 		return null
 	}

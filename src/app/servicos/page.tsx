@@ -1,6 +1,7 @@
 import { BoxContent, BoxContentProps } from '@/components/BoxContent'
 import { Container } from '@/components/Container'
 import DynamicReactIcon from '@/components/DynamicReactIcon'
+import { Error } from '@/components/Error'
 import { PageTitle } from '@/components/PageTitle'
 import { Subtitle } from '@/components/Subtitle'
 import { Metadata } from 'next'
@@ -62,6 +63,6 @@ export default async function Services() {
 		)
 	} catch (error) {
 		console.error('Failed to fetch services data:', error)
-		throw new Error('Could not retrieve services data')
+		return <Error />
 	}
 }

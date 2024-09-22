@@ -1,4 +1,5 @@
 import { BannerSliderProps } from '@/components/BannersSlider'
+import { Error } from '@/components/Error'
 import { Loading } from '@/components/Loading'
 import { SectionAbout, SectionAboutProps } from '@/components/SectionAbout'
 import { SectionBenefits, SectionBenefitsProps } from '@/components/SectionBenefits'
@@ -38,7 +39,7 @@ export default async function Home() {
 		)
 	} catch (error) {
 		console.error('Failed to fetch homepage data:', error)
-		throw new Error('Could not retrieve homepage data')
+		return <Error />
 	}
 }
 

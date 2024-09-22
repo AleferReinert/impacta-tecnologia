@@ -1,3 +1,4 @@
+import { Error } from '@/components/Error'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { SocialLinksProps } from '@/components/SocialLinks'
@@ -57,7 +58,7 @@ export interface EnterpriseProps extends SocialLinksProps {
 	favicon: StrapiImageUpload
 }
 
-async function getEnterpriseData(): Promise<EnterpriseProps> {
+async function getEnterpriseData(): Promise<EnterpriseProps | null> {
 	try {
 		const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/enterprise?populate=*`, { next: { revalidate: 0 } }).then(
 			res => res.json()
@@ -65,12 +66,15 @@ async function getEnterpriseData(): Promise<EnterpriseProps> {
 		return data.data.attributes
 	} catch (error) {
 		console.error('Failed to fetch enterprise data:', error)
-		throw new Error('Could not retrieve enterprise data')
+		return null
 	}
 }
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata | null> {
 	const enterprise = await getEnterpriseData()
+	if (!enterprise) {
+		return null
+	}
 
 	return {
 		title: {
@@ -83,12 +87,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	const enterprise = await getEnterpriseData()
-	const favicon = enterprise.favicon.data.attributes
+	const favicon = enterprise?.favicon.data.attributes
 
 	return (
 		<html lang='pt-br'>
 			<head>
-				<link rel='icon' href={favicon.url} type={favicon.mime} sizes={`${favicon.width}x${favicon.height}`} />
+				{favicon && <link rel='icon' href={favicon.url} type={favicon.mime} sizes={`${favicon.width}x${favicon.height}`} />}
 			</head>
 			<body className={`${audiowide.variable} ${poppins.variable} text-slate-600`}>
 				<Toaster
@@ -99,9 +103,16 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 						}
 					}}
 				/>
-				<Header enterprise={enterprise} />
-				<main className='pt-16 min-h-[80vh]'>{children}</main>
-				<Footer enterprise={enterprise} />
+
+				{enterprise ? (
+					<>
+						<Header enterprise={enterprise} />
+						<main className='pt-16 min-h-[80vh]'>{children}</main>
+						<Footer enterprise={enterprise} />
+					</>
+				) : (
+					<Error />
+				)}
 			</body>
 		</html>
 	)
