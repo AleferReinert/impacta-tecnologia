@@ -26,43 +26,42 @@ export const metadata: Metadata = {
 
 export default async function Services() {
 	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/servicespage?populate[lease]=*&populate[servicesProvision][populate][0]=services&populate[sale]=*`
+	const res = await fetch(url, { next: { revalidate: 0 } })
+	const data = await res.json()
 
-	try {
-		const res = await fetch(url, { next: { revalidate: 0 } })
-		const data = await res.json()
-		const { lease, servicesProvision, sale }: ServicesProps = data.data.attributes
-
-		return (
-			<>
-				<PageTitle title='Serviços' />
-				<BoxContent icon={lease.icon} title={lease.title} description={lease.description} theme={lease.theme} />
-
-				<div className='bg-slate-100 py-10'>
-					<Container>
-						<Subtitle>{servicesProvision.title}</Subtitle>
-						<div className='mt-3 space-y-3' dangerouslySetInnerHTML={{ __html: servicesProvision.description }}></div>
-						<ul className='py-3 gap-4 grid grid-cols-1 md:grid-cols-2'>
-							{servicesProvision.services.map((item, index) => {
-								return (
-									<li key={index} className='p-8 gap-8 flex bg-slate-200 items-center'>
-										<div className='hidden sm:block [&>*]:size-10 [&>*]:fill-secondary [&>*]:text-secondary'>
-											<DynamicReactIcon name={item.icon} />
-										</div>
-										<div>
-											<h3 className='text-secondary font-medium'>{item.title}</h3>
-											<p>{item.description}</p>
-										</div>
-									</li>
-								)
-							})}
-						</ul>
-					</Container>
-				</div>
-				<BoxContent icon={sale.icon} title={sale.title} description={sale.description} theme={sale.theme} />
-			</>
-		)
-	} catch (error) {
-		console.error('Failed to fetch services data:', error)
+	if (!res.ok) {
 		return <Error />
 	}
+
+	const { lease, servicesProvision, sale }: ServicesProps = data.data.attributes
+
+	return (
+		<>
+			<PageTitle title='Serviços' />
+			<BoxContent icon={lease.icon} title={lease.title} description={lease.description} theme={lease.theme} />
+
+			<div className='bg-slate-100 py-10'>
+				<Container>
+					<Subtitle>{servicesProvision.title}</Subtitle>
+					<div className='mt-3 space-y-3' dangerouslySetInnerHTML={{ __html: servicesProvision.description }}></div>
+					<ul className='py-3 gap-4 grid grid-cols-1 md:grid-cols-2'>
+						{servicesProvision.services.map((item, index) => {
+							return (
+								<li key={index} className='p-8 gap-8 flex bg-slate-200 items-center'>
+									<div className='hidden sm:block [&>*]:size-10 [&>*]:fill-secondary [&>*]:text-secondary'>
+										<DynamicReactIcon name={item.icon} />
+									</div>
+									<div>
+										<h3 className='text-secondary font-medium'>{item.title}</h3>
+										<p>{item.description}</p>
+									</div>
+								</li>
+							)
+						})}
+					</ul>
+				</Container>
+			</div>
+			<BoxContent icon={sale.icon} title={sale.title} description={sale.description} theme={sale.theme} />
+		</>
+	)
 }

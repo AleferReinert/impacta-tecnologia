@@ -59,15 +59,12 @@ export interface EnterpriseProps extends SocialLinksProps {
 }
 
 async function getEnterpriseData(): Promise<EnterpriseProps | null> {
-	try {
-		const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/enterprise?populate=*`, { next: { revalidate: 0 } }).then(
-			res => res.json()
-		)
-		return data.data.attributes
-	} catch (error) {
-		console.error('Failed to fetch enterprise data:', error)
+	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/enterprise?populate=*`, { next: { revalidate: 0 } })
+	const data = await res.json()
+	if (!res.ok) {
 		return null
 	}
+	return data.data.attributes
 }
 
 export async function generateMetadata(): Promise<Metadata | null> {
@@ -94,7 +91,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 			<head>
 				{favicon && <link rel='icon' href={favicon.url} type={favicon.mime} sizes={`${favicon.width}x${favicon.height}`} />}
 			</head>
-			<body className={`${audiowide.variable} ${poppins.variable} text-slate-600`}>
+			<body className={`${audiowide.variable} ${poppins.variable} text-slate-600 min-h-dvh flex flex-col justify-between`}>
 				<Toaster
 					richColors
 					toastOptions={{
@@ -107,7 +104,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 				{enterprise ? (
 					<>
 						<Header enterprise={enterprise} />
-						<main className='pt-16 min-h-[80vh]'>{children}</main>
+						<main className='pt-16'>{children}</main>
 						<Footer enterprise={enterprise} />
 					</>
 				) : (
