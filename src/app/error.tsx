@@ -7,5 +7,5 @@ export default function ErrorPage({ error, reset }: { error: Error & { digest?: 
 		console.error(error)
 	}, [error])
 
-	return <Error title='Erro geral' />
+	return <Error title='error.tsx' />
 }
