@@ -26,6 +26,7 @@ export default async function Home() {
 	const data = await res.json()
 
 	if (!res.ok) {
+		console.log(`src/app/page.tsx: fetch error.`)
 		return <Error />
 	}
 

@@ -30,6 +30,7 @@ export default async function About() {
 	const data = await res.json()
 
 	if (!res.ok) {
+		console.log(`src/app/sobre-nos/page.tsx: fetch error.`)
 		return <Error />
 	}
 

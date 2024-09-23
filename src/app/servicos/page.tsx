@@ -30,6 +30,7 @@ export default async function Services() {
 	const data = await res.json()
 
 	if (!res.ok) {
+		console.log(`src/app/servicos/page.tsx: fetch error.`)
 		return <Error />
 	}
 

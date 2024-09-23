@@ -1,4 +1,5 @@
 'use client'
+import { Button } from '@/components/Button'
 import { Error } from '@/components/Error'
 
 export default function GlobalError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
@@ -6,8 +7,10 @@ export default function GlobalError({ error, reset }: { error: Error & { digest?
 
 	return (
 		<html>
-			<body>
-				<Error />
+			<body style={{ fontFamily: 'sans-serif' }}>
+				<Error>
+					<Button onClick={() => reset()}>Tentar novamente</Button>
+				</Error>
 			</body>
 		</html>
 	)

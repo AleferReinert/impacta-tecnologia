@@ -62,6 +62,7 @@ async function getEnterpriseData(): Promise<EnterpriseProps | null> {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/enterprise?populate=*`, { next: { revalidate: 0 } })
 	const data = await res.json()
 	if (!res.ok) {
+		console.log(`src/app/layout.tsx: fetch error.`)
 		return null
 	}
 	return data.data.attributes
