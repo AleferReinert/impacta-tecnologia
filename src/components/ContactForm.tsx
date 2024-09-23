@@ -1,5 +1,4 @@
 'use client'
-import emailjs from '@emailjs/browser'
 import { useRef, useState } from 'react'
 import { toast } from 'sonner'
 import { Button } from './Button'
@@ -7,44 +6,50 @@ import { FormField } from './FieldForm'
 import { Loading } from './Loading'
 
 export function ContactForm() {
-	const form = useRef(null)
+	const form = useRef<HTMLFormElement | null>(null)
 	const [formSubmitted, setFormSubmitted] = useState(false)
 	const [loading, setLoading] = useState(false)
-	const serviceId = process.env.NEXT_PUBLIC_SERVICE_ID
-	const templateId = process.env.NEXT_PUBLIC_TEMPLATE_ID
-	const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY
 
-	const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
-		const name = document.querySelector('input[name="name"]') as HTMLInputElement
-		const email = document.querySelector('input[name="email"]') as HTMLInputElement
-		const message = document.querySelector('textarea[name="message"]') as HTMLInputElement
+		const formData = new FormData(form.current!)
+		const name = formData.get('name') as string
+		const email = formData.get('email') as string
+		const message = formData.get('message') as string
 
-		if (name.value.length === 0) {
+		if (name.length === 0) {
 			toast.error('Digite seu nome.')
 			return null
-		} else if (email.value.length === 0) {
+		} else if (email.length === 0) {
 			toast.error('Digite seu e-mail.')
 			return null
-		} else if (message.value.length === 0) {
+		} else if (message.length === 0) {
 			toast.error('Digite sua mensagem.')
 			return null
 		}
 
 		setLoading(true)
+		const data = { data: { name, email, message } }
 
-		if (form.current && serviceId && templateId) {
-			emailjs.sendForm(serviceId, templateId, form.current, { publicKey }).then(
-				() => {
-					setFormSubmitted(true)
-					setLoading(false)
+		try {
+			const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/messages', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
 				},
-				error => {
-					setLoading(false)
-					toast.error('Falha ao enviar.')
-					console.log('Falha ao enviar e-mail...', error.text)
-				}
-			)
+				body: JSON.stringify(data)
+			})
+
+			if (response.ok) {
+				setFormSubmitted(true)
+			} else {
+				toast.error('Erro ao enviar o formulário.')
+			}
+		} catch (error) {
+			toast.error('Erro ao enviar o formulário.')
+			console.error('Erro de rede', error)
+		} finally {
+			setLoading(false)
 		}
 	}
 
@@ -59,15 +64,10 @@ export function ContactForm() {
 					<Button onClick={() => setFormSubmitted(false)}>Enviar outra mensagem</Button>
 				</div>
 			) : (
-				<form ref={form} onSubmit={sendEmail} className='mx-auto max-w-96 flex flex-col'>
+				<form ref={form} onSubmit={handleSubmit} className='mx-auto max-w-96 flex flex-col'>
 					<FormField label='Nome' name='name' />
 					<FormField label='E-mail' name='email' inputType='email' />
-					<FormField
-						label='Mensagem'
-						name='message'
-						fieldType='textarea'
-						placeholder='Digite sua mensagem...'
-					/>
+					<FormField label='Mensagem' name='message' fieldType='textarea' placeholder='Digite sua mensagem...' />
 					<Button variant='fill' full>
 						Enviar mensagem
 					</Button>

@@ -32,7 +32,6 @@ Website da empresa Impacta Tecnologia & Soluções em TI.
 - **Tailwind CSS:** Framework de utilidades CSS para estilização rápida e eficiente.
 - **TypeScript:** Superconjunto de JavaScript que adiciona tipagem estática ao código.
 - **ESLint:** Ferramenta de linting para identificar e corrigir problemas em código JavaScript/TypeScript.
-- **Emailjs:** Ferramenta para envios de e-mail a partir do front-end.
 - **Sonner:** Biblioteca para exibição de notificações
 
 ## URL do Projeto
