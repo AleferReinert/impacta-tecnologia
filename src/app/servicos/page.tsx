@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Services() {
-	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/servicepage?populate[lease]=*&populate[servicesProvision][populate][0]=services&populate[sale]=*`
+	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/servicespage?populate[lease]=*&populate[servicesProvision][populate][0]=services&populate[sale]=*`
 	const res = await fetch(url, { next: { revalidate: 0 } })
 	const data = await res.json()
 
