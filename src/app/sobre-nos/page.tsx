@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 }
 
 export default async function About() {
-	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/aboutpage?populate[mission]=*&populate[vision]=*&populate[values][populate]=values`
+	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/abotpage?populate[mission]=*&populate[vision]=*&populate[values][populate]=values`
 	const res = await fetch(url, { next: { revalidate: 0 } })
 	const data = await res.json()
 

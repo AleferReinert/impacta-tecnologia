@@ -14,7 +14,7 @@ export function Error({
 	homepageLink = false
 }: ErrorProps) {
 	return (
-		<>
+		<div>
 			<PageTitle title={title} />
 			<Container>
 				<div className='flex gap-9 flex-col py-10'>
@@ -26,6 +26,6 @@ export function Error({
 					</Button>
 				)}
 			</Container>
-		</>
+		</div>
 	)
 }
