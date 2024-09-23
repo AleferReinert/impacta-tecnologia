@@ -1,6 +1,7 @@
 import { EnterpriseProps } from '@/app/layout'
 import { formatCNPJ } from '@/utils/formatCNPJ'
 import { formatPhone } from '@/utils/formatPhone'
+import { ReactNode } from 'react'
 import { Container } from './Container'
 import { SocialLinks } from './SocialLinks'
 
@@ -11,7 +12,7 @@ export interface FooterProps {
 export function Footer({ enterprise }: FooterProps) {
 	const { name, cnpj, email, phone, businessHours, socialLinks } = enterprise
 
-	const renderInfo = (label: string, value?: string) => {
+	const renderInfo = (label: string, value?: string | ReactNode) => {
 		if (!value) return null
 		return (
 			<span className='leading-7 md:leading-normal'>
@@ -39,8 +40,18 @@ export function Footer({ enterprise }: FooterProps) {
 					<div>
 						<div className='hidden md:block'>{renderColHeading('Contato')}</div>
 						<p>
-							{renderInfo('Tel.', formatPhone(phone!))}
-							{renderInfo('E-mail', email)}
+							{renderInfo(
+								'Tel.',
+								<a title='Ligar' href={`tel:${phone}`}>
+									{formatPhone(phone!)}
+								</a>
+							)}
+							{renderInfo(
+								'E-mail',
+								<a title='Enviar e-mail' href={`mailto:${email}`}>
+									{email}
+								</a>
+							)}
 						</p>
 					</div>
 					<div>
