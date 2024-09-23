@@ -38,7 +38,14 @@ export function FormField({
 					required
 				/>
 			) : (
-				<textarea id={name} name={name} placeholder={placeholder} className={`${styles} resize-none h-32`} required />
+				<textarea
+					id={name}
+					onChange={onChange}
+					name={name}
+					placeholder={placeholder}
+					className={`${styles} resize-none h-32`}
+					required
+				/>
 			)}
 		</>
 	)
