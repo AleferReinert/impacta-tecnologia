@@ -14,11 +14,11 @@ export function Error({
 	homepageLink = false
 }: ErrorProps) {
 	return (
-		<div>
+		<div className='font-heading'>
 			<PageTitle title={title} />
 			<Container>
 				<div className='flex gap-9 flex-col py-10'>
-					<p>{description}</p>
+					<p className='font-sans'>{description}</p>
 				</div>
 				{homepageLink && (
 					<Button asLink href='/'>
