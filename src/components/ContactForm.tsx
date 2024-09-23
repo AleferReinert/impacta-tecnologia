@@ -9,13 +9,16 @@ export function ContactForm() {
 	const form = useRef<HTMLFormElement | null>(null)
 	const [formSubmitted, setFormSubmitted] = useState(false)
 	const [loading, setLoading] = useState(false)
+	const [name, setName] = useState<string>('')
+	const [email, setEmail] = useState<string>('')
+	const [message, setMessage] = useState<string>('')
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
 		const formData = new FormData(form.current!)
-		const name = formData.get('name') as string
-		const email = formData.get('email') as string
-		const message = formData.get('message') as string
+		setName(formData.get('name') as string)
+		setEmail(formData.get('email') as string)
+		setMessage(formData.get('message') as string)
 
 		if (name.length === 0) {
 			toast.error('Digite seu nome.')
@@ -34,9 +37,7 @@ export function ContactForm() {
 		try {
 			const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/messages', {
 				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
+				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(data)
 			})
 
@@ -65,9 +66,15 @@ export function ContactForm() {
 				</div>
 			) : (
 				<form ref={form} onSubmit={handleSubmit} className='mx-auto max-w-96 flex flex-col'>
-					<FormField label='Nome' name='name' />
-					<FormField label='E-mail' name='email' inputType='email' />
-					<FormField label='Mensagem' name='message' fieldType='textarea' placeholder='Digite sua mensagem...' />
+					<FormField label='Nome' name='name' value={name} onChange={e => setName(e.target.value)} />
+					<FormField label='E-mail' name='email' inputType='email' value={email} onChange={e => setEmail(e.target.value)} />
+					<FormField
+						label='Mensagem'
+						name='message'
+						fieldType='textarea'
+						placeholder='Digite sua mensagem...'
+						onChange={e => setMessage(e.target.value)}
+					/>
 					<Button variant='fill' full>
 						Enviar mensagem
 					</Button>
