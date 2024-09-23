@@ -31,7 +31,7 @@ export default async function About() {
 
 	if (!res.ok) {
 		console.log(`src/app/sobre-nos/page.tsx: fetch error.`)
-		return <Error />
+		return <Error title='Sobre nós' />
 	}
 
 	const { description, mission, vision, values }: AboutProps = data.data.attributes

@@ -5,14 +5,19 @@ import { Button } from './Button'
 
 interface ErrorProps {
 	title?: string
-	description?: string
+	description?: ReactNode
 	homepageLink?: boolean
 	children?: ReactNode
 }
 
 export function Error({
-	title = 'Ops!',
-	description = 'Algo deu errado, tente novamente mais tarde.',
+	title = 'Oops!',
+	description = (
+		<>
+			Oops!
+			<br /> Parece que algo deu errado, tente atualizar a página ou volte mais tarde.
+		</>
+	),
 	homepageLink = false,
 	children
 }: ErrorProps) {

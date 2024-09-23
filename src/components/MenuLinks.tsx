@@ -1,5 +1,5 @@
 const navigation = [
-	{ title: 'Home', url: '/' },
+	{ title: 'Início', url: '/' },
 	{ title: 'Sobre nós', url: '/sobre-nos' },
 	{ title: 'Serviços', url: '/servicos' }
 ]

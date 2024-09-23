@@ -27,7 +27,7 @@ export default async function Home() {
 
 	if (!res.ok) {
 		console.log(`src/app/page.tsx: fetch error.`)
-		return <Error />
+		return <Error title='Início' />
 	}
 
 	const { banners, about, services, benefits, contact }: HomeProps = data.data.attributes

@@ -31,7 +31,7 @@ export default async function Services() {
 
 	if (!res.ok) {
 		console.log(`src/app/servicos/page.tsx: fetch error.`)
-		return <Error />
+		return <Error title='Serviços' />
 	}
 
 	const { lease, servicesProvision, sale }: ServicesProps = data.data.attributes

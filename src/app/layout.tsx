@@ -109,7 +109,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 						<Footer enterprise={enterprise} />
 					</>
 				) : (
-					<Error />
+					<Error description='Parece que algo deu errado, tente atualizar a página ou volte mais tarde.' />
 				)}
 			</body>
 		</html>
