@@ -34,7 +34,3 @@ Website da empresa Impacta Tecnologia & Soluções em TI.
 - **ESLint:** Ferramenta de linting para identificar e corrigir problemas em código JavaScript/TypeScript.
 - **Sonner:** Biblioteca para exibição de notificações
 
-## URL do Projeto
-
-Explore o projeto no link: [Impacta Tecnologia & Soluções em TI](https://impacta-tecnologia.netlify.app).
-
