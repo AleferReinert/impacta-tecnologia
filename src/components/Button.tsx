@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { ComponentProps, ReactNode } from 'react'
 
 interface CommonProps {
@@ -7,7 +8,9 @@ interface CommonProps {
 	children: ReactNode
 }
 
-interface AsLinkProps extends ComponentProps<'a'> {}
+interface AsLinkProps extends ComponentProps<'a'> {
+	href: string
+}
 interface AsButtonProps extends ComponentProps<'button'> {}
 
 type ButtonProps = (AsLinkProps & CommonProps) | (AsButtonProps & CommonProps)
@@ -22,15 +25,16 @@ export function Button({ asLink = false, variant = 'outline-secondary', full, ch
 		gap-1 items-center h-10 px-4 transition`
 
 	if (asLink) {
+		const { href, ...linkRest } = rest as AsLinkProps
 		return (
-			<a {...(rest as AsLinkProps)} className={rest.className + '' + styles}>
+			<Link href={href} {...linkRest} className={rest.className ?? '' + ' ' + styles}>
 				{children}
-			</a>
+			</Link>
 		)
 	}
 
 	return (
-		<button {...(rest as AsButtonProps)} className={rest.className + ' ' + styles}>
+		<button {...(rest as AsButtonProps)} className={rest.className ?? '' + ' ' + styles}>
 			{children}
 		</button>
 	)

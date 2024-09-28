@@ -9,7 +9,7 @@ export interface SectionContactProps {
 
 export function SectionContact({ title, description }: SectionContactProps) {
 	return (
-		<Section title={title}>
+		<Section title={title} id='contato'>
 			<p className='text-center mb-10 max-w-screen-sm mx-auto'>{description}</p>
 			<ContactForm />
 		</Section>
