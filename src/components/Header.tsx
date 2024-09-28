@@ -1,6 +1,7 @@
 'use client'
 import { EnterpriseProps } from '@/app/layout'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { Container } from './Container'
 import { MenuLinks } from './MenuLinks'
@@ -35,9 +36,9 @@ export function Header({ enterprise }: HeaderProps) {
 		>
 			<Container>
 				<div className='h-16 flex justify-between items-center'>
-					<a href='/' title={enterpriseName}>
+					<Link href='/' title={enterpriseName}>
 						<Image src={logoImg} alt={enterpriseName} width={144} height={32} priority />
-					</a>
+					</Link>
 
 					<MenuMobile menu={menu} setMenu={setMenu} socialLinks={enterprise.socialLinks} />
 					<nav className='hidden gap-8 text-sm sm:flex'>

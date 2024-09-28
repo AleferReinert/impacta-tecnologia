@@ -3,7 +3,7 @@ import { MdClose, MdOutlineMenu } from 'react-icons/md'
 import { MenuLinks } from './MenuLinks'
 import { SocialLinks, SocialLinksProps } from './SocialLinks'
 
-interface MenuMobileProps extends SocialLinksProps {
+export interface MenuMobileProps extends SocialLinksProps {
 	menu: boolean
 	setMenu: Dispatch<SetStateAction<boolean>>
 }
@@ -24,7 +24,7 @@ export function MenuMobile({ menu, setMenu, socialLinks }: MenuMobileProps) {
 					<button title='Fechar' className='fixed right-4 top-4 sm:hidden' onClick={() => setMenu(false)}>
 						<MdClose size={32} />
 					</button>
-					<MenuLinks />
+					<MenuLinks setMenu={setMenu} />
 				</nav>
 				<SocialLinks socialLinks={socialLinks} iconColor='dark' />
 			</div>
