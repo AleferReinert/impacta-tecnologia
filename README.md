@@ -32,6 +32,7 @@ Website da empresa Impacta Tecnologia & Soluções em TI.
 - **Apollo Client:** Biblioteca de gerenciamento de estado e execução de queries GraphQL em React.
 - **ESLint:** Ferramenta de linting para identificar e corrigir problemas em código JavaScript/TypeScript.
 - **GraphQL:** Linguagem de consulta para APIs que permite solicitar apenas os dados necessários.
+- **Husky:** Ferramenta para automatizar Git hooks, permitindo a execução de scripts antes de commits, push e outros eventos.
 - **Next.js:** Framework React para a construção de aplicações web estáticas e dinâmicas.
 - **React:** Biblioteca JavaScript para construir interfaces de usuário.
 - **React Icons:** Conjunto de ícones populares para uso em projetos React.
