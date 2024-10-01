@@ -2,10 +2,9 @@ import Link from 'next/link'
 import { Dispatch, SetStateAction } from 'react'
 
 const navigation = [
-	{ title: 'Início', url: '/' },
 	{ title: 'Sobre nós', url: '/sobre-nos' },
 	{ title: 'Serviços', url: '/servicos' },
-	{ title: 'Contato', url: '/#contato' }
+	{ title: 'Contato', url: '/contato' }
 ]
 
 interface MenuLinkProps {

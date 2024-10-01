@@ -1,5 +1,5 @@
 import { ComponentProps } from 'react'
-import { Container } from './Container'
+import { Container } from './Container/Container'
 
 interface SectionProps extends ComponentProps<'section'> {
 	title?: string

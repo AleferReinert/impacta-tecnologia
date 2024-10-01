@@ -1,4 +1,4 @@
-import { Container } from './Container'
+import { Container } from '../Container/Container'
 
 interface PageTitleProps {
 	title: string

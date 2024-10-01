@@ -3,9 +3,9 @@ import { StrapiImageUpload } from '@/app/layout'
 import { useEffect, useState } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
-import { Button } from './Button'
-import { Container } from './Container'
-import { SliderConfigProps, SliderSettings } from './SliderSettings'
+import { Button } from '../Button'
+import { Container } from '../Container/Container'
+import { SliderConfigProps, SliderSettings } from '../SliderSettings'
 
 export interface BannerSliderProps {
 	banners: {

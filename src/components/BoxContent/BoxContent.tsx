@@ -1,6 +1,6 @@
-import { Container } from './Container'
-import DynamicReactIcon from './DynamicReactIcon'
-import { Subtitle } from './Subtitle'
+import { Container } from '../Container/Container'
+import DynamicReactIcon from '../DynamicReactIcon'
+import { Subtitle } from '../Subtitle/Subtitle'
 
 export interface BoxContentProps {
 	title: string
@@ -15,7 +15,7 @@ export function BoxContent({ title, description, icon, theme = 'light' }: BoxCon
 			<Container>
 				<div className={`${theme === 'light' ? 'flex-row-reverse justify-end' : 'justify-between'} flex items-center`}>
 					<div className={`${theme === 'dark' ? 'border-l-4 border-secondary px-8' : ''} sm:px-10`}>
-						<Subtitle>{title}</Subtitle>
+						<Subtitle title={title} />
 						<div className='pt-3 flex flex-col gap-3' dangerouslySetInnerHTML={{ __html: description }}></div>
 					</div>
 					<div className='hidden sm:block [&>*]:size-36'>

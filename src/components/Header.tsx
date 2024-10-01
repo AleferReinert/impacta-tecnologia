@@ -3,7 +3,7 @@ import { EnterpriseProps } from '@/app/layout'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { Container } from './Container'
+import { Container } from './Container/Container'
 import { MenuLinks } from './MenuLinks'
 import { MenuMobile } from './MenuMobile'
 

@@ -1,9 +1,12 @@
-import { BoxContent, BoxContentProps } from '@/components/BoxContent'
-import { Container } from '@/components/Container'
+import { BoxContent, BoxContentProps } from '@/components/BoxContent/BoxContent'
+import { Container } from '@/components/Container/Container'
 import DynamicReactIcon from '@/components/DynamicReactIcon'
-import { Error } from '@/components/Error'
-import { PageTitle } from '@/components/PageTitle'
-import { Subtitle } from '@/components/Subtitle'
+import { Error } from '@/components/Error/Error'
+import { Loading } from '@/components/Loading'
+import { PageTitle } from '@/components/PageTitle/PageTitle'
+import { Subtitle } from '@/components/Subtitle/Subtitle'
+import { ABOUTPAGE_QUERY } from '@/graphql/queries/About'
+import { client } from '@/utils/client'
 import { Metadata } from 'next'
 
 interface AboutProps {
@@ -20,21 +23,30 @@ interface AboutProps {
 	}
 }
 
+async function fetchAboutData() {
+	const response = await client.query({
+		query: ABOUTPAGE_QUERY
+	})
+	return response
+}
+
 export const metadata: Metadata = {
 	title: 'Sobre nós'
 }
 
 export default async function About() {
-	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/aboutpage?populate[mission]=*&populate[vision]=*&populate[values][populate]=values`
-	const res = await fetch(url, { next: { revalidate: 0 } })
-	const data = await res.json()
+	const { data, loading, error } = await fetchAboutData()
 
-	if (!res.ok) {
-		console.log(`src/app/sobre-nos/page.tsx: fetch error.`)
+	if (loading) {
+		return <Loading className='z-0' />
+	}
+
+	if (error) {
+		console.log(`src/app/sobre-nos/page.tsx - Error: ${error.message}`)
 		return <Error title='Sobre nós' />
 	}
 
-	const { description, mission, vision, values }: AboutProps = data.data.attributes
+	const { description, mission, vision, values }: AboutProps = data.aboutpage.data.attributes
 
 	return (
 		<>
@@ -52,7 +64,7 @@ export default async function About() {
 
 			<div className='bg-slate-100 py-10'>
 				<Container>
-					<Subtitle>{values.title}</Subtitle>
+					<Subtitle title={values.title} />
 					<ul className='py-3 gap-4 mt-3'>
 						{values.values.map((item, index) => {
 							return (

@@ -5,8 +5,11 @@
 * {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	scroll-behavior: smooth;
 }
+
+/* html {
+	@apply scroll-smooth;
+} */
 
 body {
 	@apply font-sans;

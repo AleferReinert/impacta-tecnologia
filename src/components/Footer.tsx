@@ -2,7 +2,7 @@ import { EnterpriseProps } from '@/app/layout'
 import { formatCNPJ } from '@/utils/formatCNPJ'
 import { formatPhone } from '@/utils/formatPhone'
 import { ReactNode } from 'react'
-import { Container } from './Container'
+import { Container } from './Container/Container'
 import { SocialLinks } from './SocialLinks'
 
 export interface FooterProps {
@@ -27,7 +27,7 @@ export function Footer({ enterprise }: FooterProps) {
 	}
 
 	return (
-		<footer className='py-6 font-light text-center bg-secondary text-white border-t border-slate-300 md:text-sm md:text-left md:py-8'>
+		<footer className='z-10 py-6 font-light text-center bg-secondary text-white border-t border-slate-300 md:text-sm md:text-left md:py-8'>
 			<Container>
 				<div className='flex flex-col gap-4 md:flex-row md:justify-between [&>div]:flex [&>div]:flex-col [&>div]:justify-between'>
 					<div>

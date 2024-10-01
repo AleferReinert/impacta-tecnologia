@@ -1,9 +1,12 @@
-import { BoxContent, BoxContentProps } from '@/components/BoxContent'
-import { Container } from '@/components/Container'
+import { BoxContent, BoxContentProps } from '@/components/BoxContent/BoxContent'
+import { Container } from '@/components/Container/Container'
 import DynamicReactIcon from '@/components/DynamicReactIcon'
-import { Error } from '@/components/Error'
-import { PageTitle } from '@/components/PageTitle'
-import { Subtitle } from '@/components/Subtitle'
+import { Error } from '@/components/Error/Error'
+import { Loading } from '@/components/Loading'
+import { PageTitle } from '@/components/PageTitle/PageTitle'
+import { Subtitle } from '@/components/Subtitle/Subtitle'
+import { SERVICESPAGE_QUERY } from '@/graphql/queries/Services'
+import { client } from '@/utils/client'
 import { Metadata } from 'next'
 
 interface ServicesProps {
@@ -20,21 +23,30 @@ interface ServicesProps {
 	sale: BoxContentProps
 }
 
+async function fetchServicesData() {
+	const response = await client.query({
+		query: SERVICESPAGE_QUERY
+	})
+	return response
+}
+
 export const metadata: Metadata = {
 	title: 'Serviços'
 }
 
 export default async function Services() {
-	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/servicespage?populate[lease]=*&populate[servicesProvision][populate][0]=services&populate[sale]=*`
-	const res = await fetch(url, { next: { revalidate: 0 } })
-	const data = await res.json()
+	const { data, loading, error } = await fetchServicesData()
 
-	if (!res.ok) {
+	if (loading) {
+		return <Loading className='z-0' />
+	}
+
+	if (error) {
 		console.log(`src/app/servicos/page.tsx: fetch error.`)
 		return <Error title='Serviços' />
 	}
 
-	const { lease, servicesProvision, sale }: ServicesProps = data.data.attributes
+	const { lease, servicesProvision, sale }: ServicesProps = data.servicespage.data.attributes
 
 	return (
 		<>
@@ -43,7 +55,7 @@ export default async function Services() {
 
 			<div className='bg-slate-100 py-10'>
 				<Container>
-					<Subtitle>{servicesProvision.title}</Subtitle>
+					<Subtitle title={servicesProvision.title} />
 					<div className='mt-3 space-y-3' dangerouslySetInnerHTML={{ __html: servicesProvision.description }}></div>
 					<ul className='py-3 gap-4 grid grid-cols-1 md:grid-cols-2'>
 						{servicesProvision.services.map((item, index) => {

@@ -4,11 +4,26 @@ interface LoadingProps extends ComponentProps<'div'> {
 	show?: boolean
 	type?: 'full' | 'component' | 'animation'
 	backgroundColor?: string
+	showLoad?: boolean
 }
 
-export function Loading({ show = true, type = 'full', backgroundColor = 'bg-gray-300', ...rest }: LoadingProps) {
+export function Loading({
+	show = true,
+	type = 'full',
+	backgroundColor = 'bg-gray-300',
+	showLoad = false,
+	...rest
+}: LoadingProps) {
+	const load = (
+		<div title='Carregando...' className='border-slate-300 h-16 w-16 animate-spin rounded-full border-4 border-t-primary' />
+	)
+
 	if (type === 'component') {
-		return <div className={`${backgroundColor} animate-pulse duration-300 ${rest.className}`}></div>
+		return (
+			<div className={`${backgroundColor} flex justify-center items-center animate-pulse duration-300 ${rest.className}`}>
+				{showLoad ? load : ''}
+			</div>
+		)
 	}
 
 	if (type === 'animation') {
@@ -18,14 +33,16 @@ export function Loading({ show = true, type = 'full', backgroundColor = 'bg-gray
 			</div>
 		)
 	}
+
 	return (
 		<div
 			className={`
 				${show ? 'opacity-100 ' : 'opacity-0 '}
 				bg-slate-100/95 fixed inset-0 z-30 transition pointer-events-none flex justify-center items-center
+				${rest.className}
 		`}
 		>
-			<div title='Carregando...' className='border-slate-300 h-16 w-16 animate-spin rounded-full border-4 border-t-primary' />
+			{load}
 		</div>
 	)
 }

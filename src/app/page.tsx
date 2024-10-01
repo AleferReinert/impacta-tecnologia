@@ -1,16 +1,13 @@
-import { BannerSliderProps } from '@/components/BannersSlider'
-import { Error } from '@/components/Error'
+'use client'
+import { BannerSliderProps, BannersSlider } from '@/components/BannersSlider/BannersSlider'
+import { Error } from '@/components/Error/Error'
 import { Loading } from '@/components/Loading'
 import { SectionAbout, SectionAboutProps } from '@/components/SectionAbout'
 import { SectionBenefits, SectionBenefitsProps } from '@/components/SectionBenefits'
 import { SectionContact, SectionContactProps } from '@/components/SectionContact'
 import { SectionServices, SectionServicesProps } from '@/components/SectionServices'
-import dynamic from 'next/dynamic'
-
-const BannersSlider = dynamic(() => import('@/components/BannersSlider').then(mod => mod.BannersSlider), {
-	ssr: false,
-	loading: () => <Loading type='component' show className='aspect-[5/4] sm:aspect-[3/2] md:aspect-[3/1]' />
-})
+import { HOMEPAGE_QUERY } from '@/graphql/queries/Home'
+import { useQuery } from '@apollo/client'
 
 interface HomeProps {
 	banners: BannerSliderProps
@@ -20,17 +17,19 @@ interface HomeProps {
 	contact: SectionContactProps
 }
 
-export default async function Home() {
-	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/homepage?populate[banners][populate][banners][populate]=img&populate[banners][populate]=sliderConfig&populate[about][populate][0]=descriptions&populate[about][populate]=sliderConfig&populate[services][populate][0]=services&populate[benefits][populate][0]=benefits&populate[benefits][populate]=sliderConfig&populate[contact][populate][0]=contact`
-	const res = await fetch(url, { next: { revalidate: 0 } })
-	const data = await res.json()
+export default function Home() {
+	const { data, loading, error } = useQuery(HOMEPAGE_QUERY)
 
-	if (!res.ok) {
-		console.log(`src/app/page.tsx: fetch error.`)
+	if (loading) {
+		return <Loading className='z-0' />
+	}
+
+	if (error) {
+		console.log(`src/app/page.tsx - Error: ${error.message}`)
 		return <Error title='Início' />
 	}
 
-	const { banners, about, services, benefits, contact }: HomeProps = data.data.attributes
+	const { banners, about, services, benefits, contact }: HomeProps = data.homepage.data.attributes
 
 	return (
 		<>
