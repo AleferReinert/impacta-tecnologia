@@ -40,6 +40,7 @@ Website da empresa Impacta Tecnologia & Soluções em TI.
 - **Storybook:** Ferramenta para desenvolvimento de componentes isolados.
 - **Sonner:** Biblioteca para exibição de notificações.
 - **Tailwind CSS:** Framework de utilidades CSS para estilização rápida e eficiente.
+- **Tailwind Variant:** Ferramenta para combinar classes do Tailwind.
 - **TypeScript:** Superconjunto de JavaScript que adiciona tipagem estática ao código.
 - **Vercel:** Hospedagem de projetos em Next.
 

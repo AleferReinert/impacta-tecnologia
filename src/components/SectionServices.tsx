@@ -1,6 +1,6 @@
 import { Section } from '@/components/Section'
 import { BsArrowRightShort } from 'react-icons/bs'
-import { Button } from './Button'
+import { Button } from './Button/Button'
 import DynamicReactIcon from './DynamicReactIcon'
 
 export interface SectionServicesProps {
