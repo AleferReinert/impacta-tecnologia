@@ -6,16 +6,13 @@ interface CommonProps {
 	variant?: 'outline-white' | 'outline-secondary' | 'fill'
 	full?: boolean
 }
-
 interface AsButtonProps extends CommonProps, ComponentProps<'button'> {
 	asLink?: false
 }
-
 interface AsLinkProps extends CommonProps, ComponentProps<'a'> {
 	href: string
 	asLink: true
 }
-
 type ButtonProps = AsButtonProps | AsLinkProps
 
 const buttonStyles = tv({

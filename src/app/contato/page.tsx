@@ -1,6 +1,6 @@
-import { ContactForm } from '@/components/ContactForm'
+import { ContactForm } from '@/components/ContactForm/ContactForm'
 import { Error } from '@/components/Error/Error'
-import { Loading } from '@/components/Loading'
+import { Loading } from '@/components/Loading/Loading'
 import { PageTitle } from '@/components/PageTitle/PageTitle'
 import { CONTACTPAGE_QUERY } from '@/graphql/queries/Contact'
 import { client } from '@/utils/client'

@@ -11,13 +11,20 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-	play: async ({ canvasElement }) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
-		const title = canvas.getByRole('heading')
-		const description = canvas.getByText('Oops! Parece que algo deu errado, tente atualizar a página ou volte mais tarde.')
 
-		expect(title).toHaveTextContent('Oops!')
-		expect(description).toBeInTheDocument()
+		await step('Render h1 and description with default messages', () => {
+			const title = canvas.getByRole('heading', { level: 1 })
+			const description = canvas.getByText('Oops! Parece que algo deu errado, tente atualizar a página ou volte mais tarde.')
+			expect(title).toHaveTextContent('Oops!')
+			expect(description).toBeInTheDocument()
+		})
+
+		await step('Do not show homepage link', () => {
+			const homepageLink = canvas.queryByRole('link', { name: 'Voltar' })
+			expect(homepageLink).not.toBeInTheDocument()
+		})
 	}
 }
 
@@ -27,15 +34,20 @@ export const Custom: Story = {
 		description: 'Custom description.',
 		homepageLink: true
 	},
-	play: async ({ canvasElement }) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
-		const title = canvas.getByRole('heading')
-		const description = canvas.getByText('Custom description.')
-		const homepageLink = canvas.getByRole('link', { name: 'Voltar' })
 
-		expect(title).toHaveTextContent('Custom title')
-		expect(description).toBeInTheDocument()
-		expect(homepageLink).toBeInTheDocument()
+		await step('Custom h1 and description', () => {
+			const title = canvas.getByRole('heading', { level: 1 })
+			const description = canvas.getByText('Custom description.')
+			expect(title).toHaveTextContent('Custom title')
+			expect(description).toBeInTheDocument()
+		})
+
+		await step('Render homepagelink', () => {
+			const homepageLink = canvas.getByRole('link', { name: 'Voltar' })
+			expect(homepageLink).toBeInTheDocument()
+		})
 	}
 }
 

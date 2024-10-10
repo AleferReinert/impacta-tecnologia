@@ -15,11 +15,13 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
 	name: 'Container',
-	play: async ({ canvasElement }) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
-		const children = canvas.getByText(/html children/)
 
-		expect(children).toBeInTheDocument()
+		step('Render children', () => {
+			const children = canvas.getByText(/html children/)
+			expect(children).toBeInTheDocument()
+		})
 	}
 }
 

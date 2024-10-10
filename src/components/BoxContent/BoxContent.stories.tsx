@@ -15,16 +15,22 @@ const meta: Meta<typeof BoxContent> = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Light: Story = {
-	play: async ({ canvasElement }) => {
+export const Default: Story = {
+	name: 'Light (default)',
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
-		const title = canvas.getByRole('heading')
-		const description = canvas.getAllByRole('paragraph')
-		const background = document.querySelector('.bg-slate-100')
 
-		expect(background).not.toBeInTheDocument()
-		expect(title).toHaveTextContent('Lorem ipsum')
-		expect(description.length).toBe(2)
+		await step('Render h2 and descriptions', () => {
+			const title = canvas.getByRole('heading', { level: 2 })
+			const descriptions = canvas.getAllByRole('paragraph')
+			expect(title).toHaveTextContent('Lorem ipsum')
+			expect(descriptions.length).toBe(2)
+		})
+
+		await step('Theme light', () => {
+			const background = document.querySelector('.bg-slate-100')
+			expect(background).not.toBeInTheDocument()
+		})
 	}
 }
 
@@ -32,9 +38,11 @@ export const Dark: Story = {
 	args: {
 		theme: 'dark'
 	},
-	play: async () => {
-		const background = document.querySelector('.bg-slate-100')
-		expect(background).toBeInTheDocument()
+	play: async ({ step }) => {
+		step('Render theme dark', () => {
+			const background = document.querySelector('.bg-slate-100')
+			expect(background).toBeInTheDocument()
+		})
 	}
 }
 

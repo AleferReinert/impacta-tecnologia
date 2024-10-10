@@ -1,7 +1,7 @@
-import { Section } from '@/components/Section'
+import { Section } from '@/components/Section/Section'
 import { BsArrowRightShort } from 'react-icons/bs'
-import { Button } from './Button/Button'
-import DynamicReactIcon from './DynamicReactIcon'
+import { Button } from '../Button/Button'
+import { DynamicReactIcon } from '../DynamicReactIcon/DynamicReactIcon'
 
 export interface SectionServicesProps {
 	title: string
@@ -19,8 +19,8 @@ export function SectionServices({ title, services }: SectionServicesProps) {
 				{services.map((service, index) => {
 					return (
 						<li key={index} className='text-center'>
-							<div className='border rounded-full flex justify-center w-40 h-40 items-center mx-auto mb-4 border-secondary [&>*]:w-16 [&>*]:h-16 [&>*]:fill-secondary'>
-								<DynamicReactIcon name={service.icon} />
+							<div className='border rounded-full flex justify-center w-40 h-40 items-center mx-auto mb-4 border-secondary'>
+								<DynamicReactIcon name={service.icon} className='size-16 fill-secondary' />
 							</div>
 							<h3 className='font-semibold text-secondary'>{service.title}</h3>
 							<p>{service.description}</p>

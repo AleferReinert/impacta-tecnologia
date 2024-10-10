@@ -1,6 +1,6 @@
 import 'slick-carousel/slick/slick.css'
-import { ContactForm } from './ContactForm'
-import { Section } from './Section'
+import { ContactForm } from '../ContactForm/ContactForm'
+import { Section } from '../Section/Section'
 
 export interface SectionContactProps {
 	title: string
@@ -9,7 +9,7 @@ export interface SectionContactProps {
 
 export function SectionContact({ title, description }: SectionContactProps) {
 	return (
-		<Section title={title} id='contato'>
+		<Section title={title}>
 			<p className='text-center mb-10 max-w-screen-sm mx-auto'>{description}</p>
 			<ContactForm />
 		</Section>

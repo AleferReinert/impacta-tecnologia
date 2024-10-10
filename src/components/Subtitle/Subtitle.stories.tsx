@@ -15,11 +15,13 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
 	name: 'Subtitle',
-	play: async ({ canvasElement }) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
-		const title = canvas.getByRole('heading')
+		const title = canvas.getByRole('heading', { level: 2 })
 
-		expect(title).toHaveTextContent('Dolor sit amet')
+		step('Render h2', () => {
+			expect(title).toHaveTextContent('Dolor sit amet')
+		})
 	}
 }
 

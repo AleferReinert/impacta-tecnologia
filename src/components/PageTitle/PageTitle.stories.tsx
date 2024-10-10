@@ -15,11 +15,13 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
 	name: 'PageTitle',
-	play: async ({ canvasElement }) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
-		const title = canvas.getByRole('heading')
+		const title = canvas.getByRole('heading', { level: 1 })
 
-		expect(title).toHaveTextContent('Lorem ipsum')
+		step('Render h1', () => {
+			expect(title).toHaveTextContent('Lorem ipsum')
+		})
 	}
 }
 

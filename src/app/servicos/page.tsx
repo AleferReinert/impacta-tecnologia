@@ -1,8 +1,8 @@
 import { BoxContent, BoxContentProps } from '@/components/BoxContent/BoxContent'
 import { Container } from '@/components/Container/Container'
-import DynamicReactIcon from '@/components/DynamicReactIcon'
+import { DynamicReactIcon } from '@/components/DynamicReactIcon/DynamicReactIcon'
 import { Error } from '@/components/Error/Error'
-import { Loading } from '@/components/Loading'
+import { Loading } from '@/components/Loading/Loading'
 import { PageTitle } from '@/components/PageTitle/PageTitle'
 import { Subtitle } from '@/components/Subtitle/Subtitle'
 import { SERVICESPAGE_QUERY } from '@/graphql/queries/Services'
@@ -61,8 +61,8 @@ export default async function Services() {
 						{servicesProvision.services.map((item, index) => {
 							return (
 								<li key={index} className='p-8 gap-8 flex bg-slate-200 items-center'>
-									<div className='hidden sm:block [&>*]:size-10 [&>*]:fill-secondary [&>*]:text-secondary'>
-										<DynamicReactIcon name={item.icon} />
+									<div className='hidden sm:block'>
+										<DynamicReactIcon name={item.icon} className='size-10 fill-secondary text-secondary' />
 									</div>
 									<div>
 										<h3 className='text-secondary font-medium'>{item.title}</h3>

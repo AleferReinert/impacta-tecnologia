@@ -1,8 +1,8 @@
 import { BoxContent, BoxContentProps } from '@/components/BoxContent/BoxContent'
 import { Container } from '@/components/Container/Container'
-import DynamicReactIcon from '@/components/DynamicReactIcon'
+import { DynamicReactIcon } from '@/components/DynamicReactIcon/DynamicReactIcon'
 import { Error } from '@/components/Error/Error'
-import { Loading } from '@/components/Loading'
+import { Loading } from '@/components/Loading/Loading'
 import { PageTitle } from '@/components/PageTitle/PageTitle'
 import { Subtitle } from '@/components/Subtitle/Subtitle'
 import { ABOUTPAGE_QUERY } from '@/graphql/queries/About'
@@ -72,8 +72,8 @@ export default async function About() {
 									key={index}
 									className='p-8 gap-8 odd:bg-slate-200 flex items-center border-l-4 even:border-transparent odd:border-secondary'
 								>
-									<div className='hidden sm:block [&>*]:fill-secondary [&>*]:text-secondary [&>*]:w-10 [&>*]:h-10'>
-										<DynamicReactIcon name={item.icon} />
+									<div className='hidden sm:block'>
+										<DynamicReactIcon name={item.icon} className='size-10 fill-secondary text-secondary' />
 									</div>
 									<div>
 										<h3 className='text-secondary font-medium'>{item.title}</h3>

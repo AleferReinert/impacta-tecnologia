@@ -1,8 +1,8 @@
 'use client'
 import loadable from '@loadable/component'
-import { DOMAttributes } from 'react'
+import { ComponentProps } from 'react'
 import { IconType } from 'react-icons'
-import { Loading } from './Loading'
+import { Loading } from '../Loading/Loading'
 export type IReactIcon = string
 
 const iconComponents = {
@@ -36,11 +36,11 @@ const iconComponents = {
 	Cg: () => import('react-icons/cg')
 } as unknown as { [x: string]: () => Promise<{ [key: string]: IconType }> }
 
-export interface IDynamicReactIcon extends DOMAttributes<SVGElement> {
+export interface IDynamicReactIcon extends ComponentProps<'svg'> {
 	name: IReactIcon
 }
 
-const DynamicReactIcon: React.FC<IDynamicReactIcon> = ({ name, ...rest }: IDynamicReactIcon) => {
+export const DynamicReactIcon: React.FC<IDynamicReactIcon> = ({ name, ...rest }: IDynamicReactIcon) => {
 	const lib = name.replace(/([a-z0-9])([A-Z])/g, '$1 $2').split(' ')[0]
 	const iconComponent = iconComponents[lib]
 
@@ -48,10 +48,8 @@ const DynamicReactIcon: React.FC<IDynamicReactIcon> = ({ name, ...rest }: IDynam
 
 	const DynamicIcon = loadable(iconComponent, {
 		resolveComponent: el => el[name],
-		fallback: <Loading type='animation' className='rounded-full' />
+		fallback: <Loading type='animation' className={rest.className ?? rest.className} />
 	}) as IconType
 
-	return <DynamicIcon {...rest} />
+	return <DynamicIcon role='img' {...rest} />
 }
-
-export default DynamicReactIcon

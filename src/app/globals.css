@@ -7,9 +7,13 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-/* html {
-	@apply scroll-smooth;
-} */
+a {
+	@apply focus-visible:outline-none;
+}
+
+svg {
+	@apply focus:outline-none;
+}
 
 body {
 	@apply font-sans;

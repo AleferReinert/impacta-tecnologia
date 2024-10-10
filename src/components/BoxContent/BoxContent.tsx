@@ -1,6 +1,6 @@
 import { tv } from 'tailwind-variants'
 import { Container } from '../Container/Container'
-import DynamicReactIcon from '../DynamicReactIcon'
+import { DynamicReactIcon } from '../DynamicReactIcon/DynamicReactIcon'
 import { Subtitle } from '../Subtitle/Subtitle'
 
 export interface BoxContentProps {
@@ -55,8 +55,8 @@ export function BoxContent({ title, description, icon, theme = 'light' }: BoxCon
 						<Subtitle title={title} />
 						<div className='pt-3 flex flex-col gap-3' dangerouslySetInnerHTML={{ __html: description }}></div>
 					</div>
-					<div className='hidden sm:block [&>*]:size-36'>
-						<DynamicReactIcon name={icon} />
+					<div className='hidden sm:block'>
+						<DynamicReactIcon name={icon} className='size-36' />
 					</div>
 				</div>
 			</Container>

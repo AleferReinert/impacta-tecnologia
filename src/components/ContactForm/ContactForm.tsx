@@ -1,48 +1,58 @@
 'use client'
 import { useRef, useState } from 'react'
 import { toast } from 'sonner'
-import { Button } from './Button/Button'
-import { FormField } from './FieldForm'
-import { Loading } from './Loading'
+import { Button } from '../Button/Button'
+import { FieldForm } from '../FieldForm/FieldForm'
+import { Loading } from '../Loading/Loading'
 
 export function ContactForm() {
 	const form = useRef<HTMLFormElement | null>(null)
 	const [formSubmitted, setFormSubmitted] = useState(false)
 	const [loading, setLoading] = useState(false)
-	const [name, setName] = useState<string>('')
-	const [email, setEmail] = useState<string>('')
-	const [message, setMessage] = useState<string>('')
+	const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+		message: ''
+	})
+
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+		const { name, value } = e.target
+		setFormData(prevData => ({ ...prevData, [name]: value }))
+	}
+
+	const validateForm = () => {
+		if (!formData.name) {
+			toast.error('Digite seu nome.')
+			return false
+		}
+		if (!formData.email) {
+			toast.error('Digite seu e-mail.')
+			return false
+		}
+		if (!formData.message) {
+			toast.error('Digite sua mensagem.')
+			return false
+		}
+		return true
+	}
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
-		const formData = new FormData(form.current!)
-		setName(formData.get('name') as string)
-		setEmail(formData.get('email') as string)
-		setMessage(formData.get('message') as string)
 
-		if (name.length === 0) {
-			toast.error('Digite seu nome.')
-			return null
-		} else if (email.length === 0) {
-			toast.error('Digite seu e-mail.')
-			return null
-		} else if (message.length === 0) {
-			toast.error('Digite sua mensagem.')
-			return null
-		}
+		if (!validateForm()) return
 
 		setLoading(true)
-		const data = { data: { name, email, message } }
 
 		try {
-			const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/messages', {
+			const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/messages`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(data)
+				body: JSON.stringify({ data: formData })
 			})
 
 			if (response.ok) {
 				setFormSubmitted(true)
+				toast.success('Mensagem enviada com sucesso!')
 			} else {
 				toast.error('Erro ao enviar o formulário.')
 			}
@@ -55,7 +65,7 @@ export function ContactForm() {
 	}
 
 	return (
-		<div>
+		<div data-testid='ContactFormComponent'>
 			<Loading show={loading} />
 			{formSubmitted ? (
 				<div className='flex flex-col gap-10 items-center'>
@@ -66,16 +76,17 @@ export function ContactForm() {
 				</div>
 			) : (
 				<form ref={form} onSubmit={handleSubmit} className='mx-auto max-w-96 flex flex-col'>
-					<FormField label='Nome' name='name' value={name} onChange={e => setName(e.target.value)} />
-					<FormField label='E-mail' name='email' inputType='email' value={email} onChange={e => setEmail(e.target.value)} />
-					<FormField
+					<FieldForm label='Nome' name='name' value={formData.name} onChange={handleInputChange} />
+					<FieldForm label='E-mail' name='email' inputType='email' value={formData.email} onChange={handleInputChange} />
+					<FieldForm
 						label='Mensagem'
 						name='message'
 						fieldType='textarea'
 						placeholder='Digite sua mensagem...'
-						onChange={e => setMessage(e.target.value)}
+						value={formData.message}
+						onChange={handleInputChange}
 					/>
-					<Button variant='fill' full>
+					<Button type='submit' variant='fill' full>
 						Enviar mensagem
 					</Button>
 				</form>

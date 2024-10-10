@@ -1,8 +1,8 @@
 'use client'
-import { Section } from '@/components/Section'
+import { Section } from '@/components/Section/Section'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
-import { SliderConfigProps, SliderSettings } from './SliderSettings'
+import { SliderConfigProps, SliderSettings } from '../SliderSettings'
 
 export interface SectionBenefitsProps {
 	title: string

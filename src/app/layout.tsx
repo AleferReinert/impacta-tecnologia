@@ -1,8 +1,8 @@
 import { Error } from '@/components/Error/Error'
-import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
+import { Footer } from '@/components/Footer/Footer'
+import { Header } from '@/components/Header/Header'
 import { Provider } from '@/components/Provider'
-import { SocialLinksProps } from '@/components/SocialLinks'
+import { SocialLinksProps } from '@/components/SocialLinks/SocialLinks'
 import { ENTERPRISE_QUERY } from '@/graphql/queries/Enterprise'
 import { client } from '@/utils/client'
 import { Metadata } from 'next'
@@ -51,14 +51,23 @@ export interface EnterpriseProps extends SocialLinksProps {
 	name: string
 	description: string
 	email: string
-	phone?: string
-	cnpj?: string
-	businessHours?: {
+	phone: string
+	cnpj: string
+	businessHours: {
 		title: string
 		content: string
 	}
-	logo: StrapiImageUpload
-	favicon: StrapiImageUpload
+	logo: { data: { attributes: { url: string } } }
+	favicon: {
+		data: {
+			attributes: {
+				url: string
+				width: number
+				height: number
+				mime: string
+			}
+		}
+	}
 }
 
 async function fetchEnterpriseData() {
