@@ -14,7 +14,7 @@ export interface SectionServicesProps {
 
 export function SectionServices({ title, services }: SectionServicesProps) {
 	return (
-		<Section title={title}>
+		<Section title={title} data-testid='SectionServicesComponent'>
 			<ul className='gap-10 grid grid-cols-1 md:grid-cols-3 mt-10 mb-10'>
 				{services.map((service, index) => {
 					return (

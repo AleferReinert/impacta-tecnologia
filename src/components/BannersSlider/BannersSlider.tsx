@@ -48,7 +48,7 @@ export function BannersSlider({ sliderConfig, banners }: BannerSliderProps) {
 	const { effect, scrollSpeed, transitionSpeed } = sliderConfig
 
 	return (
-		<section className='relative bg-secondary'>
+		<section className='relative bg-secondary' data-testid='BannersSliderComponent'>
 			<Slider
 				{...SliderSettings({
 					itemsLength: banners.length,

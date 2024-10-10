@@ -17,7 +17,7 @@ export function SectionBenefits({ title, benefits, sliderConfig }: SectionBenefi
 	const { effect, scrollSpeed, transitionSpeed } = sliderConfig
 
 	return (
-		<Section theme='dark' title={title}>
+		<Section theme='dark' title={title} data-testid='SectionBenefitsComponents'>
 			<Slider {...SliderSettings({ itemsLength: benefits.length, effect, scrollSpeed, transitionSpeed })}>
 				{benefits.map((item, index) => (
 					<div key={index} className='text-center flex flex-col'>

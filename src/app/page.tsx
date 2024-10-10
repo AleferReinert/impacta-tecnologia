@@ -9,7 +9,7 @@ import { SectionServices, SectionServicesProps } from '@/components/SectionServi
 import { HOMEPAGE_QUERY } from '@/graphql/queries/Home'
 import { useQuery } from '@apollo/client'
 
-interface HomeProps {
+export interface HomeProps {
 	banners: BannerSliderProps
 	about: SectionAboutProps
 	services: SectionServicesProps

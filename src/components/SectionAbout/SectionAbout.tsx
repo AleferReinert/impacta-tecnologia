@@ -18,7 +18,7 @@ export function SectionAbout({ title, descriptions, sliderConfig }: SectionAbout
 	const { effect, scrollSpeed, transitionSpeed } = sliderConfig
 
 	return (
-		<Section title={title} headingLevel='h1' theme='dark'>
+		<Section title={title} headingLevel='h1' theme='dark' data-testid='SectionAboutComponent'>
 			<div className='mb-10'>
 				<Slider {...SliderSettings({ itemsLength: descriptions.length, effect, scrollSpeed, transitionSpeed })}>
 					{descriptions.map((item, index) => (
