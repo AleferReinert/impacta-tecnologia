@@ -6,6 +6,7 @@ import { ENTERPRISE_QUERY } from '@/graphql/queries/Enterprise'
 import { client } from '@/utils/client'
 import { Metadata } from 'next'
 import { Audiowide, Poppins } from 'next/font/google'
+import socialSharingImage from '../../public/social-sharing.png'
 import './globals.css'
 
 const poppins = Poppins({
@@ -50,7 +51,7 @@ async function fetchEnterpriseData() {
 
 export async function generateMetadata(): Promise<Metadata | null> {
 	const data = await fetchEnterpriseData()
-	const enterprise = data.enterprise.data.attributes
+	const enterprise: EnterpriseProps = data.enterprise.data.attributes
 
 	if (!data) return null
 
@@ -65,7 +66,7 @@ export async function generateMetadata(): Promise<Metadata | null> {
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	const data = await fetchEnterpriseData()
-	const enterprise = data.enterprise.data.attributes
+	const enterprise: EnterpriseProps = data.enterprise.data.attributes
 	const favicon = enterprise.favicon.data.attributes
 
 	if (!data) {
@@ -77,6 +78,20 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 			<html lang='pt-br'>
 				<head>
 					{favicon && <link rel='icon' href={favicon.url} type={favicon.mime} sizes={`${favicon.width}x${favicon.height}`} />}
+					<meta name='theme-color' content='#041634' />
+
+					{/* Visualização de compartilhamento em redes sociais */}
+					<meta property='og:title' content={enterprise.name} />
+					<meta name='author' content='Alefer Reinert' />
+					<meta property='og:description' content={enterprise.description} />
+					<meta property='og:type' content='website' />
+					<meta property='og:url' content='https://impacta-tecnologia.vercel.app' />
+					<meta property='og:image' content={socialSharingImage.src} />
+					<meta name='og:image:alt' content='Logotipo da empresa' />
+					<meta property='og:image:width' content='1200' />
+					<meta property='og:image:height' content='630' />
+					<meta name='twitter:card' content='summary_large_image' />
+					<link rel='canonical' href='https://impacta-tecnologia.vercel.app' />
 				</head>
 				<body className={`${audiowide.variable} ${poppins.variable} text-slate-600 min-h-dvh flex flex-col justify-between`}>
 					<Layout enterprise={enterprise}>{children}</Layout>
