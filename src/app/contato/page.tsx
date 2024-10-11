@@ -1,4 +1,5 @@
 import { ContactForm } from '@/components/ContactForm/ContactForm'
+import { Container } from '@/components/Container/Container'
 import { Error } from '@/components/Error/Error'
 import { Loading } from '@/components/Loading/Loading'
 import { PageTitle } from '@/components/PageTitle/PageTitle'
@@ -39,10 +40,12 @@ export default async function Contact() {
 	return (
 		<>
 			<PageTitle title='Contato' />
-			<div className='py-12'>
-				<p className='text-center mb-10 max-w-screen-sm mx-auto'>{description}</p>
-				<ContactForm />
-			</div>
+			<Container>
+				<div className='py-12'>
+					<p className='text-center mb-10 max-w-screen-sm mx-auto'>{description}</p>
+					<ContactForm />
+				</div>
+			</Container>
 		</>
 	)
 }
