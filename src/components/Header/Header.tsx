@@ -39,6 +39,7 @@ export function Header({ enterprise }: HeaderProps) {
 
 	return (
 		<header
+			data-testid='HeaderComponent'
 			className={`fixed right-0 left-0 transition z-20 bg-white ${
 				fixedHeader ? 'translate-y shadow' : !menu ? '-translate-y-[100%]' : ''
 			}`}

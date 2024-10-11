@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect, userEvent, waitFor, within } from '@storybook/test'
-import { EnterpriseMock, FaviconMock, LogoMock } from '../Footer/Enterprise.mock'
+import { EnterpriseMock } from '../Layout/Layout.mock'
 import { Header } from './Header'
 
 const meta: Meta<typeof Header> = {
 	title: 'Components/Header',
 	component: Header,
-	args: { enterprise: { ...EnterpriseMock, logo: LogoMock, favicon: FaviconMock } }
+	args: { enterprise: EnterpriseMock }
 }
 
 export default meta

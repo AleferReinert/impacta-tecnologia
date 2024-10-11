@@ -1,13 +1,11 @@
 import { Error } from '@/components/Error/Error'
-import { Footer } from '@/components/Footer/Footer'
-import { Header } from '@/components/Header/Header'
+import { Layout } from '@/components/Layout/Layout'
 import { Provider } from '@/components/Provider'
 import { SocialLinksProps } from '@/components/SocialLinks/SocialLinks'
 import { ENTERPRISE_QUERY } from '@/graphql/queries/Enterprise'
 import { client } from '@/utils/client'
 import { Metadata } from 'next'
 import { Audiowide, Poppins } from 'next/font/google'
-import { Toaster } from 'sonner'
 import './globals.css'
 
 const poppins = Poppins({
@@ -109,17 +107,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 					{favicon && <link rel='icon' href={favicon.url} type={favicon.mime} sizes={`${favicon.width}x${favicon.height}`} />}
 				</head>
 				<body className={`${audiowide.variable} ${poppins.variable} text-slate-600 min-h-dvh flex flex-col justify-between`}>
-					<Toaster
-						richColors
-						toastOptions={{
-							classNames: {
-								toast: 'text-base rounded-none'
-							}
-						}}
-					/>
-					<Header enterprise={enterprise} />
-					<main className='pt-16'>{children}</main>
-					<Footer enterprise={enterprise} />
+					<Layout enterprise={enterprise}>{children}</Layout>
 				</body>
 			</html>
 		</Provider>

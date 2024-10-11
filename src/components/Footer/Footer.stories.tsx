@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect, within } from '@storybook/test'
+import { EnterpriseMock } from '../Layout/Layout.mock'
 import { SocialLinksMock } from '../SocialLinks/SocialLinks.mock'
-import { EnterpriseMock } from './Enterprise.mock'
 import { Footer } from './Footer'
 
 const meta: Meta<typeof Footer> = {

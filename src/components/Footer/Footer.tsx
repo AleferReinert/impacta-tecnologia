@@ -27,7 +27,10 @@ export function Footer({ enterprise }: FooterProps) {
 	const { name, cnpj, email, phone, businessHours, socialLinks } = enterprise
 
 	return (
-		<footer className='z-10 py-6 font-light text-center bg-secondary text-white border-t border-slate-300 md:text-sm md:text-left md:py-8'>
+		<footer
+			data-testid='FooterComponent'
+			className='z-10 py-6 font-light text-center bg-secondary text-white border-t border-slate-300 md:text-sm md:text-left md:py-8'
+		>
 			<Container>
 				<div className='flex flex-col gap-4 md:flex-row md:justify-between [&>div]:flex [&>div]:flex-col [&>div]:justify-between'>
 					<div>

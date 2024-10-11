@@ -1,4 +1,3 @@
-'use client'
 import { BannerSliderProps, BannersSlider } from '@/components/BannersSlider/BannersSlider'
 import { Error } from '@/components/Error/Error'
 import { Loading } from '@/components/Loading/Loading'
@@ -7,7 +6,7 @@ import { SectionBenefits, SectionBenefitsProps } from '@/components/SectionBenef
 import { SectionContact, SectionContactProps } from '@/components/SectionContact/SectionContact'
 import { SectionServices, SectionServicesProps } from '@/components/SectionServices/SectionServices'
 import { HOMEPAGE_QUERY } from '@/graphql/queries/Home'
-import { useQuery } from '@apollo/client'
+import { client } from '@/utils/client'
 
 export interface HomeProps {
 	banners: BannerSliderProps
@@ -17,8 +16,8 @@ export interface HomeProps {
 	contact: SectionContactProps
 }
 
-export default function Home() {
-	const { data, loading, error } = useQuery(HOMEPAGE_QUERY)
+export default async function Home() {
+	const { data, loading, error } = await client.query({ query: HOMEPAGE_QUERY })
 
 	if (loading) {
 		return <Loading className='z-0' />
