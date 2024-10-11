@@ -6,7 +6,6 @@ import 'slick-carousel/slick/slick.css'
 import { tv } from 'tailwind-variants'
 import { Button } from '../Button/Button'
 import { Container } from '../Container/Container'
-import { Loading } from '../Loading/Loading' // Certifique-se de importar o componente Loading
 import { SliderConfigProps, SliderSettings } from '../SliderSettings'
 
 export interface BannerSliderProps {
@@ -37,18 +36,12 @@ const bannerStyles = tv({
 
 export function BannersSlider({ sliderConfig, banners }: BannerSliderProps) {
 	const [screenWidth, setScreenWidth] = useState(0)
-	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
 		setScreenWidth(window.screen.width)
-		setLoading(false)
 	}, [])
 
-	if (loading) {
-		return <Loading type='component' showLoad className='aspect-[5/4] sm:aspect-[3/2] md:aspect-[3/1]' />
-	}
-
-	if (banners.length === 0 || screenWidth === 0) {
+	if (banners.length === 0) {
 		return null
 	}
 
