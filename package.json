@@ -10,7 +10,8 @@
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
 		"test-storybook": "test-storybook",
-		"prepare": "husky"
+		"prepare": "husky",
+		"chromatic": "npx chromatic"
 	},
 	"dependencies": {
 		"@apollo/client": "^3.11.8",
@@ -40,6 +41,7 @@
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
 		"@types/react-slick": "^0.23.13",
+		"chromatic": "^11.12.5",
 		"eslint": "^8",
 		"eslint-config-next": "14.2.6",
 		"eslint-plugin-storybook": "^0.9.0",
@@ -50,3 +52,4 @@
 		"typescript": "^5"
 	}
 }
+

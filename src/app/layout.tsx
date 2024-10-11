@@ -20,31 +20,6 @@ const audiowide = Audiowide({
 	variable: '--font-audiowide'
 })
 
-export interface StrapiImageUpload {
-	data: {
-		attributes: {
-			url: string
-			mime: string
-			width: number
-			height: number
-			formats: {
-				thumbnail: {
-					url: string
-				}
-				small: {
-					url: string
-				}
-				medium: {
-					url: string
-				}
-				large: {
-					url: string
-				}
-			}
-		}
-	}
-}
-
 export interface EnterpriseProps extends SocialLinksProps {
 	name: string
 	description: string
@@ -69,17 +44,15 @@ export interface EnterpriseProps extends SocialLinksProps {
 }
 
 async function fetchEnterpriseData() {
-	const { data } = await client.query({
-		query: ENTERPRISE_QUERY
-	})
+	const { data } = await client.query({ query: ENTERPRISE_QUERY })
 	return data
 }
 
 export async function generateMetadata(): Promise<Metadata | null> {
 	const data = await fetchEnterpriseData()
+	const enterprise = data.enterprise.data.attributes
 
 	if (!data) return null
-	const enterprise = data.enterprise.data.attributes
 
 	return {
 		title: {
@@ -92,13 +65,12 @@ export async function generateMetadata(): Promise<Metadata | null> {
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	const data = await fetchEnterpriseData()
+	const enterprise = data.enterprise.data.attributes
+	const favicon = enterprise.favicon.data.attributes
 
 	if (!data) {
 		return <Error description='Parece que algo deu errado, tente atualizar a página ou volte mais tarde.' />
 	}
-
-	const enterprise = data.enterprise.data.attributes
-	const favicon = enterprise.favicon.data.attributes
 
 	return (
 		<Provider>

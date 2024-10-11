@@ -1,5 +1,4 @@
 'use client'
-import { StrapiImageUpload } from '@/app/layout'
 import { useEffect, useState } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
@@ -12,7 +11,24 @@ export interface BannerSliderProps {
 	banners: {
 		title: string
 		description: string
-		img: StrapiImageUpload
+		img: {
+			data: {
+				attributes: {
+					url: string
+					formats: {
+						small: {
+							url: string
+						}
+						medium: {
+							url: string
+						}
+						large: {
+							url: string
+						}
+					}
+				}
+			}
+		}
 		url?: string
 		align?: 'centro' | 'direita' | 'esquerda'
 		buttonLabel?: string

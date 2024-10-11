@@ -2,7 +2,6 @@ import { BoxContent, BoxContentProps } from '@/components/BoxContent/BoxContent'
 import { Container } from '@/components/Container/Container'
 import { DynamicReactIcon } from '@/components/DynamicReactIcon/DynamicReactIcon'
 import { Error } from '@/components/Error/Error'
-import { Loading } from '@/components/Loading/Loading'
 import { PageTitle } from '@/components/PageTitle/PageTitle'
 import { Subtitle } from '@/components/Subtitle/Subtitle'
 import { SERVICESPAGE_QUERY } from '@/graphql/queries/Services'
@@ -23,30 +22,18 @@ interface ServicesProps {
 	sale: BoxContentProps
 }
 
-async function fetchServicesData() {
-	const response = await client.query({
-		query: SERVICESPAGE_QUERY
-	})
-	return response
-}
-
 export const metadata: Metadata = {
 	title: 'Serviços'
 }
 
 export default async function Services() {
-	const { data, loading, error } = await fetchServicesData()
-
-	if (loading) {
-		return <Loading className='z-0' />
-	}
+	const { data, error } = await client.query({ query: SERVICESPAGE_QUERY })
+	const { lease, servicesProvision, sale }: ServicesProps = data.servicespage.data.attributes
 
 	if (error) {
 		console.log(`src/app/servicos/page.tsx: fetch error.`)
 		return <Error title='Serviços' />
 	}
-
-	const { lease, servicesProvision, sale }: ServicesProps = data.servicespage.data.attributes
 
 	return (
 		<>

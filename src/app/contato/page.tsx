@@ -1,7 +1,6 @@
 import { ContactForm } from '@/components/ContactForm/ContactForm'
 import { Container } from '@/components/Container/Container'
 import { Error } from '@/components/Error/Error'
-import { Loading } from '@/components/Loading/Loading'
 import { PageTitle } from '@/components/PageTitle/PageTitle'
 import { CONTACTPAGE_QUERY } from '@/graphql/queries/Contact'
 import { client } from '@/utils/client'
@@ -12,30 +11,18 @@ interface ContactProps {
 	description: string
 }
 
-async function fetchContactData() {
-	const response = await client.query({
-		query: CONTACTPAGE_QUERY
-	})
-	return response
-}
-
 export const metadata: Metadata = {
 	title: 'Contato'
 }
 
 export default async function Contact() {
-	const { data, loading, error } = await fetchContactData()
-
-	if (loading) {
-		return <Loading className='z-0' />
-	}
+	const { data, error } = await client.query({ query: CONTACTPAGE_QUERY })
+	const { description }: ContactProps = data.homepage.data.attributes.contact
 
 	if (error) {
 		console.log(`src/app/contato/page.tsx- Error: ${error.message}`)
 		return <Error title='Contato' />
 	}
-
-	const { description }: ContactProps = data.homepage.data.attributes.contact
 
 	return (
 		<>

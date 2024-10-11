@@ -2,7 +2,6 @@ import { BoxContent, BoxContentProps } from '@/components/BoxContent/BoxContent'
 import { Container } from '@/components/Container/Container'
 import { DynamicReactIcon } from '@/components/DynamicReactIcon/DynamicReactIcon'
 import { Error } from '@/components/Error/Error'
-import { Loading } from '@/components/Loading/Loading'
 import { PageTitle } from '@/components/PageTitle/PageTitle'
 import { Subtitle } from '@/components/Subtitle/Subtitle'
 import { ABOUTPAGE_QUERY } from '@/graphql/queries/About'
@@ -23,30 +22,18 @@ interface AboutProps {
 	}
 }
 
-async function fetchAboutData() {
-	const response = await client.query({
-		query: ABOUTPAGE_QUERY
-	})
-	return response
-}
-
 export const metadata: Metadata = {
 	title: 'Sobre nós'
 }
 
 export default async function About() {
-	const { data, loading, error } = await fetchAboutData()
-
-	if (loading) {
-		return <Loading className='z-0' />
-	}
+	const { data, error } = await client.query({ query: ABOUTPAGE_QUERY })
+	const { description, mission, vision, values }: AboutProps = data.aboutpage.data.attributes
 
 	if (error) {
 		console.log(`src/app/sobre-nos/page.tsx - Error: ${error.message}`)
 		return <Error title='Sobre nós' />
 	}
-
-	const { description, mission, vision, values }: AboutProps = data.aboutpage.data.attributes
 
 	return (
 		<>

@@ -1,6 +1,5 @@
 import { BannerSliderProps, BannersSlider } from '@/components/BannersSlider/BannersSlider'
 import { Error } from '@/components/Error/Error'
-import { Loading } from '@/components/Loading/Loading'
 import { SectionAbout, SectionAboutProps } from '@/components/SectionAbout/SectionAbout'
 import { SectionBenefits, SectionBenefitsProps } from '@/components/SectionBenefits/SectionBenefits'
 import { SectionContact, SectionContactProps } from '@/components/SectionContact/SectionContact'
@@ -17,18 +16,13 @@ export interface HomeProps {
 }
 
 export default async function Home() {
-	const { data, loading, error } = await client.query({ query: HOMEPAGE_QUERY })
-
-	if (loading) {
-		return <Loading className='z-0' />
-	}
+	const { data, error } = await client.query({ query: HOMEPAGE_QUERY })
+	const { banners, about, services, benefits, contact }: HomeProps = data.homepage.data.attributes
 
 	if (error) {
 		console.log(`src/app/page.tsx - Error: ${error.message}`)
 		return <Error title='Início' />
 	}
-
-	const { banners, about, services, benefits, contact }: HomeProps = data.homepage.data.attributes
 
 	return (
 		<>

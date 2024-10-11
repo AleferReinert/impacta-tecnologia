@@ -1,5 +1,3 @@
-import { StrapiImageUpload } from '@/app/layout'
-
 export const bannersMock = {
 	banners: [
 		{
@@ -28,7 +26,7 @@ export const bannersMock = {
 						}
 					}
 				}
-			} as StrapiImageUpload
+			}
 		},
 		{
 			title: 'Donec eget ante orci',
@@ -56,7 +54,7 @@ export const bannersMock = {
 						}
 					}
 				}
-			} as StrapiImageUpload,
+			},
 			align: 'esquerda' as 'esquerda' | 'centro' | 'direita',
 			url: 'https://google.com',
 			buttonLabel: 'Saiba mais'
@@ -87,7 +85,7 @@ export const bannersMock = {
 						}
 					}
 				}
-			} as StrapiImageUpload,
+			},
 			align: 'esquerda' as 'esquerda' | 'centro' | 'direita',
 			url: 'https://example.com',
 			buttonLabel: 'Saiba mais'

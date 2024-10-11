@@ -1,3 +1,6 @@
+// Obtem os digitos de um texto e transforma em milisegundos:
+// 'Normal_5_segundos' = 5000
+// 'Normal_0_5_segundos' = 500
 export function convertToMilliseconds(input: string): number {
 	let numbers = input.replace(/\D/g, '')
 
@@ -9,11 +12,3 @@ export function convertToMilliseconds(input: string): number {
 
 	return parseFloat(numbers) * 1000
 }
-
-// Exemplos de uso
-// console.log(convertToMilliseconds('Normal_5_segundos')) // 5000
-// console.log(convertToMilliseconds('Normal_0_5_segundos')) // 500
-// console.log(convertToMilliseconds('Normal_0_75_segundos')) // 750
-// console.log(convertToMilliseconds('Tempo_3_2_segundos')) // 3200
-// console.log(convertToMilliseconds('Teste_10_segundos')) // 10000
-// console.log(convertToMilliseconds('Valor_7_segundos_ou_menos')) // 7000
