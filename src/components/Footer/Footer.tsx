@@ -10,7 +10,7 @@ export interface FooterProps {
 }
 
 const ColumnHeading = ({ title }: { title: string }) => (
-	<h6 className='text-base mb-1 font-heading uppercase md:text-left md:text-sm'>{title}</h6>
+	<h4 className='text-base mb-1 font-heading uppercase md:text-left md:text-sm'>{title}</h4>
 )
 
 const InfoItem = ({ label, value }: { label: string; value?: string | ReactNode }) => {

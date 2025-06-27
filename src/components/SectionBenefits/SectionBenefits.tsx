@@ -2,7 +2,7 @@
 import { Section } from '@/components/Section/Section'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
-import { SliderConfigProps, SliderSettings } from '../SliderSettings'
+import { SliderConfigProps, SliderSettings } from '../../utils/SliderSettings'
 
 export interface SectionBenefitsProps {
 	title: string

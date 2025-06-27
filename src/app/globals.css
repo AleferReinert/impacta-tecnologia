@@ -30,7 +30,7 @@ body {
 }
 
 .custom-dots {
-	@apply gap-2 justify-center !flex mt-5;
+	@apply justify-center !flex mt-4;
 }
 
 .custom-dots li {
@@ -38,26 +38,30 @@ body {
 }
 
 .custom-dots button {
-	@apply bg-zinc-400 w-3 h-3 text-[0px] rounded-full transition focus-visible:outline-none focus-visible:ring-0;
+	@apply text-[0px] p-1.5 focus-visible:outline-none focus-visible:ring-0 bg-transparent;
 }
 
-.custom-dots button:hover {
+.custom-dots button:hover span {
 	@apply bg-zinc-500;
 }
 
-.custom-dots .slick-active button {
+.custom-dots button span {
+	@apply block rounded-full size-3 bg-zinc-400 transition;
+}
+
+.custom-dots .slick-active button span {
 	@apply bg-secondary cursor-default;
 }
 
-.banners-dots button {
+.banners-dots button span {
 	@apply bg-white opacity-50;
 }
-.banners-dots .slick-active button,
-.banners-dots button:hover {
+.banners-dots .slick-active button span,
+.banners-dots button:hover span {
 	@apply bg-white opacity-100;
 }
 .banners-dots {
-	@apply absolute bottom-4 w-full;
+	@apply absolute bottom-3 w-full;
 }
 
 .slick-slide > div {
