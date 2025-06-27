@@ -19,7 +19,6 @@ export const HOMEPAGE_QUERY = gql`
 								data {
 									attributes {
 										url
-										formats
 									}
 								}
 							}

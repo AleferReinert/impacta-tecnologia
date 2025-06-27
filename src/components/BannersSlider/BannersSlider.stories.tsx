@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>
 
 export const OnlyOne: Story = {
 	args: {
-		banners: [bannersMock.banners[0]]
+		banners: [bannersMock[0]]
 	},
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
@@ -45,7 +45,7 @@ export const OnlyOne: Story = {
 			waitFor(() => {
 				const background = document.querySelector('.bg-cover')
 				const dots = document.querySelector('.custom-dots')
-				expect(background).toHaveStyle(`background-image: url(${bannersMock.banners[0].img.data.attributes.url})`)
+				expect(background).toHaveStyle(`background-image: url(${bannersMock[0].img.data.attributes.url})`)
 				expect(dots).not.toBeInTheDocument()
 			})
 		})
@@ -54,7 +54,7 @@ export const OnlyOne: Story = {
 
 export const Multiples: Story = {
 	args: {
-		banners: bannersMock.banners
+		banners: bannersMock
 	},
 	play: async ({ step }) => {
 		step('Render dots', () => {

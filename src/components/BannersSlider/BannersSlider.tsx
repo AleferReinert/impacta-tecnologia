@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import { tv } from 'tailwind-variants'
@@ -7,32 +7,23 @@ import { Button } from '../Button/Button'
 import { Container } from '../Container/Container'
 import { SliderConfigProps, SliderSettings } from '../SliderSettings'
 
-export interface BannerSliderProps {
-	banners: {
-		title: string
-		description: string
-		img: {
-			data: {
-				attributes: {
-					url: string
-					formats: {
-						small: {
-							url: string
-						}
-						medium: {
-							url: string
-						}
-						large: {
-							url: string
-						}
-					}
-				}
+export interface BannerProps {
+	title: string
+	description: string
+	img: {
+		data: {
+			attributes: {
+				url: string
 			}
 		}
-		url?: string
-		align?: 'centro' | 'direita' | 'esquerda'
-		buttonLabel?: string
-	}[]
+	}
+	url?: string
+	align?: 'centro' | 'direita' | 'esquerda'
+	buttonLabel?: string
+}
+
+export interface BannerSliderProps {
+	banners: BannerProps[]
 	sliderConfig: SliderConfigProps
 }
 
@@ -51,12 +42,6 @@ const bannerStyles = tv({
 })
 
 export function BannersSlider({ sliderConfig, banners }: BannerSliderProps) {
-	const [screenWidth, setScreenWidth] = useState(0)
-
-	useEffect(() => {
-		setScreenWidth(window.screen.width)
-	}, [])
-
 	if (banners.length === 0) {
 		return null
 	}
@@ -75,21 +60,10 @@ export function BannersSlider({ sliderConfig, banners }: BannerSliderProps) {
 				})}
 			>
 				{banners.map((banner, index) => {
-					const background =
-						screenWidth <= 640
-							? banner.img.data.attributes.formats.small.url
-							: screenWidth <= 768
-							? banner.img.data.attributes.formats.medium.url
-							: screenWidth <= 1024
-							? banner.img.data.attributes.formats.large.url
-							: banner.img.data.attributes.url
-
 					return (
 						<div key={index} className='relative'>
-							<div
-								style={{ backgroundImage: `url(${background})` }}
-								className='bg-cover bg-center aspect-[5/4] [&>div]:h-full sm:aspect-[3/2] md:aspect-[5/2] lg:aspect-[3/1]'
-							>
+							<div className='relative aspect-[5/4] [&>div]:h-full sm:aspect-[3/2] md:aspect-[5/2] lg:aspect-[3/1]'>
+								<Image src={banner.img.data.attributes.url} alt='' aria-hidden fill className='object-cover' />
 								<Container>
 									<div className={bannerStyles({ align: banner.align })}>
 										<h2 className='font-semibold uppercase text-xl mb-2 font-heading sm:text-4xl'>{banner.title}</h2>
