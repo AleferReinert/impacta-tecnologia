@@ -20,7 +20,7 @@ export function SectionServices({ title, services }: SectionServicesProps) {
 					return (
 						<li key={index} className='text-center'>
 							<div className='border rounded-full flex justify-center w-40 h-40 items-center mx-auto mb-4 border-secondary'>
-								<DynamicReactIcon name={service.icon} className='size-16 fill-secondary' />
+								<DynamicReactIcon aria-hidden name={service.icon} className='size-16 fill-secondary' />
 							</div>
 							<h3 className='font-semibold text-secondary'>{service.title}</h3>
 							<p>{service.description}</p>

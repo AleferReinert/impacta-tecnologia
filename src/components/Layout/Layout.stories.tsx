@@ -4,7 +4,7 @@ import { Layout } from './Layout'
 import { EnterpriseMock } from './Layout.mock'
 
 const meta: Meta<typeof Layout> = {
-	title: 'Components/Layout',
+	title: 'Layout/Main',
 	component: Layout,
 	args: {
 		enterprise: EnterpriseMock,
@@ -15,8 +15,7 @@ const meta: Meta<typeof Layout> = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
-	name: 'Layout',
+export const Main: Story = {
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
 

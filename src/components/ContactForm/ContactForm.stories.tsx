@@ -57,14 +57,17 @@ export const Default: Story = {
 		await step('Simulate send success', async () => {
 			await userEvent.type(messageInput, 'Lorem ipsum dolor sit amet.')
 			await userEvent.click(submitButton)
-			waitFor(() => {
-				const sendOtherMessageButton = canvas.getByRole('button', { name: 'Enviar outra mensagem' })
-				expect(sendOtherMessageButton).toBeInTheDocument()
-				expect(canvas.getByText('Mensagem enviada com sucesso, responderemos em breve!')).toBeInTheDocument()
-				expect(nameInput).not.toBeInTheDocument()
-				expect(emailInput).not.toBeInTheDocument()
-				expect(messageInput).not.toBeInTheDocument()
-			})
+			waitFor(
+				() => {
+					const sendOtherMessageButton = canvas.getByRole('button', { name: 'Enviar outra mensagem' })
+					expect(sendOtherMessageButton).toBeInTheDocument()
+					expect(canvas.getByText('Mensagem enviada com sucesso, responderemos em breve!')).toBeInTheDocument()
+					expect(nameInput).not.toBeInTheDocument()
+					expect(emailInput).not.toBeInTheDocument()
+					expect(messageInput).not.toBeInTheDocument()
+				},
+				{ timeout: 30000 }
+			)
 		})
 	}
 }

@@ -6,8 +6,9 @@ const meta: Meta<typeof DynamicReactIcon> = {
 	title: 'Components/DynamicReactIcon',
 	component: DynamicReactIcon,
 	args: {
-		name: 'FaCheck',
-		className: 'size-10'
+		'name': 'FaCheck',
+		'className': 'size-10',
+		'aria-hidden': true
 	}
 }
 

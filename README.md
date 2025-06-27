@@ -16,7 +16,7 @@ Website da empresa Impacta Tecnologia & Soluções em TI.
    ```
    npm install
    ```
-4. Defina as variaveis de ambiente como em .env.example.
+4. Defina as variaveis de ambiente como em `.env.example`.
 
 ## Scripts disponíveis
 

@@ -18,6 +18,7 @@ export function SliderSettings({ effect, scrollSpeed, transitionSpeed, itemsLeng
 		arrows: false,
 		autoplay: true,
 		autoplaySpeed: scrollSpeed ? convertToMilliseconds(scrollSpeed) : 5000,
+		customPaging: i => <button aria-label={`Ir para o item ${i + 1}`}></button>,
 		dots: itemsLength > 1 ? true : false,
 		dotsClass: `custom-dots ${dotsClass ? dotsClass : ''}`,
 		fade: effect === 'Fade' ? true : false,

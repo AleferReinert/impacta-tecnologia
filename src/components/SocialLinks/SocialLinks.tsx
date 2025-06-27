@@ -30,7 +30,11 @@ export function SocialLinks({ socialLinks, iconColor = 'light' }: SocialLinksPro
 		<nav data-testid='SocialLinksComponent' className='flex justify-center gap-5'>
 			{socialLinks.map((item, index) => (
 				<a key={index} title={item.title} href={item.url} target='_blank' rel='noopener noreferrer'>
-					<DynamicReactIcon name={item.icon} className={`${linkStyles({ color: iconColor })} size-8 md:size-6`} />
+					<DynamicReactIcon
+						name={item.icon}
+						aria-hidden
+						className={`${linkStyles({ color: iconColor })} size-8 md:size-6`}
+					/>
 				</a>
 			))}
 		</nav>
