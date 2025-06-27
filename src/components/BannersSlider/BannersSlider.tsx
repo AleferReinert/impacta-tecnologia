@@ -62,7 +62,14 @@ export function BannersSlider({ sliderConfig, banners }: BannerSliderProps) {
 					return (
 						<div key={index} className='relative'>
 							<div className='relative aspect-[5/4] [&>div]:h-full sm:aspect-[3/2] md:aspect-[5/2] lg:aspect-[3/1]'>
-								<Image src={banner.img.data.attributes.url} alt='' aria-hidden fill className='object-cover' priority />
+								<Image
+									src={banner.img.data.attributes.url}
+									alt=''
+									aria-hidden
+									fill
+									className='object-cover'
+									priority={index === 0}
+								/>
 								<Container>
 									<div className={bannerStyles({ align: banner.align })}>
 										<h2 className='font-semibold uppercase text-xl mb-2 font-heading sm:text-4xl'>{banner.title}</h2>
