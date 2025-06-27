@@ -4,7 +4,7 @@ import { Provider } from '@/components/Provider'
 import { SocialLinksProps } from '@/components/SocialLinks/SocialLinks'
 import { ENTERPRISE_QUERY } from '@/graphql/queries/Enterprise'
 import { client } from '@/utils/client'
-import { Metadata } from 'next'
+import { Metadata, Viewport } from 'next'
 import { Audiowide, Poppins } from 'next/font/google'
 import 'slick-carousel/slick/slick.css'
 import socialSharingImage from '../../public/social-sharing.png'
@@ -61,8 +61,29 @@ export async function generateMetadata(): Promise<Metadata | null> {
 			template: `%s - ${enterprise.name}`,
 			default: enterprise.name
 		},
-		description: enterprise.description
+		description: enterprise.description,
+		authors: [{ name: 'Alefer Reinert', url: 'https://aleferreinert.vercel.app' }],
+		alternates: { canonical: process.env.NEXT_PUBLIC_SITE_URL },
+		openGraph: {
+			title: enterprise.name,
+			description: enterprise.description,
+			type: 'website',
+			url: process.env.NEXT_PUBLIC_SITE_URL,
+			images: [socialSharingImage.src]
+		},
+		twitter: {
+			title: enterprise.name,
+			description: enterprise.description,
+			card: 'summary_large_image',
+			images: [socialSharingImage.src]
+		}
 	}
+}
+
+export const viewport: Viewport = {
+	width: 'device-width',
+	initialScale: 1,
+	themeColor: '#041634'
 }
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -81,20 +102,6 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 					{favicon && (
 						<link rel='icon' href={favicon.url} type={favicon.mime} sizes={`${favicon.width}x${favicon.height}`} />
 					)}
-					<meta name='theme-color' content='#041634' />
-
-					{/* Visualização de compartilhamento em redes sociais */}
-					<meta property='og:title' content={enterprise.name} />
-					<meta name='author' content='Alefer Reinert' />
-					<meta property='og:description' content={enterprise.description} />
-					<meta property='og:type' content='website' />
-					<meta property='og:url' content='https://impacta-tecnologia.vercel.app' />
-					<meta property='og:image' content={socialSharingImage.src} />
-					<meta name='og:image:alt' content='Logotipo da empresa' />
-					<meta property='og:image:width' content='1200' />
-					<meta property='og:image:height' content='630' />
-					<meta name='twitter:card' content='summary_large_image' />
-					<link rel='canonical' href='https://impacta-tecnologia.vercel.app' />
 				</head>
 				<body
 					className={`${audiowide.variable} ${poppins.variable} text-slate-600 min-h-dvh flex flex-col justify-between`}
