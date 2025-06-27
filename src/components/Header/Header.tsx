@@ -22,11 +22,8 @@ export function Header({ enterprise }: HeaderProps) {
 	const [menu, setMenu] = useState(false)
 	const enterpriseName = enterprise.name ?? 'Impacta Tecnologia & Soluções em TI'
 	const logoImg = enterprise.logo.data.attributes.url
-	const [headerPositionY, setHeaderPositionY] = useState(0)
 
 	useEffect(() => {
-		setHeaderPositionY(document.getElementsByTagName('header')[0].offsetHeight)
-
 		let prev = window.scrollY
 		const fixedHeaderOnScrollUp = () => {
 			let current = window.scrollY
@@ -35,7 +32,7 @@ export function Header({ enterprise }: HeaderProps) {
 		}
 		window.addEventListener('scroll', fixedHeaderOnScrollUp)
 		return () => window.removeEventListener('scroll', fixedHeaderOnScrollUp)
-	}, [headerPositionY])
+	}, [])
 
 	return (
 		<header
@@ -84,7 +81,9 @@ export function Header({ enterprise }: HeaderProps) {
 									</Link>
 								))}
 
-								{enterprise.socialLinks.length > 0 && <SocialLinks socialLinks={enterprise.socialLinks} iconColor='dark' />}
+								{enterprise.socialLinks.length > 0 && (
+									<SocialLinks socialLinks={enterprise.socialLinks} iconColor='dark' />
+								)}
 							</nav>
 						</div>
 					</div>
