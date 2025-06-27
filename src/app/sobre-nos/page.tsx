@@ -31,7 +31,7 @@ export default async function About() {
 	const { description, mission, vision, values }: AboutProps = data.aboutpage.data.attributes
 
 	if (error) {
-		console.log(`src/app/sobre-nos/page.tsx - Error: ${error.message}`)
+		console.error(`src/app/sobre-nos/page.tsx - Error: ${error.message}`)
 		return <Error title='Sobre nós' />
 	}
 

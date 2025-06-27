@@ -20,7 +20,7 @@ export default async function Contact() {
 	const { description }: ContactProps = data.homepage.data.attributes.contact
 
 	if (error) {
-		console.log(`src/app/contato/page.tsx- Error: ${error.message}`)
+		console.error(`src/app/contato/page.tsx- Error: ${error.message}`)
 		return <Error title='Contato' />
 	}
 

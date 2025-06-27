@@ -20,7 +20,7 @@ export default async function Home() {
 	const { banners, about, services, benefits, contact }: HomeProps = data.homepage.data.attributes
 
 	if (error) {
-		console.log(`src/app/page.tsx - Error: ${error.message}`)
+		console.error(`src/app/page.tsx - Error: ${error.message}`)
 		return <Error title='Início' />
 	}
 
