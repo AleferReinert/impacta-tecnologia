@@ -1,4 +1,3 @@
-import 'slick-carousel/slick/slick.css'
 import { ContactForm } from '../ContactForm/ContactForm'
 import { Section } from '../Section/Section'
 

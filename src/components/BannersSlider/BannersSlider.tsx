@@ -1,7 +1,6 @@
 'use client'
 import Image from 'next/image'
 import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
 import { tv } from 'tailwind-variants'
 import { SliderConfigProps, SliderSettings } from '../../utils/SliderSettings'
 import { Button } from '../Button/Button'

@@ -6,6 +6,7 @@ import { ENTERPRISE_QUERY } from '@/graphql/queries/Enterprise'
 import { client } from '@/utils/client'
 import { Metadata } from 'next'
 import { Audiowide, Poppins } from 'next/font/google'
+import 'slick-carousel/slick/slick.css'
 import socialSharingImage from '../../public/social-sharing.png'
 import './globals.css'
 
@@ -77,7 +78,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 		<Provider>
 			<html lang='pt-br'>
 				<head>
-					{favicon && <link rel='icon' href={favicon.url} type={favicon.mime} sizes={`${favicon.width}x${favicon.height}`} />}
+					{favicon && (
+						<link rel='icon' href={favicon.url} type={favicon.mime} sizes={`${favicon.width}x${favicon.height}`} />
+					)}
 					<meta name='theme-color' content='#041634' />
 
 					{/* Visualização de compartilhamento em redes sociais */}
@@ -93,7 +96,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 					<meta name='twitter:card' content='summary_large_image' />
 					<link rel='canonical' href='https://impacta-tecnologia.vercel.app' />
 				</head>
-				<body className={`${audiowide.variable} ${poppins.variable} text-slate-600 min-h-dvh flex flex-col justify-between`}>
+				<body
+					className={`${audiowide.variable} ${poppins.variable} text-slate-600 min-h-dvh flex flex-col justify-between`}
+				>
 					<Layout enterprise={enterprise}>{children}</Layout>
 				</body>
 			</html>

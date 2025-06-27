@@ -2,7 +2,6 @@
 import { Section } from '@/components/Section/Section'
 import { BsArrowRightShort } from 'react-icons/bs'
 import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
 import { SliderConfigProps, SliderSettings } from '../../utils/SliderSettings'
 import { Button } from '../Button/Button'
 

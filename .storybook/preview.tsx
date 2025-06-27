@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react'
-import React from 'react'
+import 'slick-carousel/slick/slick.css'
 import { Toaster } from 'sonner'
 import resolveConfig from 'tailwindcss/resolveConfig'
 import '../src/app/globals.css'
