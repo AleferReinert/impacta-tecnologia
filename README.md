@@ -38,9 +38,9 @@ Website da empresa Impacta Tecnologia & Soluções em TI.
 - **Next.js:** Framework React para apps web modernas.
 - **React:** Biblioteca para criação de interfaces de usuário.
 - **React Icons:** Conjunto de ícones populares para uso em projetos React.
-- **React Slick:** Componente de slider/carrossel para React.
 - **Storybook:** Ambiente para desenvolvimento de componentes isolados.
 - **Sonner:** Biblioteca para exibição de notificações.
+- **Swiper:** Componente de slider para React.
 - **Tailwind CSS:** Framework utilitário para estilização com CSS.
 - **Testing Library:** Ferramenta para testes unitários.
 - **Tailwind Variant:** Ferramenta para combinar classes do Tailwind.

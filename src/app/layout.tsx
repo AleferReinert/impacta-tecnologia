@@ -6,7 +6,6 @@ import { ENTERPRISE_QUERY } from '@/graphql/queries/Enterprise'
 import { client } from '@/utils/client'
 import { Metadata, Viewport } from 'next'
 import { Audiowide, Poppins } from 'next/font/google'
-import 'slick-carousel/slick/slick.css'
 import socialSharingImage from '../../public/social-sharing.png'
 import './globals.css'
 

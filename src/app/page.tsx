@@ -16,7 +16,7 @@ export interface HomeProps {
 }
 
 export default async function Home() {
-	const { data, error } = await client.query({ query: HOMEPAGE_QUERY })
+	const { data, error } = await client.query({ query: HOMEPAGE_QUERY, fetchPolicy: 'no-cache' })
 	const { banners, about, services, benefits, contact }: HomeProps = data.homepage.data.attributes
 
 	if (error) {

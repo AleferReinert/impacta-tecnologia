@@ -1,10 +1,10 @@
 'use client'
 import Image from 'next/image'
-import Slider from 'react-slick'
+import { SwiperSlide } from 'swiper/react'
 import { tv } from 'tailwind-variants'
-import { SliderConfigProps, SliderSettings } from '../../utils/SliderSettings'
 import { Button } from '../Button/Button'
 import { Container } from '../Container/Container'
+import { Slider, SliderConfigProps } from '../Slider/Slider'
 
 export interface BannerProps {
 	title: string
@@ -40,27 +40,17 @@ const bannerStyles = tv({
 	}
 })
 
-export function BannersSlider({ sliderConfig, banners }: BannerSliderProps) {
+export function BannersSlider({ banners, sliderConfig }: BannerSliderProps) {
 	if (banners.length === 0) {
 		return null
 	}
 
-	const { effect, scrollSpeed, transitionSpeed } = sliderConfig
-
 	return (
 		<section className='relative bg-secondary' data-testid='BannersSliderComponent'>
-			<Slider
-				{...SliderSettings({
-					itemsLength: banners.length,
-					dotsClass: 'banners-dots',
-					effect,
-					scrollSpeed,
-					transitionSpeed
-				})}
-			>
+			<Slider {...sliderConfig} dotsTheme='light'>
 				{banners.map((banner, index) => {
 					return (
-						<div key={index} className='relative'>
+						<SwiperSlide key={index} className='relative'>
 							<div className='relative aspect-[5/4] [&>div]:h-full sm:aspect-[3/2] md:aspect-[5/2] lg:aspect-[3/1]'>
 								<Image
 									src={banner.img.data.attributes.url}
@@ -84,7 +74,7 @@ export function BannersSlider({ sliderConfig, banners }: BannerSliderProps) {
 									</div>
 								</Container>
 							</div>
-						</div>
+						</SwiperSlide>
 					)
 				})}
 			</Slider>

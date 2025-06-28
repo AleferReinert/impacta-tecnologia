@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+@import 'swiper/css/effect-fade';
 
 * {
 	-webkit-font-smoothing: antialiased;
@@ -19,52 +22,36 @@ body {
 	@apply font-sans;
 }
 
-/* Todo: elementos filhos estão focalizáveis */
-/* [aria-hidden='true'] > * {
-	pointer-events: none;
-	tabindex: -1; not working
-} */
+/* Swiper */
+.swiper-pagination {
+	@apply relative mt-6;
 
-.slick-slider .slick-track {
-	@apply flex items-center;
-}
+	.swiper-pagination-bullet {
+		@apply !p-1.5 bg-transparent size-auto !m-0 opacity-100 focus-visible:outline-none;
 
-.custom-dots {
-	@apply justify-center !flex mt-4;
-}
+		span {
+			@apply block size-3 transition rounded-full;
+		}
 
-.custom-dots li {
-	@apply flex;
-}
+		span {
+			@apply bg-zinc-400;
+		}
 
-.custom-dots button {
-	@apply text-[0px] p-1.5 focus-visible:outline-none focus-visible:ring-0 bg-transparent;
-}
+		&.swiper-pagination-bullet-active.dark span {
+			@apply bg-secondary;
+		}
 
-.custom-dots button:hover span {
-	@apply bg-zinc-500;
-}
+		&.swiper-pagination-bullet-active.light span {
+			@apply bg-white;
+		}
 
-.custom-dots button span {
-	@apply block rounded-full size-3 bg-zinc-400 transition;
-}
-
-.custom-dots .slick-active button span {
-	@apply bg-secondary cursor-default;
+		&.swiper-pagination-bullet-active {
+			@apply cursor-default;
+		}
+	}
 }
 
-.banners-dots button span {
-	@apply bg-white opacity-50;
-}
-.banners-dots .slick-active button span,
-.banners-dots button:hover span {
-	@apply bg-white opacity-100;
-}
-.banners-dots {
-	@apply absolute bottom-3 w-full;
-}
-
-.slick-slide > div {
-	display: flex;
+[data-testid='BannersSliderComponent'] .swiper-pagination {
+	@apply absolute mt-0;
 }
 

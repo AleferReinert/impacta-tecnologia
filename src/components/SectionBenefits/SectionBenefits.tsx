@@ -1,7 +1,7 @@
 'use client'
 import { Section } from '@/components/Section/Section'
-import Slider from 'react-slick'
-import { SliderConfigProps, SliderSettings } from '../../utils/SliderSettings'
+import { SwiperSlide } from 'swiper/react'
+import { Slider, SliderConfigProps } from '../Slider/Slider'
 
 export interface SectionBenefitsProps {
 	title: string
@@ -13,16 +13,14 @@ export interface SectionBenefitsProps {
 }
 
 export function SectionBenefits({ title, benefits, sliderConfig }: SectionBenefitsProps) {
-	const { effect, scrollSpeed, transitionSpeed } = sliderConfig
-
 	return (
 		<Section theme='dark' title={title} data-testid='SectionBenefitsComponents'>
-			<Slider {...SliderSettings({ itemsLength: benefits.length, effect, scrollSpeed, transitionSpeed })}>
+			<Slider {...sliderConfig}>
 				{benefits.map((item, index) => (
-					<div key={index} className='text-center flex flex-col'>
+					<SwiperSlide key={index} className='text-center flex flex-col'>
 						<h3 className='font-semibold text-secondary'>{item.title}</h3>
 						<p className='max-w-screen-sm mx-auto'>{item.description}</p>
-					</div>
+					</SwiperSlide>
 				))}
 			</Slider>
 		</Section>
