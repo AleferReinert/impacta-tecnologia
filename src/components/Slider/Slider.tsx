@@ -22,7 +22,10 @@ export function Slider({ children, effect, scrollSpeed, transitionSpeed, dotsThe
 			pagination={{
 				clickable: true,
 				renderBullet: function (index, className) {
-					return `<button class='${className} ${dotsTheme}'><span></span></button>`
+					return `
+					<button class='${className} ${dotsTheme}' aria-label='Visualizar item ${index + 1}'>
+						<span></span>
+					</button>`
 				}
 			}}
 			modules={[Pagination, Autoplay, EffectFade]}
