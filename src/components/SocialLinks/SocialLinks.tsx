@@ -1,5 +1,10 @@
+import dynamic from 'next/dynamic'
 import { tv } from 'tailwind-variants'
-import { DynamicReactIcon } from '../DynamicReactIcon/DynamicReactIcon'
+
+const DynamicReactIcon = dynamic(
+	() => import('../DynamicReactIcon/DynamicReactIcon').then(mod => mod.DynamicReactIcon),
+	{ ssr: false }
+)
 
 export interface SocialLinkProps {
 	title: string
