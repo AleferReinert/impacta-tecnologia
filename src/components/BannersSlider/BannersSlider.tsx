@@ -59,6 +59,7 @@ export function BannersSlider({ banners, sliderConfig }: BannerSliderProps) {
 									fill
 									className='object-cover'
 									priority={index === 0}
+									sizes='100vw'
 								/>
 								<Container>
 									<div className={bannerStyles({ align: banner.align })}>
