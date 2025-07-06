@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
+		deviceSizes: [320, 640, 768, 1024, 1280, 1366, 1536, 1920],
 		remotePatterns: [
 			{
 				protocol: 'http',
