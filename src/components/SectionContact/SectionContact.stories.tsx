@@ -20,7 +20,7 @@ export const Default: Story = {
 		const canvas = within(canvasElement)
 		const title = canvas.getByRole('heading', { level: 2 })
 		const description = canvas.getByRole('paragraph')
-		const form = canvas.getByTestId('ContactFormComponent')
+		const form = await canvas.findByTestId('ContactFormComponent')
 
 		step('Render title, description and form', () => {
 			expect(title).toHaveTextContent('Heading2')

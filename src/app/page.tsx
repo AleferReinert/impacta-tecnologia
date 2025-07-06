@@ -1,11 +1,21 @@
 import { BannerSliderProps, BannersSlider } from '@/components/BannersSlider/BannersSlider'
 import { Error } from '@/components/Error/Error'
 import { SectionAbout, SectionAboutProps } from '@/components/SectionAbout/SectionAbout'
-import { SectionBenefits, SectionBenefitsProps } from '@/components/SectionBenefits/SectionBenefits'
+import type { SectionBenefitsProps } from '@/components/SectionBenefits/SectionBenefits'
+import { SectionBenefitsSkeleton } from '@/components/SectionBenefits/SectionBenefitsSkeleton'
 import { SectionContact, SectionContactProps } from '@/components/SectionContact/SectionContact'
 import { SectionServices, SectionServicesProps } from '@/components/SectionServices/SectionServices'
 import { HOMEPAGE_QUERY } from '@/graphql/queries/Home'
 import { client } from '@/utils/client'
+import dynamic from 'next/dynamic'
+
+const SectionBenefits = dynamic(
+	() => import('@/components/SectionBenefits/SectionBenefits').then(mod => mod.SectionBenefits),
+	{
+		ssr: false,
+		loading: () => <SectionBenefitsSkeleton />
+	}
+)
 
 export interface HomeProps {
 	banners: BannerSliderProps

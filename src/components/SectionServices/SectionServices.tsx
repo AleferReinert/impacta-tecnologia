@@ -1,7 +1,12 @@
 import { Section } from '@/components/Section/Section'
+import dynamic from 'next/dynamic'
 import { BsArrowRightShort } from 'react-icons/bs'
 import { Button } from '../Button/Button'
-import { DynamicReactIcon } from '../DynamicReactIcon/DynamicReactIcon'
+
+const DynamicReactIcon = dynamic(
+	() => import('../DynamicReactIcon/DynamicReactIcon').then(mod => mod.DynamicReactIcon),
+	{ ssr: false }
+)
 
 export interface SectionServicesProps {
 	title: string

@@ -1,5 +1,11 @@
-import { ContactForm } from '../ContactForm/ContactForm'
+import dynamic from 'next/dynamic'
+import { ContactFormSkeleton } from '../ContactForm/ContactFormSkeleton'
 import { Section } from '../Section/Section'
+
+const ContactForm = dynamic(() => import('../ContactForm/ContactForm').then(mod => mod.ContactForm), {
+	ssr: false,
+	loading: () => <ContactFormSkeleton />
+})
 
 export interface SectionContactProps {
 	title: string
